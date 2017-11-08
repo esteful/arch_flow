@@ -1,3 +1,4 @@
-##01 EXPLORATION
-###Import the data
-###Explore the data
+**01 EXPLORATION**
+
+- Import the data
+- Explore the data
