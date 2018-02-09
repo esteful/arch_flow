@@ -11,8 +11,11 @@ __Description:__
 * Based on M.J. Baxter and Jaume Buxeda i Garrigos variation matrix
 * Includes data visualization tools and robust statistical treatments
 * To use with a new dataset change the name of the csv file and run the code on each Rmarkdown file, included in the following folders and following the order:
+
          * 01_Exploration
+
          * 02_Group_creation
+         
          * 03_Output
 
 Following packages have been used for the current project. 
