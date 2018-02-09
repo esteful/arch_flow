@@ -3,9 +3,9 @@
  Licence Script: GPL 
  http://www.gnu.org/licenses/gpl-3.0.html
  
-*Description:*
+_Description:_
 
-A series of routines for exploratory analysis of ceramic compositions 
+* A series of routines for exploratory analysis of ceramic compositions 
 * Designed for fully reproducible research
 * It is applied on two datasets: well knwon Roman-British Pottery publisehd by Tubb et al.(1980) and secondly to new data from northern Iberian Peninsula pottery production centers
 * Based on M.J. Baxter and Jaume Buxeda i Garrigos variation matrix
@@ -17,7 +17,7 @@ A series of routines for exploratory analysis of ceramic compositions
 
 Following packages have been used for the current project. 
 
-*ArchData*
+_ArchData_
 
   David L. Carlson and Georg Roth (2016). archdata: Example Datasets from Archaeological
   Research. R package version 1.1. https://CRAN.R-project.org/package=archdata
