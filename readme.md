@@ -1,20 +1,19 @@
 
-##################################################################################################
-## R-Project for reproducible research on archaeological ceramics compositional data                
-## ===========================================       
-## Licence Script: GPL 
-## (http://www.gnu.org/licenses/gpl-3.0.html)
-## Description:
-   # A series of routines for exploratory analysis of ceramic compositions 
-   # Designed for fully reproducible research
-   # It is applied on two datasets: well knwon Roman-British Pottery publisehd by Tubb et al.(1980) and         # secondly to new data from northern Iberian Peninsula pottery production centers
-   # Based on M.J. Baxter and Jaume Buxeda i Garrigos variation matrix
-   # Includes data visualization tools and robust statistical treatments
-   # To use with a new dataset change the name of the csv file and run the code on each Rmarkdown file            included in the floowing folders and following the order:
+# R-Project for reproducible research on archaeological ceramics compositional data                
+ Licence Script: GPL 
+ [http://www.gnu.org/licenses/gpl-3.0.html]
+
+*Description:*
+
+A series of routines for exploratory analysis of ceramic compositions 
+* Designed for fully reproducible research
+* It is applied on two datasets: well knwon Roman-British Pottery publisehd by Tubb et al.(1980) and secondly to new data from northern Iberian Peninsula pottery production centers
+* Based on M.J. Baxter and Jaume Buxeda i Garrigos variation matrix
+* Includes data visualization tools and robust statistical treatments
+* To use with a new dataset change the name of the csv file and run the code on each Rmarkdown file            included in the floowing folders and following the order:
            01_Exploration
            02_Group_creation
            03_Output
-##################################################################################################
 
 Following packages have been used for the current project. 
 
