@@ -1,0 +1,30 @@
+---
+title: '03 OUPUT'
+output:
+  html_notebook:
+    toc: yes
+ ---
+ 
+ 
+ 
+###Export LaTex style tables 
+
+This code serves to export in LaTex style the table summary. The code is developed by: 
+
+Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics
+  Tables. R package version 5.2. http://CRAN.R-project.org/package=stargazer
+
+```{r}
+if (!require("stargazer")) {
+   install.packages("gplots", dependencies = TRUE)
+   library(gplots)
+   }
+library("stargazer")
+```
+
+Copy and paste this code in te tex fiel. 
+
+```{r}
+stargazer(sum_table(GR_GLO[,-c(1:3,13)]))
+```
+

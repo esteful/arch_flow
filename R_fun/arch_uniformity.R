@@ -172,7 +172,7 @@ require("devEMF")       #to export the data as emf
 ##Print plots  
   
  #Uniformity
-  emf("uniformiy.emf")
+  emf("uniformity.emf")
   replayPlot(xxx)
   dev.off()
   pdf("uniformity.pdf")

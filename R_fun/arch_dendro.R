@@ -1,9 +1,27 @@
-"arch_dendro" <- function(df_chem, nplot, printDendro = TRUE)
+"arch_dendro" <- function(df_chem, nplot, printDendro = TRUE, df_raw = df_raw)
 {
 
-  require(ggbiplot)
-  require(dendextend)
-  #Plot hierarchical clustering of clr transformed data, using centroid algorithm and squared euclidean distance
+  if (!require("ggbiplot")) {
+    install.packages("ggbiplot", dependencies = TRUE)
+    require(ggbiplot)
+  }
+  
+  if (!require("dendextend")) {
+    install.packages("dendextend", dependencies = TRUE)
+    require(dendextend)
+  }
+  if (!require("devtools")) {
+    install.packages("devtools", dependencies = TRUE)
+    require(devtools)
+  }
+  
+  if (!require("devEMF")) {
+    install.packages("devEMF", dependencies = TRUE)
+    require(devEMF)
+  }
+  
+  
+    #Plot hierarchical clustering of clr transformed data, using centroid algorithm and squared euclidean distance
 
   df_chem -> x
   
@@ -24,27 +42,29 @@
   for (i in nplot)
   { 
    #plot options  
-     my_dend <- set(my_dend, "labels_cex", 0.5) #labels text size
+     my_dend <- set(my_dend, "labels_cex", 0.6) #labels text size
      par(mar = c(2,2,2,2)) #set legend scale
   #add colors to labels
      labels_colors(my_dend) <- rainbow(nlevels(as.factor(df_raw[,i])))[as.factor(df_raw[,i])][order.dendrogram(my_dend)]
     
   #create the plot
      plot(my_dend, main= "Hierarchical Clustering", horiz =  FALSE)
-     legend("topright", legend = unique(as.factor(df_raw[,i])), 
+     legend("topright",cex = 0.5, legend = unique(as.factor(df_raw[,i])), 
          fill = unique(rainbow(nlevels(as.factor(df_raw[,i])))[as.factor(df_raw[,i])]))
+     
   #save the plot
      dendro <-recordPlot(my_dend)
-
-      if (printDendro == TRUE)
-        {emf("Dendrogram.emf")
-         replayPlot(dendro)
-         dev.off() 
-         pdf("Dendrogram.pdf")
-         replayPlot(dendro)
-         dev.off()
-        }         
+     
+     if (printDendro == TRUE){
+       emf("Dendrogram.emf")
+       replayPlot(dendro)
+       dev.off()
+       pdf("Dendrogram.pdf")
+       replayPlot(dendro)
+       dev.off()
      }
+    }         
+     
 }
 
 

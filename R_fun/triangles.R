@@ -1,5 +1,5 @@
-"triangles.grups"<-
-  function(x,grup=1,idioma=1,paleta=1,ordenar=1,llegenda=grup, encerclat=1)
+"triangles"<-
+  function(x,grup=1,idioma=3,paleta=1,ordenar=1,llegenda=grup, encerclat=1)
   {
     # fa els tres triangles del fitxer x. Idioma: 1- catala, 2- castella, 3- angles
     # a la paleta, 0-arqub en blanc i negre, 1-arqub (per defecte), 2-rainbow, 3-heat.colors, 4-terrain.colors, 5- topo.colors, 6- cm.colors

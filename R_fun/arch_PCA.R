@@ -1,4 +1,4 @@
-"arch_PCA" <- function(df_chem, lvar=lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= TRUE)
+"arch_PCA" <- function(df_chem,df_raw, lvar=lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= TRUE)
   {
   
 #Plot PCAs on alr transformed data (if desired) showing coloured categories according to nplot given values.
@@ -16,6 +16,7 @@
   if (labels == TRUE){
     labels_names = row.names(df_chem)
   }
+  
   if (labels == FALSE){
     labels_names = NULL
   }
@@ -33,12 +34,12 @@
                     center= TRUE, 
                     scale.= TRUE,
                     obs.scale = 1, 
-                    var.scale = 0.5, 
+                    var.scale = 1, 
                     groups = as.factor(df_raw[,i]), #e.g. df_raw[,2] (Site: Gloucester, New Forest, Wales) 
                     ellipse = FALSE, 
                     circle = FALSE,
                     varname.size= 3, 
-                    varname.adjust= FALSE) 
+                    varname.adjust= TRUE) 
     
            + theme(legend.direction = 'vertical', 
                       legend.position = 'right',

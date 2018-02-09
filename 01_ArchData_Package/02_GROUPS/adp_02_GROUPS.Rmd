@@ -1,0 +1,110 @@
+---
+title: 'Example on Archdata package: 02 Creation of the groups compositions'
+output:
+  pdf_document:
+    toc: yes
+  html_notebook:
+    toc: yes
+  html_document:
+    toc: yes
+---
+
+
+###Replot the dendrogram without outliers elements
+From previous exploration it is obvious that TiO2 has an outlier value due to a possible typographic error pointed out previously for the sample GA4.
+
+Dendrogram without TiO2
+
+```{r, echo=FALSE}
+
+source('~/Programming/Github/arch_flow/R_fun/logcenter.tran.R')#for clr 
+source('~/Programming/Github/arch_flow/R_fun/arch_dendro.R')# for dendrogram
+arch_dendro(df_chem[,-c(7)],printDendro = TRUE, nplot=c(2,3))
+```
+
+###Cuttree
+
+Create groups (subset of the main dataset) according to the cluster analysis. k=3 means we are cutting it into theree groups since these are very clear (after removing the TiO2). 
+
+```{r}
+
+#Watch to perform correctly the Hclust 
+groups <- cutree(.HClust, k = 3, h = NULL) #a vector with the names and the group assigned according to the dengroram.
+
+GR_GLO <- subset(df_raw, groups==1) #subset of the whole dataset
+GR_NF <- subset(df_raw, groups==2) #subset of the whole dataset
+GR_WA <- subset(df_raw, groups==3) #subset of the whole dataset
+
+#cbind(df_raw, groups) -> df_raw
+```
+
+###Check groups
+```{r}
+groups
+```
+
+###GR_GLO group
+
+```{r}
+GR_GLO
+```
+###Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram (GR_GLO)
+
+```{r, echo=FALSE}
+source('~/Programming/Github/arch_flow/R_fun/entropia02.R')#use in uniformity
+source('~/Programming/Github/arch_flow/R_fun/classifica.R')#used in uniformtity
+source('~/Programming/Github/arch_flow/R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
+arch_uniformity(GR_GLO[,-c(1:3,13)])#Remove categorical columns
+```
+
+###Summary table (applied to the GR_GLO dataset)
+```{r, echo=FALSE}
+source('~/Programming/Github/arch_flow/R_fun/sum_table.R')
+require(RcmdrMisc)
+print(sum_table(GR_GLO[,-c(1:3,13)]))  # This code is external
+```
+
+
+###GR_NF group
+
+```{r}
+GR_NF
+```
+
+```{r, echo=FALSE}
+source('~/Programming/Github/arch_flow/R_fun/entropia02.R')#use in uniformity
+source('~/Programming/Github/arch_flow/R_fun/classifica.R')#used in uniformtity
+source('~/Programming/Github/arch_flow/R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
+arch_uniformity(GR_NF[,-c(1:3,13)])#Remove categorical columns
+```
+
+
+###Summary table (applied to the GR_NF dataset)
+```{r, echo=FALSE}
+source('~/Programming/Github/arch_flow/R_fun/sum_table.R')
+require(RcmdrMisc)
+print(sum_table(GR_NF[,-c(1:3,13)]))  # This code is external
+```
+
+
+###GR_WA group
+
+```{r}
+GR_WA
+```
+
+```{r, echo=FALSE}
+source('~/Programming/Github/arch_flow/R_fun/entropia02.R')#use in uniformity
+source('~/Programming/Github/arch_flow/R_fun/classifica.R')#used in uniformtity
+source('~/Programming/Github/arch_flow/R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
+arch_uniformity(GR_WA[,-c(1:3,13)])#Remove categorical columns
+```
+###Summary table (applied to the GR_WA dataset)
+```{r, echo=FALSE}
+source('~/Programming/Github/arch_flow/R_fun/sum_table.R')
+require(RcmdrMisc)
+print(sum_table(GR_WA[,-c(1:3,13)]))  # This code is external
+```
+
+
+
