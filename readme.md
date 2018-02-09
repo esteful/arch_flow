@@ -18,7 +18,6 @@ _Description:_
 Following packages have been used for the current project. 
 
 _ArchData_
-
   David L. Carlson and Georg Roth (2016). archdata: Example Datasets from Archaeological
   Research. R package version 1.1. https://CRAN.R-project.org/package=archdata
 
