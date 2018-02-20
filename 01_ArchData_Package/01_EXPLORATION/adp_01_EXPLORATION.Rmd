@@ -2,9 +2,9 @@
 title: 'Example on Archdata package: Exploratory analysis of archaeological ceramic
   compositions'
 output:
-  pdf_document:
-    toc: yes
   html_notebook:
+    toc: yes
+  pdf_document:
     toc: yes
   html_document:
     toc: yes
@@ -59,7 +59,13 @@ Absorption Spectrophotometry. Archaeometry 22: 153-71.
 ##Data import and preprocessing
 ###Load data
 ```{r}
-library("archdata")
+
+  if (!require("archdata")) {
+    install.packages("archdata", dependencies = TRUE)
+    require(archdata)
+  }
+
+
 ```
 
 ###Dataset overview
@@ -90,8 +96,13 @@ str(df_chem)
 Most of the sampless are from Gloucester region (n=22), where only one kiln is present. Following by Wales, were two kilns are found (Llanedeyrn (n=14) and Caldicot), the last with only two samples. Finally there are 5 and 5 individuals in the two kilns from New Forest, distributed in the Islands Thorns Kiln and the Ashley Rails kiln.
 
 ```{r}
+  if (!require("ggplot2")) {
+    install.packages("ggplot2", dependencies = TRUE)
+    require(ggplot2)
+  }
+
 y <-df_raw[,1:3]
-require("ggplot2")
+
 .df <- data.frame(y = df_raw$ID, #pie charts
                   s = df_raw$Kiln, #riws 
                   t = df_raw$Region) #columns
@@ -135,7 +146,11 @@ df_raw$Calcareous <- as.factor(df_raw$Calcareous)  #bring back to factors
 
 We might want to have a glance at how is the calcium content of the samples 
 ```{r}
-library(dplyr)
+  if (!require("dplyr")) {
+    install.packages("dplyr", dependencies = TRUE)
+    require(dplyr)
+  }
+
 select(df_raw,c(CaO,Calcareous)) 
 
 ```
@@ -144,9 +159,9 @@ select(df_raw,c(CaO,Calcareous))
 ###Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram
 
 ```{r}
-source('~/Programming/Github/arch_flow/R_fun/entropia02.R')#external code (catalan)
-source('~/Programming/Github/arch_flow/R_fun/classifica.R')#external code (catalan)
-source('~/Programming/Github/arch_flow/R_fun/arch_uniformity.R') #mofified code (english), it uses functions from entropia02.R and classifica.R
+source('../../R_fun/entropia02.R')#external code (catalan)
+source('../../R_fun/classifica.R')#external code (catalan)
+source('../../R_fun/arch_uniformity.R') #mofified code (english), it uses functions from entropia02.R and classifica.R
 arch_uniformity(df_chem)
 ```
 
@@ -163,8 +178,8 @@ group <- "Region" #e.g "Region", "Kiln"...
 alr(df_chem,ivar = 2)-> df_alr
 cbind(df_raw[,1:3],df_alr) -> df_alr
 
-
-source('~/Programming/Github/arch_flow/R_Fun/arch_scattermatrix.R')
+getwd()
+source('../../R_fun/arch_scattermatrix.R')
 arch_scatter_matrix(df_raw=df_alr, vars, group, title= "RBPottery")
 #a pdf file is saved in the working directory
 ```
@@ -176,8 +191,8 @@ Create the dendrograms based on the clr data. Required: define df_chem for numer
 nplot: is the vector of plots to be displayed. Chose the index of categorical columns to be displayed. 
 
 ```{r}
-source('~/Programming/Github/arch_flow/R_fun/logcenter.tran.R')#for clr 
-source('~/Programming/Github/arch_flow/R_fun/arch_dendro.R')# for dendrogram
+source('../../R_fun/logcenter.tran.R')#for clr 
+source('../../R_fun/arch_dendro.R')# for dendrogram
 arch_dendro(df_chem = df_chem, df_raw = df_raw, printDendro = FALSE, nplot=c(2,3))
 ```
 
@@ -190,7 +205,7 @@ Here ".lvar" is read automatically.
 nplot: is the vector of plots to be displayed. Chose the index of categorical columns to be displayed. 
 printPCA = TRUE for generating pdf and emf files. 
 ```{r}
-source('~/Programming/Github/arch_flow/R_fun/arch_PCA.R')
+source('../../R_fun/arch_PCA.R')
 arch_PCA(df_chem, df_raw =df_raw,lvar=.lvar, nplot=c(2,3)) #nplot is the vector containing categories to be shown
 ```
 
@@ -198,7 +213,7 @@ arch_PCA(df_chem, df_raw =df_raw,lvar=.lvar, nplot=c(2,3)) #nplot is the vector 
 ###Heatmap (table with the concentrations)
 ```{r}
 require(d3heatmap)
-source('~/Programming/Github/arch_flow/R_fun/arch_heatmap.R')
+source('../../R_fun/arch_heatmap.R')
 arch_heatmap(df_chem)
 ```
 
@@ -208,7 +223,7 @@ In ArchFlow a ternary diagram is included, where the values of CaO, \ch Al2O3 an
  
 
 ```{r}
-#source('~/Programming/Github/arch_flow/R_fun/triangles.R')
+#source('../../R_fun/triangles.R')
 #triangles(df_chem)
 ```
 

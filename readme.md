@@ -3,7 +3,7 @@
  License Script: GPL 
  http://www.gnu.org/licenses/gpl-3.0.html
  
-__Description:__
+## Description
 
 * A series of routines for exploratory analysis of ceramic compositions 
 * Designed for fully reproducible research
@@ -17,6 +17,48 @@ __Description:__
          * 02_Group_creation
 
          * 03_Output
+
+## Running the Arch Flow project
+
+### Debian Linux
+
+Install R from a terminal with root privileges:
+
+```
+apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF'
+
+echo "" >> /etc/apt/sources.list
+echo "# CRAN R source" >> /etc/apt/sources.list
+echo "deb http://cran.cnr.berkeley.edu//bin/linux/debian jessie-cran34/" >> /etc/apt/sources.list
+
+apt-get update
+apt-get install r-base r-base-dev
+apt-get install libcurl4-openssl-dev
+apt-get install libssl-dev
+```
+
+Then download the appropiate package for your architecture and version from https://www.rstudio.com/products/rstudio/download/ and open a terminal with root privileges in the directory of the downloaded file and execute the dkpg command (rstudio-1.1.423-amd64.deb used as example, use your downloaded file version):
+
+```
+dpkg --install rstudio-1.1.423-amd64.deb
+```
+
+Clone the Arch Flow project to your computer. Open the terminal where you want to clone it and type:
+
+```
+git clone https://github.com/esteful/arch_flow.git
+```
+
+Launch RStudio and open the project, using the desktop interface (open RStudio and go to "File"-> "Open Project..." and selecting the "arch_flow.Rproj" file) or opening the terminal in the cloned project directory and typing:
+
+```
+rstudio arch_flow.Rproj
+```
+
+Open the "install.r" file and hit the "Run" button or press Ctrl+Enter keys.
+
+
+## Credits
 
 Following packages have been used for the current project. 
 
