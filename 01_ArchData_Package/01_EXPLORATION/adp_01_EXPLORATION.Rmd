@@ -1,6 +1,5 @@
 ---
-title: 'Example on Archdata package: Exploratory analysis of archaeological ceramic
-  compositions'
+title: 'Example using RBPottery dataset from CRAN Archdata package: Exploratory analysis of archaeological ceramic compositions'
 output:
   html_notebook:
     toc: yes
@@ -10,12 +9,15 @@ output:
     toc: yes
 ---
 
+##Summary
 
+The Archdata package is a CRAN package, providing several types of data that are typically used in archaeological research. 
 
+In this parcticular R Script we will be using the RBPottery dataset.
 
-##Description
+## Dataset Description
 
-A dataset containing results of chemical analyses of 48 specimens of Romano-British pottery from 5 sites in 3 regions have been choosen to apply the current workflow. 
+The RBPottery which is a a dataset containing results of chemical analyses of 48 specimens of Romano-British pottery from 5 sites in 3 regions. 
 
 A data frame with 48 observations on the following 12 variables:
 
@@ -56,21 +58,16 @@ Tubb, A., A. J. Parker, and G. Nickless. 1980. The Analysis of Romano-British Po
 Absorption Spectrophotometry. Archaeometry 22: 153-71.
 
 
-##Data import and preprocessing
-###Load data
+## Load CRAN Archdata package, and if is not installed install it
 ```{r}
-
   if (!require("archdata")) {
     install.packages("archdata", dependencies = TRUE)
     require(archdata)
   }
-
-
 ```
 
-###Dataset overview
+### Load RBPottery from Archdata pachage
 ```{r}
-library(archdata)
 data(RBPottery)
 print(RBPottery)
 ```
@@ -212,7 +209,6 @@ arch_PCA(df_chem, df_raw =df_raw,lvar=.lvar, nplot=c(2,3)) #nplot is the vector 
 
 ###Heatmap (table with the concentrations)
 ```{r}
-require(d3heatmap)
 source('../../R_fun/arch_heatmap.R')
 arch_heatmap(df_chem)
 ```
@@ -227,13 +223,10 @@ In ArchFlow a ternary diagram is included, where the values of CaO, \ch Al2O3 an
 #triangles(df_chem)
 ```
 
-
-
 ###Outlier detection 
 
 Through the boxplot functions outliers can be removed. 
 In this case, TiO2 is chosen to be removed as a variable in order to asses that the groupping remmains similar and therefore, being able to assingn a group to CA4 sample, which is the one outliying due to the value of TiO2. This value, has been reported as a typographic error before by the ArchData package creator. 
-
 
 
 ###Final Remarks
