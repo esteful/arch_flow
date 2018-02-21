@@ -25,11 +25,21 @@
 Install R from a terminal with root privileges:
 
 ```
+apt-get update
+apt-get install dirmngr
 apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF'
+
+If Debian 8.0
 
 echo "" >> /etc/apt/sources.list
 echo "# CRAN R source" >> /etc/apt/sources.list
 echo "deb http://cran.cnr.berkeley.edu//bin/linux/debian jessie-cran34/" >> /etc/apt/sources.list
+
+If Debian 9.0
+
+echo "" >> /etc/apt/sources.list
+echo "# CRAN R source" >> /etc/apt/sources.list
+echo "deb http://cran.cnr.berkeley.edu//bin/linux/debian stretch-cran34/" >> /etc/apt/sources.list
 
 apt-get update
 apt-get install r-base r-base-dev
