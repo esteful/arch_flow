@@ -22,7 +22,9 @@
 
 ### Debian Linux
 
-Install R from a terminal with root privileges:
+All commands shoud be excuted with root privileges, unless contrary especified:
+
+Add dirmngr for adding publick keys and add CRAN publick key:
 
 ```
 apt-get update
@@ -30,22 +32,24 @@ apt-get install dirmngr
 apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF'
 ```
 
-If Debian 8.0
-
+If Using Debian 8, install Debian Jessie CRAN repository:
 ```
 echo "" >> /etc/apt/sources.list
 echo "# CRAN R source" >> /etc/apt/sources.list
 echo "deb http://cran.cnr.berkeley.edu//bin/linux/debian jessie-cran34/" >> /etc/apt/sources.list
 ```
 
-If Debian 9.0
+If Using Debian 9, install Debian Stretch CRAN repository:
 ```
 echo "" >> /etc/apt/sources.list
 echo "# CRAN R source" >> /etc/apt/sources.list
 echo "deb http://cran.cnr.berkeley.edu//bin/linux/debian stretch-cran34/" >> /etc/apt/sources.list
 ```
 
+Install Packages:
+```
 apt-get update
+apt-get install git
 apt-get install r-base r-base-dev
 apt-get install libcurl4-openssl-dev
 apt-get install libssl-dev
@@ -56,6 +60,7 @@ Then download the appropiate package for your architecture and version from http
 ```
 dpkg --install rstudio-1.1.423-amd64.deb
 ```
+The following commands can be executed as normal user (non root).
 
 Clone the Arch Flow project to your computer. Open the terminal where you want to clone it and type:
 
