@@ -74,7 +74,7 @@ Launch RStudio and open the project, using the desktop interface (open RStudio a
 rstudio arch_flow.Rproj
 ```
 
-Open the "install.r" file and hit the "Run" button or press Ctrl+Enter keys.
+Open the "install.r" file and hit the "Run" button or press Ctrl+Enter keys. This may take a while, it takes more than 40 minutes in a i5 with 4 GB RAM and SSD.
 
 
 ## Credits
