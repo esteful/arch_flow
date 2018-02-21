@@ -1,11 +1,11 @@
 ---
 title: 'Example using RBPottery dataset from CRAN Archdata package: Exploratory analysis of archaeological ceramic compositions'
 output:
-  html_notebook:
+  html_document:
     toc: yes
   pdf_document:
     toc: yes
-  html_document:
+  html_notebook:
     toc: yes
 ---
 
@@ -62,6 +62,7 @@ Absorption Spectrophotometry. Archaeometry 22: 153-71.
   require(archdata) # Load CRAN Archdata package
   require(ggplot2)
   require(plyr)
+  require(dplyr)
   source('../../R_fun/entropia02.R')#external code (catalan)
   source('../../R_fun/classifica.R')#external code (catalan)
   source('../../R_fun/arch_uniformity.R') #mofified code (english), it uses functions from entropia02.R and classifica.R
