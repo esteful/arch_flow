@@ -1,4 +1,4 @@
-"arch_PCA" <- function(df_chem,df_raw, lvar=lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= TRUE)
+"arch_PCA" <- function(df_chem,df_raw, lvar=.lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= TRUE)
   {
   
 #Plot PCAs on alr transformed data (if desired) showing coloured categories according to nplot given values.
@@ -30,20 +30,20 @@
            ggbiplot(prcomp
                     (df_chem),
                     #choices == 2,  #principal components number to include 
-                    labels= labels_names,
+                    #labels= labels_names,
                     center= TRUE, 
                     scale.= TRUE,
                     obs.scale = 1, 
                     var.scale = 1, 
                     groups = as.factor(df_raw[,i]), #e.g. df_raw[,2] (Site: Gloucester, New Forest, Wales) 
-                    ellipse = FALSE, 
+                    ellipse = TRUE, 
                     circle = FALSE,
                     varname.size= 3, 
                     varname.adjust= TRUE) 
     
            + theme(legend.direction = 'vertical', 
                       legend.position = 'right',
-                      plot.caption=element_text(size=8, hjust=0.5, margin=margin(t=1))
+                      plot.caption=element_text(size=7, hjust=0.5, margin=margin(t=1))
                       )
            + labs(caption= paste("PCA using:", paste(noquote(colnames(df_chem)), collapse = ",")))
                   

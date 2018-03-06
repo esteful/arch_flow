@@ -142,12 +142,22 @@ select(df_raw,c(CaO,Calcareous))
 ```
 ##Applying statistics to the dataset
 
-###Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram
+###Variation Matrix
+```{r}
+source('../../R_fun/arch_varmat.R')
+arch_varmat(df_chem)
+```
+
+
+
+
+
+###Graphically: Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram
 
 ```{r}
-source('../../R_fun/entropia02.R')#external code (catalan)
-source('../../R_fun/classifica.R')#external code (catalan)
-source('../../R_fun/arch_uniformity.R') #mofified code (english), it uses functions from entropia02.R and classifica.R
+source('../../R_fun/entropia02.R')
+source('../../R_fun/classifica.R')
+source('../../R_fun/arch_uniformity.R') #mofified code it uses functions from entropia02.R and classifica.R
 arch_uniformity(df_chem)
 ```
 
@@ -206,13 +216,10 @@ arch_heatmap(df_chem)
 ###Ternary Diagram
 
 In ArchFlow a ternary diagram is included, where the values of CaO, \ch Al2O3 and \ch SiO2 are included in a single plot. However, as for the Tubbs's dataset the \ch SiO2 is not provided there is no chance to generate these kind of plots. See the ternary diagram of the case study instead. 
- 
-
 ```{r}
-#source('../../R_fun/triangles.R')
-#triangles(df_chem)
+source('../../R_fun/arch_triangles.R')
+arch_triangles(df_raw, grup =2) #grup = indicates the column from which the factors will be for the legend 
 ```
-
 
 
 ###Outlier detection 
@@ -225,18 +232,9 @@ In this case, TiO2 is chosen to be removed as a variable in order to asses that 
 ###Final Remarks
 
 ```{r}
-print("This is the first step of the ArchFlow workflow")
+message("This is the first step of the ArchFlow workflow")
 ```
 
 
-
-
-
-
-
-
-
-
-.
 
 

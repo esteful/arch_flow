@@ -1,5 +1,15 @@
 "sum_table" <- function(x) {
 
+  if (!require("RcmdrMisc")) {
+    install.packages("RcmdrMisc", dependencies = TRUE)
+    require(RcmdrMisc)}
+  
+  if (!require("dplyr")) {
+    install.packages("dplyr", dependencies = TRUE)
+    require(dplyr)}
+  
+  
+  
 	sum <- #calculate the values using numSummary 
 	numSummary(x, 
 			statistics=c("mean", "sd", "cv") #specify the stats to display
@@ -38,7 +48,7 @@ return(table)
 
 }
 
-###BUGS: WHEN DOING STARGAZAR FOR LATEX THE DIGITS ARE NOT ROUNDED IN RSD!!!
+###BUGS: WHEN DOING STARGAZER FOR LATEX THE DIGITS ARE NOT ROUNDED IN RSD!!!
 
 
 

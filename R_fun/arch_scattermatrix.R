@@ -24,7 +24,7 @@ arch_scatter_matrix <- function(df_raw, vars, group, title){
   .densities$z <- NA
   .plot <- ggplot(.all, aes(x = x, y = y, colour = z, shape = z)) + 
     facet_grid(xvar ~ yvar, scales = "free") + 
-    geom_point(size=0.3) + 
+    geom_point(size=0.5) + ##change the point size here 
     geom_line(aes(x = x, y = y), data = .densities, colour = "grey") + 
     scale_y_continuous(expand = c(0.01, 0)) + 
     xlab(NULL) + 

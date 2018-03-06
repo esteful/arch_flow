@@ -1,5 +1,11 @@
 "arch_heatmap" <- function(df_chem){
   
+  if (!require("d3heatmap")) {
+    install.packages("d3heatmap", dependencies = TRUE)
+    require(d3heatmap)
+  }
+  
+  
   #### Heatmap of the chemical composition ####
   
   mat_div <- t(t(df_chem)/colMeans(df_chem))
