@@ -1,4 +1,4 @@
-"arch_dendro" <- function(df_chem, nplot, printDendro = TRUE, df_raw = df_raw)
+"arch_dendro" <- function(df_chem, nplot, printDendro = TRUE, df_raw)
 {
 
   if (!require("ggbiplot")) {

@@ -13,13 +13,12 @@ output:
 ###Replot the dendrogram without outliers elements
 From previous exploration it is obvious that TiO2 has an outlier value due to a possible typographic error pointed out previously for the sample GA4.
 
-Dendrogram without TiO2
+Dendrogram without TiO2 (col nº = 7
 
 ```{r, echo=FALSE}
-
-source('~/Programming/Github/arch_flow/R_fun/logcenter.tran.R')#for clr 
-source('~/Programming/Github/arch_flow/R_fun/arch_dendro.R')# for dendrogram
-arch_dendro(df_chem[,-c(7)],printDendro = TRUE, nplot=c(2,3))
+source('../../R_fun/logcenter.tran.R') #for clr
+source('../../R_fun/arch_dendro.R')# for dendrogram
+arch_dendro(df_chem[,-c(7)], printDendro = TRUE, nplot=c(2,3), df_raw = df_raw)
 ```
 
 ###Cuttree
@@ -51,18 +50,25 @@ GR_GLO
 ###Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram (GR_GLO)
 
 ```{r, echo=FALSE}
-source('~/Programming/Github/arch_flow/R_fun/entropia02.R')#use in uniformity
-source('~/Programming/Github/arch_flow/R_fun/classifica.R')#used in uniformtity
-source('~/Programming/Github/arch_flow/R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
+source('../../R_fun/entropia02.R')#use in uniformity
+source('../../R_fun/classifica.R')#used in uniformtity
+source('../../R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
 arch_uniformity(GR_GLO[,-c(1:3,13)])#Remove categorical columns
 ```
 
 ###Summary table (applied to the GR_GLO dataset)
 ```{r, echo=FALSE}
-source('~/Programming/Github/arch_flow/R_fun/sum_table.R')
+source('../../R_fun/sum_table.R')
 require(RcmdrMisc)
 print(sum_table(GR_GLO[,-c(1:3,13)]))  # This code is external
 ```
+
+
+###MVC GR_GLO
+```{r}
+arch_varmat(GR_GLO[,-c(1:3,13)]) -> MVC_GR_GLO
+```
+
 
 
 ###GR_NF group
@@ -72,19 +78,33 @@ GR_NF
 ```
 
 ```{r, echo=FALSE}
-source('~/Programming/Github/arch_flow/R_fun/entropia02.R')#use in uniformity
-source('~/Programming/Github/arch_flow/R_fun/classifica.R')#used in uniformtity
-source('~/Programming/Github/arch_flow/R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
+source('../../R_fun/entropia02.R')#use in uniformity
+source('../../R_fun/classifica.R')#used in uniformtity
+source('../../R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
 arch_uniformity(GR_NF[,-c(1:3,13)])#Remove categorical columns
 ```
 
 
 ###Summary table (applied to the GR_NF dataset)
 ```{r, echo=FALSE}
-source('~/Programming/Github/arch_flow/R_fun/sum_table.R')
+source('../../R_fun/sum_table.R')
 require(RcmdrMisc)
 print(sum_table(GR_NF[,-c(1:3,13)]))  # This code is external
 ```
+
+###MVC GR_NF
+```{r}
+arch_varmat(GR_NF[,-c(1:3,13)]) -> MVC_GR_NF
+```
+
+
+
+
+
+
+
+
+
 
 
 ###GR_WA group
@@ -94,16 +114,21 @@ GR_WA
 ```
 
 ```{r, echo=FALSE}
-source('~/Programming/Github/arch_flow/R_fun/entropia02.R')#use in uniformity
-source('~/Programming/Github/arch_flow/R_fun/classifica.R')#used in uniformtity
-source('~/Programming/Github/arch_flow/R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
+source('../../R_fun/entropia02.R')#use in uniformity
+source('../../R_fun/classifica.R')#used in uniformtity
+source('../../R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
 arch_uniformity(GR_WA[,-c(1:3,13)])#Remove categorical columns
 ```
 ###Summary table (applied to the GR_WA dataset)
 ```{r, echo=FALSE}
-source('~/Programming/Github/arch_flow/R_fun/sum_table.R')
+source('../../R_fun/sum_table.R')
 require(RcmdrMisc)
 print(sum_table(GR_WA[,-c(1:3,13)]))  # This code is external
+```
+
+###MVC GR_WA
+```{r}
+arch_varmat(GR_WA[,-c(1:3,13)]) -> MVC_GR_WA
 ```
 
 
