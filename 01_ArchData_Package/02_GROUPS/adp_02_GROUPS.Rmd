@@ -1,16 +1,16 @@
 ---
 title: 'Example on Archdata package: 02 Creation of the groups compositions'
 output:
-  pdf_document:
-    toc: yes
   html_notebook:
     toc: yes
   html_document:
     toc: yes
+  pdf_document:
+    toc: yes
 ---
 
 
-###Replot the dendrogram without outliers elements
+##Replot the dendrogram without outliers elements
 From previous exploration it is obvious that TiO2 has an outlier value due to a possible typographic error pointed out previously for the sample GA4.
 
 Dendrogram without TiO2 (col nº = 7
@@ -21,7 +21,7 @@ source('../../R_fun/arch_dendro.R')# for dendrogram
 arch_dendro(df_chem[,-c(7)], printDendro = TRUE, nplot=c(2,3), df_raw = df_raw)
 ```
 
-###Cuttree
+##Create the groups
 
 Create groups (subset of the main dataset) according to the cluster analysis. k=3 means we are cutting it into theree groups since these are very clear (after removing the TiO2). 
 
@@ -42,11 +42,12 @@ GR_WA <- subset(df_raw, groups==3) #subset of the whole dataset
 groups
 ```
 
-###GR_GLO group
+##GR_GLO group
 
 ```{r}
 GR_GLO
 ```
+
 ###Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram (GR_GLO)
 
 ```{r, echo=FALSE}
@@ -56,6 +57,14 @@ source('../../R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
 arch_uniformity(GR_GLO[,-c(1:3,13)])#Remove categorical columns
 ```
 
+###Heatmap
+
+```{r}
+arch_heatmap(GR_GLO[,-c(1:3,13)])
+```
+
+
+
 ###Summary table (applied to the GR_GLO dataset)
 ```{r, echo=FALSE}
 source('../../R_fun/sum_table.R')
@@ -64,24 +73,32 @@ print(sum_table(GR_GLO[,-c(1:3,13)]))  # This code is external
 ```
 
 
-###MVC GR_GLO
+###MVC 
 ```{r}
-arch_varmat(GR_GLO[,-c(1:3,13)]) -> MVC_GR_GLO
+arch_varmat(GR_GLO[,-c(1:3,13)]) -> MVC_GR_GLO #save the variation matrix
 ```
 
 
 
-###GR_NF group
+##GR_NF group
+
 
 ```{r}
 GR_NF
 ```
 
+###Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram (GR_GLO)
 ```{r, echo=FALSE}
 source('../../R_fun/entropia02.R')#use in uniformity
 source('../../R_fun/classifica.R')#used in uniformtity
 source('../../R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
 arch_uniformity(GR_NF[,-c(1:3,13)])#Remove categorical columns
+```
+
+###Heatmap
+
+```{r}
+arch_heatmap(GR_NF[,-c(1:3,13)])
 ```
 
 
@@ -92,33 +109,34 @@ require(RcmdrMisc)
 print(sum_table(GR_NF[,-c(1:3,13)]))  # This code is external
 ```
 
-###MVC GR_NF
+
+
+###MVC
 ```{r}
-arch_varmat(GR_NF[,-c(1:3,13)]) -> MVC_GR_NF
+arch_varmat(GR_NF[,-c(1:3,13)]) -> MVC_GR_NF  #save the variation matrix
 ```
 
-
-
-
-
-
-
-
-
-
-
-###GR_WA group
+##GR_WA group
 
 ```{r}
 GR_WA
 ```
 
+###Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram (GR_GLO)
 ```{r, echo=FALSE}
 source('../../R_fun/entropia02.R')#use in uniformity
 source('../../R_fun/classifica.R')#used in uniformtity
 source('../../R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
 arch_uniformity(GR_WA[,-c(1:3,13)])#Remove categorical columns
 ```
+
+###Heatmap
+
+```{r}
+arch_heatmap(GR_WA[,-c(1:3,13)])
+```
+
+
 ###Summary table (applied to the GR_WA dataset)
 ```{r, echo=FALSE}
 source('../../R_fun/sum_table.R')
@@ -126,9 +144,9 @@ require(RcmdrMisc)
 print(sum_table(GR_WA[,-c(1:3,13)]))  # This code is external
 ```
 
-###MVC GR_WA
+###MVC
 ```{r}
-arch_varmat(GR_WA[,-c(1:3,13)]) -> MVC_GR_WA
+arch_varmat(GR_WA[,-c(1:3,13)]) -> MVC_GR_WA  #save the variation matrix
 ```
 
 
