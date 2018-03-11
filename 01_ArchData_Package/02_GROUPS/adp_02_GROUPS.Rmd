@@ -16,8 +16,6 @@ From previous exploration it is obvious that TiO2 has an outlier value due to a 
 Dendrogram without TiO2 (col nº = 7
 
 ```{r, echo=FALSE}
-source('../../R_fun/logcenter.tran.R') #for clr
-source('../../R_fun/arch_dendro.R')# for dendrogram
 arch_dendro(df_chem[,-c(7)], printDendro = TRUE, nplot=c(2,3), df_raw = df_raw)
 ```
 
@@ -26,7 +24,6 @@ arch_dendro(df_chem[,-c(7)], printDendro = TRUE, nplot=c(2,3), df_raw = df_raw)
 Create groups (subset of the main dataset) according to the cluster analysis. k=3 means we are cutting it into theree groups since these are very clear (after removing the TiO2). 
 
 ```{r}
-
 #Watch to perform correctly the Hclust 
 groups <- cutree(.HClust, k = 3, h = NULL) #a vector with the names and the group assigned according to the dengroram.
 
