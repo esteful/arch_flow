@@ -22,9 +22,9 @@
 
 ### Debian Linux
 
-All commands shoud be excuted with root privileges, unless contrary especified:
+All commands should be excuted with root privileges, unless contrary especified:
 
-Add dirmngr for adding publick keys and add CRAN publick key:
+Add dirmngr for adding public keys and add CRAN publick key:
 
 ```
 apt-get update
