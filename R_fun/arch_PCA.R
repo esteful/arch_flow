@@ -30,7 +30,7 @@
            ggbiplot(prcomp
                     (df_chem),
                     #choices == 2,  #principal components number to include 
-                    #labels= labels_names,
+                    labels= labels_names,
                     center= TRUE, 
                     scale.= TRUE,
                     obs.scale = 1, 

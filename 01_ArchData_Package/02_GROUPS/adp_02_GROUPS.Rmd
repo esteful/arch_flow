@@ -147,4 +147,3 @@ arch_varmat(GR_WA[,-c(1:3,13)]) -> MVC_GR_WA  #save the variation matrix
 ```
 
 
-
