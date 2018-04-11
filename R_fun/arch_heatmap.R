@@ -1,5 +1,4 @@
 "arch_heatmap" <- function(df_chem){
-<<<<<<< HEAD
   
   if (!require("d3heatmap")) {
     install.packages("d3heatmap", dependencies = TRUE)
@@ -7,7 +6,7 @@
   }
   
   
-=======
+
   ## Load Library
   require(d3heatmap)
 
