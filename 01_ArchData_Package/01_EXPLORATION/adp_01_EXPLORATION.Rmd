@@ -58,7 +58,7 @@ Baxter, M. J. 2003. Statistics in Archaeology. Arnold.
 Tubb, A., A. J. Parker, and G. Nickless. 1980. The Analysis of Romano-British Pottery by Atomic
 Absorption Spectrophotometry. Archaeometry 22: 153-71.
 
-## Load Libraries
+## Load Libraries and source functions from R_Fun folder
 ```{r}
   require(archdata) # Load CRAN Archdata package
   require(ggplot2)
@@ -72,7 +72,7 @@ Absorption Spectrophotometry. Archaeometry 22: 153-71.
   source('../../R_fun/arch_dendro.R')# for dendrogram
   source('../../R_fun/arch_PCA.R')
   source('../../R_fun/arch_heatmap.R')
-  source('../../R_fun/triangles.R')
+  source('../../R_fun/arch_triangles.R')
 ```
 
 ### Load RBPottery from Archdata pachage
@@ -164,7 +164,6 @@ arch_varmat(df_chem)
 
 
 ###Graphically: Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram
-
 ```{r}
 arch_uniformity(df_chem)
 ```
@@ -215,7 +214,7 @@ arch_heatmap(df_chem)
 In ArchFlow a ternary diagram is included, where the values of CaO, \ch Al2O3 and \ch SiO2 are included in a single plot. However, as for the Tubbs's dataset the \ch SiO2 is not provided there is no chance to generate these kind of plots. See the ternary diagram of the case study instead. 
 
 ```{r}
-arch_triangles(df_raw, grup =2) #grup = indicates the column from which the factors will be for the legend 
+arch_triangles(df_raw, grup =2, SiO= 0) #grup = indicates the column from which the factors will be for the legend 
 ```
 
 ###Outlier detection 
