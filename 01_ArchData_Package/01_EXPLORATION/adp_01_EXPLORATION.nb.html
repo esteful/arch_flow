@@ -233,7 +233,7 @@ $(document).ready(function () {
 <h2>Load Libraries and source functions from R_Fun folder</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICByZXF1aXJlKGFyY2hkYXRhKSAjIExvYWQgQ1JBTiBBcmNoZGF0YSBwYWNrYWdlXG4gIHJlcXVpcmUoZ2dwbG90MilcbiAgcmVxdWlyZShwbHlyKVxuICByZXF1aXJlKGRwbHlyKVxuICBzb3VyY2UoJy4uLy4uL1JfZnVuL2VudHJvcGlhMDIuUicpI2V4dGVybmFsIGNvZGUgKGNhdGFsYW4pXG4gIHNvdXJjZSgnLi4vLi4vUl9mdW4vY2xhc3NpZmljYS5SJykjZXh0ZXJuYWwgY29kZSAoY2F0YWxhbilcbiAgc291cmNlKCcuLi8uLi9SX2Z1bi9hcmNoX3VuaWZvcm1pdHkuUicpICNtb2ZpZmllZCBjb2RlIChlbmdsaXNoKSwgaXQgdXNlcyBmdW5jdGlvbnMgZnJvbSBlbnRyb3BpYTAyLlIgYW5kIGNsYXNzaWZpY2EuUlxuICBzb3VyY2UoJy4uLy4uL1JfZnVuL2FyY2hfc2NhdHRlcm1hdHJpeC5SJylcbiAgc291cmNlKCcuLi8uLi9SX2Z1bi9sb2djZW50ZXIudHJhbi5SJykjZm9yIGNsciBcbiAgc291cmNlKCcuLi8uLi9SX2Z1bi9hcmNoX2RlbmRyby5SJykjIGZvciBkZW5kcm9ncmFtXG4gIHNvdXJjZSgnLi4vLi4vUl9mdW4vYXJjaF9QQ0EuUicpXG4gIHNvdXJjZSgnLi4vLi4vUl9mdW4vYXJjaF9oZWF0bWFwLlInKVxuICBzb3VyY2UoJy4uLy4uL1JfZnVuL2FyY2hfdHJpYW5nbGVzLlInKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICByZXF1aXJlKGFyY2hkYXRhKSAjIExvYWQgQ1JBTiBBcmNoZGF0YSBwYWNrYWdlXG4gIHJlcXVpcmUoZ2dwbG90MilcbiAgcmVxdWlyZShwbHlyKVxuICByZXF1aXJlKGRwbHlyKVxuICBzb3VyY2UoJy4uLy4uL1JfZnVuL2VudHJvcGlhMDIuUicpI2V4dGVybmFsIGNvZGUgKGNhdGFsYW4pXG4gIHNvdXJjZSgnLi4vLi4vUl9mdW4vY2xhc3NpZmljYS5SJykjZXh0ZXJuYWwgY29kZSAoY2F0YWxhbilcbiAgc291cmNlKCcuLi8uLi9SX2Z1bi9hcmNoX3VuaWZvcm1pdHkuUicpICNtb2ZpZmllZCBjb2RlIChlbmdsaXNoKSwgaXQgdXNlcyBmdW5jdGlvbnMgZnJvbSBlbnRyb3BpYTAyLlIgYW5kIGNsYXNzaWZpY2EuUlxuICBzb3VyY2UoJy4uLy4uL1JfZnVuL2FyY2hfc2NhdHRlcm1hdHJpeC5SJylcbiAgc291cmNlKCcuLi8uLi9SX2Z1bi9sb2djZW50ZXIudHJhbi5SJykjZm9yIGNsciBcbiAgc291cmNlKCcuLi8uLi9SX2Z1bi9hcmNoX2RlbmRyby5SJykjIGZvciBkZW5kcm9ncmFtXG4gIHNvdXJjZSgnLi4vLi4vUl9mdW4vYXJjaF9QQ0EuUicpXG4gIHNvdXJjZSgnLi4vLi4vUl9mdW4vYXJjaF9oZWF0bWFwLlInKVxuYGBgIn0= -->
 <pre class="r"><code>  require(archdata) # Load CRAN Archdata package
   require(ggplot2)
   require(plyr)
@@ -245,19 +245,21 @@ $(document).ready(function () {
   source('../../R_fun/logcenter.tran.R')#for clr 
   source('../../R_fun/arch_dendro.R')# for dendrogram
   source('../../R_fun/arch_PCA.R')
-  source('../../R_fun/arch_heatmap.R')
-  source('../../R_fun/arch_triangles.R')</code></pre>
+  source('../../R_fun/arch_heatmap.R')</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gc291cmNlKFwiLi4vLi4vUl9mdW4vYXJjaF9oZWF0bWFwLlJcIikgOiBcbiAgLi4vLi4vUl9mdW4vYXJjaF9oZWF0bWFwLlI6MTM6MTogaW5lc3BlcmFkbyAnPidcbjEyOiBcbjEzOiA+XG4gICAgXlxuIn0= -->
+<pre><code>Error in source(&quot;../../R_fun/arch_heatmap.R&quot;) : 
+  ../../R_fun/arch_heatmap.R:13:1: inesperado '&gt;'
+12: 
+13: &gt;
+    ^</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="load-rbpottery-from-archdata-pachage" class="section level3">
 <h3>Load RBPottery from Archdata pachage</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICBkYXRhKFJCUG90dGVyeSlcbiAgcHJpbnQoUkJQb3R0ZXJ5KVxuYGBgIn0= -->
-<pre class="r"><code>  data(RBPottery)
-  print(RBPottery)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -265,11 +267,6 @@ $(document).ready(function () {
 <h3>Declare df_raw and df_chem, and set the row.names</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICByb3cubmFtZXMoUkJQb3R0ZXJ5KSA8LSBSQlBvdHRlcnlbLDFdXG4gIGRmX3JhdyA8LSBSQlBvdHRlcnkgICN3ZSBhcmUgY2FsbGluZyB0byB0aGUgd2hvbGUgZGF0YXNldFxuICBkZl9jaGVtIDwtIFJCUG90dGVyeVssLWMoMTozKV0gI2lnbm9yZSBhbGwgdGhlIGNvbHVtbnMgY29udGFpbmluZyBjYXRlZ29yaWNhbCBkYXRhLCA5IGluIHRoaXMgY2FzZS4gXG5gYGAifQ== -->
-<pre class="r"><code>  row.names(RBPottery) &lt;- RBPottery[,1]
-  df_raw &lt;- RBPottery  #we are calling to the whole dataset
-  df_chem &lt;- RBPottery[,-c(1:3)] #ignore all the columns containing categorical data, 9 in this case. </code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -277,17 +274,11 @@ $(document).ready(function () {
 <h3>Check the structure of the new dataset (skip if desired)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICBzdHIoZGZfcmF3KVxuYGBgIn0= -->
-<pre class="r"><code>  str(df_raw)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>In df_chem only integers (int) or nummerical (num). Num class contain decimmals</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICBzdHIoZGZfY2hlbSlcbmBgYCJ9 -->
-<pre class="r"><code>  str(df_chem)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -296,29 +287,6 @@ $(document).ready(function () {
 <p>Most of the sampless are from Gloucester region (n=22), where only one kiln is present. Following by Wales, were two kilns are found (Llanedeyrn (n=14) and Caldicot), the last with only two samples. Finally there are 5 and 5 individuals in the two kilns from New Forest, distributed in the Islands Thorns Kiln and the Ashley Rails kiln.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICB5IDwtZGZfcmF3WywxOjNdXG5cbiAgLmRmIDwtIGRhdGEuZnJhbWUoeSA9IGRmX3JhdyRJRCwgI3BpZSBjaGFydHNcbiAgICAgICAgICAgICAgICAgICAgcyA9IGRmX3JhdyRLaWxuLCAjcml3cyBcbiAgICAgICAgICAgICAgICAgICAgdCA9IGRmX3JhdyRSZWdpb24pICNjb2x1bW5zXG5cbiAgLmRmIDwtIGFzLmRhdGEuZnJhbWUod2l0aCguZGYsIHByb3AudGFibGUodGFibGUoeSwgcywgdCksIG1hcmdpbiA9IDI6MykpKVxuXG4gIC5wbG90IDwtICBnZ3Bsb3QoZGF0YSA9IC5kZiwgYWVzKHggPSBmYWN0b3IoMSksIHkgPSBGcmVxLCBmaWxsID0geSkpICsgXG4gICAgICAgICAgICBnZW9tX2Jhcih3aWR0aCA9IDEsIHN0YXQgPSBcImlkZW50aXR5XCIpICsgXG4gICAgICAgICAgICBzY2FsZV95X2NvbnRpbnVvdXMobGFiZWxzID0gc2NhbGVzOjpwZXJjZW50X2Zvcm1hdCgpLCBsaW1pdHMgPSBjKDAsIDEpKSArIFxuICAgICAgICAgICAgY29vcmRfcG9sYXIodGhldGEgPSBcInlcIikgKyBcbiAgICAgICAgICAgIGZhY2V0X2dyaWQocyB+IHQpICsgXG4gICAgICAgICAgICB4bGFiKE5VTEwpICsgXG4gICAgICAgICAgICBsYWJzKGZpbGwgPSBcIklEXCIpICsgXG4gICAgICAgICAgICB0aGVtZV9idyhiYXNlX3NpemUgPSA4LCBiYXNlX2ZhbWlseSA9IFwic2Fuc1wiKSArIFxuICAgICAgICAgICAgdGhlbWUocGFuZWwuc3BhY2luZyA9IHVuaXQoMC4zLCBcImxpbmVzXCIpLCBsZWdlbmQucG9zaXRpb24gPSBcInJpZ2h0XCIsIFxuICAgICAgICAgICAgYXhpcy50aXRsZS54ID0gZWxlbWVudF9ibGFuaygpLCBheGlzLnRpdGxlLnkgPSBlbGVtZW50X2JsYW5rKCksIGF4aXMudGV4dC55IFxuICAgICAgICAgICAgPSBlbGVtZW50X2JsYW5rKCksIGF4aXMudGlja3MgPSBlbGVtZW50X2JsYW5rKCkpXG5cbiAgcHJpbnQoLnBsb3QpXG5gYGAifQ== -->
-<pre class="r"><code>  y &lt;-df_raw[,1:3]
-
-  .df &lt;- data.frame(y = df_raw$ID, #pie charts
-                    s = df_raw$Kiln, #riws 
-                    t = df_raw$Region) #columns
-
-  .df &lt;- as.data.frame(with(.df, prop.table(table(y, s, t), margin = 2:3)))
-
-  .plot &lt;-  ggplot(data = .df, aes(x = factor(1), y = Freq, fill = y)) + 
-            geom_bar(width = 1, stat = &quot;identity&quot;) + 
-            scale_y_continuous(labels = scales::percent_format(), limits = c(0, 1)) + 
-            coord_polar(theta = &quot;y&quot;) + 
-            facet_grid(s ~ t) + 
-            xlab(NULL) + 
-            labs(fill = &quot;ID&quot;) + 
-            theme_bw(base_size = 8, base_family = &quot;sans&quot;) + 
-            theme(panel.spacing = unit(0.3, &quot;lines&quot;), legend.position = &quot;right&quot;, 
-            axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text.y 
-            = element_blank(), axis.ticks = element_blank())
-
-  print(.plot)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -327,12 +295,6 @@ $(document).ready(function () {
 <p>Elemental distribution of the chemical elements</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICBmb3IgKGkgaW4gMTpuY29sKGRmX2NoZW0pKXtcbiAgLmRhdHQgPC0gZGF0YS5mcmFtZShSRUdJT049ZGZfcmF3JFJlZ2lvbiwgaT0gZGZfY2hlbVssaV0sIEtJTE49ZGZfcmF3JEtpbG4pXG4gIHBsb3QoZ2dwbG90KC5kYXR0LCBhZXMoeD0gS0lMTiwgeSA9IGksIGZpbGw9UkVHSU9OKSkgKyBnZW9tX2JveHBsb3QoKSArIHlsYWIoY29sbmFtZXMoZGZfY2hlbSlbaV0pKVxuICB9XG5gYGAifQ== -->
-<pre class="r"><code>  for (i in 1:ncol(df_chem)){
-  .datt &lt;- data.frame(REGION=df_raw$Region, i= df_chem[,i], KILN=df_raw$Kiln)
-  plot(ggplot(.datt, aes(x= KILN, y = i, fill=REGION)) + geom_boxplot() + ylab(colnames(df_chem)[i]))
-  }</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -340,23 +302,11 @@ $(document).ready(function () {
 <h3>Create categories based on the calcium content or any other condition (optional)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICBkZl9yYXckQ2FsY2FyZW91cyA8LSBjKCkgI0NyZXRlIHRoZSBkZXNyaXJlZCBjb2x1bW5cbiAgXG4gIFwiTm9uLUNhbGNhcmVvdXMgKDwlNkNhTylcIiAtPiAgIGRmX3JhdyRDYWxjYXJlb3VzW2RmX3JhdyRDYU8gPCA2XVxuICBcIkNhbGNhcmVvdXMgKD4lNkNhTylcIiAtPiAgICAgICBkZl9yYXckQ2FsY2FyZW91c1tkZl9yYXckQ2FPPiA2XVxuICBcIkhpZ2ggQ2FsY2FyZW91cyAoPiUyMENhTylcIiAtPiBkZl9yYXckQ2FsY2FyZW91c1tkZl9yYXckQ2FPID4gMjBdXG4gICBcbiAgZGZfcmF3JENhbGNhcmVvdXMgPC0gYXMuZmFjdG9yKGRmX3JhdyRDYWxjYXJlb3VzKSAgI2JyaW5nIGJhY2sgdG8gZmFjdG9yc1xuYGBgIn0= -->
-<pre class="r"><code>  df_raw$Calcareous &lt;- c() #Crete the desrired column
-  
-  &quot;Non-Calcareous (&lt;%6CaO)&quot; -&gt;   df_raw$Calcareous[df_raw$CaO &lt; 6]
-  &quot;Calcareous (&gt;%6CaO)&quot; -&gt;       df_raw$Calcareous[df_raw$CaO&gt; 6]
-  &quot;High Calcareous (&gt;%20CaO)&quot; -&gt; df_raw$Calcareous[df_raw$CaO &gt; 20]
-   
-  df_raw$Calcareous &lt;- as.factor(df_raw$Calcareous)  #bring back to factors</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We might want to have a glance at how is the calcium content of the samples</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICBzZWxlY3QoZGZfcmF3LGMoQ2FPLENhbGNhcmVvdXMpKSBcbmBgYCJ9 -->
-<pre class="r"><code>  select(df_raw,c(CaO,Calcareous)) </code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -367,10 +317,6 @@ $(document).ready(function () {
 <h3>Variation Matrix</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuLi8uLi9SX2Z1bi9hcmNoX3Zhcm1hdC5SJylcbmFyY2hfdmFybWF0KGRmX2NoZW0pXG5gYGAifQ== -->
-<pre class="r"><code>source('../../R_fun/arch_varmat.R')
-arch_varmat(df_chem)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -378,9 +324,6 @@ arch_varmat(df_chem)</code></pre>
 <h3>Graphically: Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJjaF91bmlmb3JtaXR5KGRmX2NoZW0pXG5gYGAifQ== -->
-<pre class="r"><code>arch_uniformity(df_chem)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -388,19 +331,6 @@ arch_varmat(df_chem)</code></pre>
 <h3>Scatter plot Matrix</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICAjISFzZWxlY3QgdGhpcyB3aXRoIHRoZSB2YXJpYWJsZXMgdG8gdXNlIFxuICB2YXJzIDwtIGMoXCJNbk9cIixcIkNhT1wiLFwiTmEyT1wiLCBcIlRpTzJcIixcIkJhT1wiLCBcIkFsMk8zXCIpIFxuICAjISEgc2VsZWN0IHRoZSBuYW1lIG9mIHRoZSBjYXRlb2dpcmVzIHRvIHBsb3RcbiAgZ3JvdXAgPC0gXCJSZWdpb25cIiAjZS5nIFwiUmVnaW9uXCIsIFwiS2lsblwiLi4uXG5cbiAgI2FsciBjb252ZXJzaW9uXG4gIGFscihkZl9jaGVtLGl2YXIgPSAyKS0+IGRmX2FsclxuICBjYmluZChkZl9yYXdbLDE6M10sZGZfYWxyKSAtPiBkZl9hbHJcblxuICBhcmNoX3NjYXR0ZXJfbWF0cml4KGRmX3Jhdz1kZl9hbHIsIHZhcnMsIGdyb3VwLCB0aXRsZT0gXCJSQlBvdHRlcnlcIilcbiAgI2EgcGRmIGZpbGUgaXMgc2F2ZWQgaW4gdGhlIHdvcmtpbmcgZGlyZWN0b3J5XG5gYGAifQ== -->
-<pre class="r"><code>  #!!select this with the variables to use 
-  vars &lt;- c(&quot;MnO&quot;,&quot;CaO&quot;,&quot;Na2O&quot;, &quot;TiO2&quot;,&quot;BaO&quot;, &quot;Al2O3&quot;) 
-  #!! select the name of the cateogires to plot
-  group &lt;- &quot;Region&quot; #e.g &quot;Region&quot;, &quot;Kiln&quot;...
-
-  #alr conversion
-  alr(df_chem,ivar = 2)-&gt; df_alr
-  cbind(df_raw[,1:3],df_alr) -&gt; df_alr
-
-  arch_scatter_matrix(df_raw=df_alr, vars, group, title= &quot;RBPottery&quot;)
-  #a pdf file is saved in the working directory</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -410,9 +340,6 @@ arch_varmat(df_chem)</code></pre>
 <p>nplot: is the vector of plots to be displayed. Chose the index of categorical columns to be displayed.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJjaF9kZW5kcm8oZGZfY2hlbSA9IGRmX2NoZW0sIGRmX3JhdyA9IGRmX3JhdywgcHJpbnREZW5kcm8gPSBGQUxTRSwgbnBsb3Q9YygyLDMpKVxuYGBgIn0= -->
-<pre class="r"><code>arch_dendro(df_chem = df_chem, df_raw = df_raw, printDendro = FALSE, nplot=c(2,3))</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -421,9 +348,6 @@ arch_varmat(df_chem)</code></pre>
 <p>For the alr transformation, the less variable element is generated in arch_uniformity and saved as .lvar. Here “.lvar” is read automatically. nplot: is the vector of plots to be displayed. Chose the index of categorical columns to be displayed. printPCA = TRUE for generating pdf and emf files.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJjaF9QQ0EoZGZfY2hlbSwgZGZfcmF3ID1kZl9yYXcsbHZhcj0ubHZhciwgbnBsb3Q9YygyLDMpKSAjbnBsb3QgaXMgdGhlIHZlY3RvciBjb250YWluaW5nIGNhdGVnb3JpZXMgdG8gYmUgc2hvd25cbmBgYCJ9 -->
-<pre class="r"><code>arch_PCA(df_chem, df_raw =df_raw,lvar=.lvar, nplot=c(2,3)) #nplot is the vector containing categories to be shown</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -431,9 +355,6 @@ arch_varmat(df_chem)</code></pre>
 <h3>Heatmap (table with the concentrations)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJjaF9oZWF0bWFwKGRmX2NoZW0pXG5gYGAifQ== -->
-<pre class="r"><code>arch_heatmap(df_chem)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -442,9 +363,6 @@ arch_varmat(df_chem)</code></pre>
 <p>In ArchFlow a ternary diagram is included, where the values of CaO, Al2O3 and SiO2 are included in a single plot. However, as for the Tubbs’s dataset the SiO2 is not provided there is no chance to generate these kind of plots. See the ternary diagram of the case study instead.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJjaF90cmlhbmdsZXMoZGZfcmF3LCBncnVwID0yLCBTaU89IDApICNncnVwID0gaW5kaWNhdGVzIHRoZSBjb2x1bW4gZnJvbSB3aGljaCB0aGUgZmFjdG9ycyB3aWxsIGJlIGZvciB0aGUgbGVnZW5kIFxuYGBgIn0= -->
-<pre class="r"><code>arch_triangles(df_raw, grup =2, SiO= 0) #grup = indicates the column from which the factors will be for the legend </code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -456,9 +374,6 @@ arch_varmat(df_chem)</code></pre>
 <h3>Final Remarks</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVzc2FnZShcIlRoaXMgaXMgdGhlIGZpcnN0IHN0ZXAgb2YgdGhlIEFyY2hGbG93IHdvcmtmbG93XCIpXG5gYGAifQ== -->
-<pre class="r"><code>message(&quot;This is the first step of the ArchFlow workflow&quot;)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
