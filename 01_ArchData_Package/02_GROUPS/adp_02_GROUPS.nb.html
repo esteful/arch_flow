@@ -176,24 +176,11 @@ $(document).ready(function () {
 <li><a href="#replot-the-dendrogram-without-outliers-elements">Replot the dendrogram without outliers elements</a></li>
 <li><a href="#create-the-groups">Create the groups</a><ul>
 <li><a href="#check-groups">Check groups</a></li>
+<li><a href="#mvc-sum-table-for-each-group">MVC + SUM TABLE FOR EACH GROUP</a></li>
 </ul></li>
-<li><a href="#gr_glo-group">GR_GLO group</a><ul>
-<li><a href="#variation-matrix-mvc-plot-mvc-dendrogram-and-codadendrogram-gr_glo">Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram (GR_GLO)</a></li>
-<li><a href="#heatmap">Heatmap</a></li>
-<li><a href="#summary-table-applied-to-the-gr_glo-dataset">Summary table (applied to the GR_GLO dataset)</a></li>
-<li><a href="#mvc">MVC</a></li>
-</ul></li>
-<li><a href="#gr_nf-group">GR_NF group</a><ul>
-<li><a href="#variation-matrix-mvc-plot-mvc-dendrogram-and-codadendrogram-gr_glo-1">Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram (GR_GLO)</a></li>
-<li><a href="#heatmap-1">Heatmap</a></li>
-<li><a href="#summary-table-applied-to-the-gr_nf-dataset">Summary table (applied to the GR_NF dataset)</a></li>
-<li><a href="#mvc-1">MVC</a></li>
-</ul></li>
-<li><a href="#gr_wa-group">GR_WA group</a><ul>
-<li><a href="#variation-matrix-mvc-plot-mvc-dendrogram-and-codadendrogram-gr_glo-2">Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram (GR_GLO)</a></li>
-<li><a href="#heatmap-2">Heatmap</a></li>
-<li><a href="#summary-table-applied-to-the-gr_wa-dataset">Summary table (applied to the GR_WA dataset)</a></li>
-<li><a href="#mvc-2">MVC</a></li>
+<li><a href="#plot-mvc-and-summary-tables">Plot MVC and Summary Tables</a><ul>
+<li><a href="#generate-latex-code-for-each-summary-and-mvc-table">Generate LaTex Code for each Summary and MVC table</a></li>
+<li><a href="#heatmap-of-each-group">Heatmap of each group</a></li>
 </ul></li>
 </ul>
 </div>
@@ -202,7 +189,7 @@ $(document).ready(function () {
 <div id="replot-the-dendrogram-without-outliers-elements" class="section level2">
 <h2>Replot the dendrogram without outliers elements</h2>
 <p>From previous exploration it is obvious that TiO2 has an outlier value due to a possible typographic error pointed out previously for the sample GA4.</p>
-<p>Dendrogram without TiO2 (col nº = 7</p>
+<p>Dendrogram without TiO2 (col nº = 7)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-plot-begin eyJjb25kaXRpb25zIjpbXSwiaGVpZ2h0Ijo0MzIuNjMyOSwic2l6ZV9iZWhhdmlvciI6MCwid2lkdGgiOjcwMH0= -->
@@ -236,143 +223,90 @@ GR_WA &lt;- subset(df_raw, groups==3) #subset of the whole dataset
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JvdXBzXG5gYGAifQ== -->
 <pre class="r"><code>groups</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR0ExIEdBMiBHQTMgR0E0IEdBNSBHQjEgR0IyIEdCMyBHQjQgR0I1IEdDMSBHQzIgR0MzIEdDNCBHRDEgR0QyIEdEMyBHRDQgR0Q1IEdFMSBHRTIgR0UzIEMwMSBDTzIgQ08zIFxuICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAxICAgMiAgIDIgICAyIFxuQzA0IENPNSBDMDYgQzA3IEMwOCBDMDkgQzEwIEMxMSBDMTIgQzEzIEMxNCBHTzEgRzAyIFQxMSBUMTIgVDEzIFQxNCBUMTYgQTExIEFsMiBBMTYgQTE4IEEyNiBcbiAgMiAgIDIgICAyICAgMiAgIDIgICAyICAgMiAgIDIgICAyICAgMiAgIDIgICAyICAgMiAgIDMgICAzICAgMyAgIDMgICAzICAgMyAgIDMgICAzICAgMyAgIDMgXG4ifQ== -->
-<pre><code>GA1 GA2 GA3 GA4 GA5 GB1 GB2 GB3 GB4 GB5 GC1 GC2 GC3 GC4 GD1 GD2 GD3 GD4 GD5 GE1 GE2 GE3 C01 CO2 CO3 
-  1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   2   2   2 
-C04 CO5 C06 C07 C08 C09 C10 C11 C12 C13 C14 GO1 G02 T11 T12 T13 T14 T16 A11 Al2 A16 A18 A26 
-  2   2   2   2   2   2   2   2   2   2   2   2   2   3   3   3   3   3   3   3   3   3   3 </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiR0ExIEdBMiBHQTMgR0E0IEdBNSBHQjEgR0IyIEdCMyBHQjQgR0I1IEdDMSBHQzIgR0MzIEdDNCBHRDEgR0QyIEdEMyBHRDQgR0Q1IEdFMSBHRTIgR0UzIEMwMSBDTzIgQ08zIEMwNCBDTzUgQzA2IEMwNyBDMDggQzA5IEMxMCBDMTEgXG4gIDEgICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAxICAgMSAgIDEgICAyICAgMiAgIDIgICAyICAgMiAgIDIgICAyICAgMiAgIDIgICAyICAgMiBcbkMxMiBDMTMgQzE0IEdPMSBHMDIgVDExIFQxMiBUMTMgVDE0IFQxNiBBMTEgQWwyIEExNiBBMTggQTI2IFxuICAyICAgMiAgIDIgICAyICAgMiAgIDMgICAzICAgMyAgIDMgICAzICAgMyAgIDMgICAzICAgMyAgIDMgXG4ifQ== -->
+<pre><code>GA1 GA2 GA3 GA4 GA5 GB1 GB2 GB3 GB4 GB5 GC1 GC2 GC3 GC4 GD1 GD2 GD3 GD4 GD5 GE1 GE2 GE3 C01 CO2 CO3 C04 CO5 C06 C07 C08 C09 C10 C11 
+  1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   2   2   2   2   2   2   2   2   2   2   2 
+C12 C13 C14 GO1 G02 T11 T12 T13 T14 T16 A11 Al2 A16 A18 A26 
+  2   2   2   2   2   3   3   3   3   3   3   3   3   3   3 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
-</div>
-<div id="gr_glo-group" class="section level2">
-<h2>GR_GLO group</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR1JfR0xPXG5gYGAifQ== -->
-<pre class="r"><code>GR_GLO</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="variation-matrix-mvc-plot-mvc-dendrogram-and-codadendrogram-gr_glo" class="section level3">
-<h3>Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram (GR_GLO)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="heatmap" class="section level3">
-<h3>Heatmap</h3>
+<div id="mvc-sum-table-for-each-group" class="section level3">
+<h3>MVC + SUM TABLE FOR EACH GROUP</h3>
+<p>Introduce here the defined groups</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJjaF9oZWF0bWFwKEdSX0dMT1ssLWMoMTozLDEzKV0pXG5gYGAifQ== -->
-<pre class="r"><code>arch_heatmap(GR_GLO[,-c(1:3,13)])</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="summary-table-applied-to-the-gr_glo-dataset" class="section level3">
-<h3>Summary table (applied to the GR_GLO dataset)</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="mvc" class="section level3">
-<h3>MVC</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJjaF92YXJtYXQoR1JfR0xPWywtYygxOjMsMTMpXSkgLT4gTVZDX0dSX0dMTyAjc2F2ZSB0aGUgdmFyaWF0aW9uIG1hdHJpeFxuYGBgIn0= -->
-<pre class="r"><code>arch_varmat(GR_GLO[,-c(1:3,13)]) -&gt; MVC_GR_GLO #save the variation matrix</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JvdXBfbGlzdCA8LSBsaXN0KEdSX0dMTywgR1JfTkYsIEdSX1dBKSAjaW5jbHVkZSB0aGUgZGVzaXJlZCBncm91cHNcbm5hbWVzKGdyb3VwX2xpc3QpIDwtIGMoXCJHUi1HTE9cIiwgXCJHUi1ORlwiLCBcIkdSLVdBXCIpICNpbmNsdWRlIHRoZSBuYW1lcyB3aXRoIFwiLVwiIGluc3RlYWQgb2YgXCJfXCIgdG8gYXZvaWQgTGFUZXggcHJvYmxlbXNcbnJtX3ZhcnMgPC0gYygxOjMsMTMpICNpbmNsdWRlZCBub24gZGVzaXJlZCBjb2x1bW5zIChlLmcuIG5lZ2F0aXZlIHZhbHVlcywgY2F0ZWdvcmljYWwuLi4pXG5gYGAifQ== -->
+<pre class="r"><code>group_list &lt;- list(GR_GLO, GR_NF, GR_WA) #include the desired groups
+names(group_list) &lt;- c(&quot;GR-GLO&quot;, &quot;GR-NF&quot;, &quot;GR-WA&quot;) #include the names with &quot;-&quot; instead of &quot;_&quot; to avoid LaTex problems
+rm_vars &lt;- c(1:3,13) #included non desired columns (e.g. negative values, categorical...)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
 </div>
-<div id="gr_nf-group" class="section level2">
-<h2>GR_NF group</h2>
+<div id="plot-mvc-and-summary-tables" class="section level1">
+<h1>Plot MVC and Summary Tables</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR1JfTkZcbmBgYCJ9 -->
-<pre class="r"><code>GR_NF</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaiA8LSAxICNpbXBvcnRhbnQgdG8gcnVuIHRoZSBuYW1lcyBpbiB0aGUgZm9sbG93aW5nIGNvZGVcblxuZm9yIChpIGluIGdyb3VwX2xpc3Qpe1xuICBuYW1lcyhncm91cF9saXN0KVtqXSAtPiBpX25hbWVcbiAgaisxIC0+IGpcbiAgbWVzc2FnZShpX25hbWUpXG4gIGFyY2hfdW5pZm9ybWl0eShpWywtYyhybV92YXJzKV0pI1xuICBwcmludChzdW1fdGFibGUoaVssLWMocm1fdmFycyldKSlcbiAgcHJpbnQoYXJjaF92YXJtYXQoaVssLWMocm1fdmFycyldKSlcbiAjIFdQIGFyY2hfaGVhdG1hcChpWywtYyhybV92YXJzKV0pICAgXG4gIH1cbmBgYCJ9 -->
+<pre class="r"><code>j &lt;- 1 #important to run the names in the following code
+
+for (i in group_list){
+  names(group_list)[j] -&gt; i_name
+  j+1 -&gt; j
+  message(i_name)
+  arch_uniformity(i[,-c(rm_vars)])#
+  print(sum_table(i[,-c(rm_vars)]))
+  print(arch_varmat(i[,-c(rm_vars)]))
+ # WP arch_heatmap(i[,-c(rm_vars)])   
+  }</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<div id="variation-matrix-mvc-plot-mvc-dendrogram-and-codadendrogram-gr_glo-1" class="section level3">
-<h3>Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram (GR_GLO)</h3>
+<div id="generate-latex-code-for-each-summary-and-mvc-table" class="section level3">
+<h3>Generate LaTex Code for each Summary and MVC table</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="heatmap-1" class="section level3">
-<h3>Heatmap</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJjaF9oZWF0bWFwKEdSX05GWywtYygxOjMsMTMpXSlcbmBgYCJ9 -->
-<pre class="r"><code>arch_heatmap(GR_NF[,-c(1:3,13)])</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="summary-table-applied-to-the-gr_nf-dataset" class="section level3">
-<h3>Summary table (applied to the GR_NF dataset)</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="mvc-1" class="section level3">
-<h3>MVC</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJjaF92YXJtYXQoR1JfTkZbLC1jKDE6MywxMyldKSAtPiBNVkNfR1JfTkYgICNzYXZlIHRoZSB2YXJpYXRpb24gbWF0cml4XG5gYGAifQ== -->
-<pre class="r"><code>arch_varmat(GR_NF[,-c(1:3,13)]) -&gt; MVC_GR_NF  #save the variation matrix</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-</div>
-<div id="gr_wa-group" class="section level2">
-<h2>GR_WA group</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuR1JfV0FcbmBgYCJ9 -->
-<pre class="r"><code>GR_WA</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="variation-matrix-mvc-plot-mvc-dendrogram-and-codadendrogram-gr_glo-2" class="section level3">
-<h3>Variation Matrix (MVC) plot, MVC dendrogram and CodaDendrogram (GR_GLO)</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="heatmap-2" class="section level3">
-<h3>Heatmap</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJjaF9oZWF0bWFwKEdSX1dBWywtYygxOjMsMTMpXSlcbmBgYCJ9 -->
-<pre class="r"><code>arch_heatmap(GR_WA[,-c(1:3,13)])</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaiA8LSAxXG5mb3IgKGkgaW4gZ3JvdXBfbGlzdCl7XG4gICNwcmludCBuYW1lc1xuICBuYW1lcyhncm91cF9saXN0KVtqXSAtPiBpX25hbWVcbiAgaisxIC0+IGpcblxuICBcbm1lc3NhZ2UoXCIlXCIsaV9uYW1lKVxuICBcbnN0YXJnYXplcihzdW1fdGFibGUoaVssLWMocm1fdmFycyldKSwgdGl0bGUgPSBwYXN0ZShcIlN1bW1hcnkgdGFibGUgb2ZcIiwgaV9uYW1lLCBzZXAgPSBcIiBcIiksIHN1bW1hcnkgPSBGQUxTRSwgZGlnaXRzID0gMSwgbGFiZWwgPSBwYXN0ZShcIlN1bV90YWJsZVwiLCBpX25hbWUsIHNlcCA9IFwiX1wiKSlcblxuICBzdGFyZ2F6ZXIoYXJjaF92YXJtYXQoaVssLWMocm1fdmFycyldKSwgXG4gICAgICAgICAgICB0aXRsZSA9IHBhc3RlKFwiTVZDIG9mXCIsIGlfbmFtZSwgc2VwID0gXCIgXCIpLCBcbiAgICAgICAgICAgIHN1bW1hcnk9IEZBTFNFLFxuICAgICAgICAgICAgbGFiZWwgPSBwYXN0ZShcIlN1bV90YWJsZVwiLCBpX25hbWUsIHNlcCA9IFwiX1wiKSlcbiAgXG59ICBcbmBgYCJ9 -->
+<pre class="r"><code>j &lt;- 1
+for (i in group_list){
+  #print names
+  names(group_list)[j] -&gt; i_name
+  j+1 -&gt; j
+
+  
+message(&quot;%&quot;,i_name)
+  
+stargazer(sum_table(i[,-c(rm_vars)]), title = paste(&quot;Summary table of&quot;, i_name, sep = &quot; &quot;), summary = FALSE, digits = 1, label = paste(&quot;Sum_table&quot;, i_name, sep = &quot;_&quot;))
+
+  stargazer(arch_varmat(i[,-c(rm_vars)]), 
+            title = paste(&quot;MVC of&quot;, i_name, sep = &quot; &quot;), 
+            summary= FALSE,
+            label = paste(&quot;Sum_table&quot;, i_name, sep = &quot;_&quot;))
+  
+}  </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="summary-table-applied-to-the-gr_wa-dataset" class="section level3">
-<h3>Summary table (applied to the GR_WA dataset)</h3>
+<div id="heatmap-of-each-group" class="section level3">
+<h3>Heatmap of each group</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="mvc-2" class="section level3">
-<h3>MVC</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXJjaF92YXJtYXQoR1JfV0FbLC1jKDE6MywxMyldKSAtPiBNVkNfR1JfV0EgICNzYXZlIHRoZSB2YXJpYXRpb24gbWF0cml4XG5gYGAifQ== -->
-<pre class="r"><code>arch_varmat(GR_WA[,-c(1:3,13)]) -&gt; MVC_GR_WA  #save the variation matrix</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVzc2FnZShcIkhlYXRtYXAgb2YgR1JfR0xPXCIpXG5hcmNoX2hlYXRtYXAoR1JfR0xPWywtYyhybV92YXJzKV0pIFxubWVzc2FnZShcIkhlYXRtYXAgb2YgR1JfV0FcIilcbmFyY2hfaGVhdG1hcChHUl9XQVssLWMocm1fdmFycyldKSAgXG5tZXNzYWdlKFwiSGVhdG1hcCBvZiBHUl9ORlwiKVxuYXJjaF9oZWF0bWFwKEdSX05GWywtYyhybV92YXJzKV0pICBcblxuYGBgIn0= -->
+<pre class="r"><code>message(&quot;Heatmap of GR_GLO&quot;)
+arch_heatmap(GR_GLO[,-c(rm_vars)]) 
+message(&quot;Heatmap of GR_WA&quot;)
+arch_heatmap(GR_WA[,-c(rm_vars)])  
+message(&quot;Heatmap of GR_NF&quot;)
+arch_heatmap(GR_NF[,-c(rm_vars)])  
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -380,7 +314,7 @@ C04 CO5 C06 C07 C08 C09 C10 C11 C12 C13 C14 GO1 G02 T11 T12 T13 T14 T16 A11 Al2 
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAnRXhhbXBsZSBvbiBBcmNoZGF0YSBwYWNrYWdlOiAwMiBDcmVhdGlvbiBvZiB0aGUgZ3JvdXBzIGNvbXBvc2l0aW9ucycKb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6CiAgICB0b2M6IHllcwogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IHllcwogIHBkZl9kb2N1bWVudDoKICAgIHRvYzogeWVzCi0tLQoKCiMjUmVwbG90IHRoZSBkZW5kcm9ncmFtIHdpdGhvdXQgb3V0bGllcnMgZWxlbWVudHMKRnJvbSBwcmV2aW91cyBleHBsb3JhdGlvbiBpdCBpcyBvYnZpb3VzIHRoYXQgVGlPMiBoYXMgYW4gb3V0bGllciB2YWx1ZSBkdWUgdG8gYSBwb3NzaWJsZSB0eXBvZ3JhcGhpYyBlcnJvciBwb2ludGVkIG91dCBwcmV2aW91c2x5IGZvciB0aGUgc2FtcGxlIEdBNC4KCkRlbmRyb2dyYW0gd2l0aG91dCBUaU8yIChjb2wgbsK6ID0gNwoKYGBge3IsIGVjaG89RkFMU0V9CmFyY2hfZGVuZHJvKGRmX2NoZW1bLC1jKDcpXSwgcHJpbnREZW5kcm8gPSBUUlVFLCBucGxvdD1jKDIsMyksIGRmX3JhdyA9IGRmX3JhdykKYGBgCgojI0NyZWF0ZSB0aGUgZ3JvdXBzCgpDcmVhdGUgZ3JvdXBzIChzdWJzZXQgb2YgdGhlIG1haW4gZGF0YXNldCkgYWNjb3JkaW5nIHRvIHRoZSBjbHVzdGVyIGFuYWx5c2lzLiBrPTMgbWVhbnMgd2UgYXJlIGN1dHRpbmcgaXQgaW50byB0aGVyZWUgZ3JvdXBzIHNpbmNlIHRoZXNlIGFyZSB2ZXJ5IGNsZWFyIChhZnRlciByZW1vdmluZyB0aGUgVGlPMikuIAoKYGBge3J9CiNXYXRjaCB0byBwZXJmb3JtIGNvcnJlY3RseSB0aGUgSGNsdXN0IApncm91cHMgPC0gY3V0cmVlKC5IQ2x1c3QsIGsgPSAzLCBoID0gTlVMTCkgI2EgdmVjdG9yIHdpdGggdGhlIG5hbWVzIGFuZCB0aGUgZ3JvdXAgYXNzaWduZWQgYWNjb3JkaW5nIHRvIHRoZSBkZW5ncm9yYW0uCgpHUl9HTE8gPC0gc3Vic2V0KGRmX3JhdywgZ3JvdXBzPT0xKSAjc3Vic2V0IG9mIHRoZSB3aG9sZSBkYXRhc2V0CkdSX05GIDwtIHN1YnNldChkZl9yYXcsIGdyb3Vwcz09MikgI3N1YnNldCBvZiB0aGUgd2hvbGUgZGF0YXNldApHUl9XQSA8LSBzdWJzZXQoZGZfcmF3LCBncm91cHM9PTMpICNzdWJzZXQgb2YgdGhlIHdob2xlIGRhdGFzZXQKCiNjYmluZChkZl9yYXcsIGdyb3VwcykgLT4gZGZfcmF3CmBgYAoKIyMjQ2hlY2sgZ3JvdXBzCmBgYHtyfQpncm91cHMKYGBgCgojI0dSX0dMTyBncm91cAoKYGBge3J9CkdSX0dMTwpgYGAKCiMjI1ZhcmlhdGlvbiBNYXRyaXggKE1WQykgcGxvdCwgTVZDIGRlbmRyb2dyYW0gYW5kIENvZGFEZW5kcm9ncmFtIChHUl9HTE8pCgpgYGB7ciwgZWNobz1GQUxTRX0Kc291cmNlKCcuLi8uLi9SX2Z1bi9lbnRyb3BpYTAyLlInKSN1c2UgaW4gdW5pZm9ybWl0eQpzb3VyY2UoJy4uLy4uL1JfZnVuL2NsYXNzaWZpY2EuUicpI3VzZWQgaW4gdW5pZm9ybXRpdHkKc291cmNlKCcuLi8uLi9SX2Z1bi9hcmNoX3VuaWZvcm1pdHkuUicpI01WQywgYW5kIENvRGEgZGVuZHJvcy4KYXJjaF91bmlmb3JtaXR5KEdSX0dMT1ssLWMoMTozLDEzKV0pI1JlbW92ZSBjYXRlZ29yaWNhbCBjb2x1bW5zCmBgYAoKIyMjSGVhdG1hcAoKYGBge3J9CmFyY2hfaGVhdG1hcChHUl9HTE9bLC1jKDE6MywxMyldKQpgYGAKCgoKIyMjU3VtbWFyeSB0YWJsZSAoYXBwbGllZCB0byB0aGUgR1JfR0xPIGRhdGFzZXQpCmBgYHtyLCBlY2hvPUZBTFNFfQpzb3VyY2UoJy4uLy4uL1JfZnVuL3N1bV90YWJsZS5SJykKcmVxdWlyZShSY21kck1pc2MpCnByaW50KHN1bV90YWJsZShHUl9HTE9bLC1jKDE6MywxMyldKSkgICMgVGhpcyBjb2RlIGlzIGV4dGVybmFsCmBgYAoKCiMjI01WQyAKYGBge3J9CmFyY2hfdmFybWF0KEdSX0dMT1ssLWMoMTozLDEzKV0pIC0+IE1WQ19HUl9HTE8gI3NhdmUgdGhlIHZhcmlhdGlvbiBtYXRyaXgKYGBgCgoKCiMjR1JfTkYgZ3JvdXAKCgpgYGB7cn0KR1JfTkYKYGBgCgojIyNWYXJpYXRpb24gTWF0cml4IChNVkMpIHBsb3QsIE1WQyBkZW5kcm9ncmFtIGFuZCBDb2RhRGVuZHJvZ3JhbSAoR1JfR0xPKQpgYGB7ciwgZWNobz1GQUxTRX0Kc291cmNlKCcuLi8uLi9SX2Z1bi9lbnRyb3BpYTAyLlInKSN1c2UgaW4gdW5pZm9ybWl0eQpzb3VyY2UoJy4uLy4uL1JfZnVuL2NsYXNzaWZpY2EuUicpI3VzZWQgaW4gdW5pZm9ybXRpdHkKc291cmNlKCcuLi8uLi9SX2Z1bi9hcmNoX3VuaWZvcm1pdHkuUicpI01WQywgYW5kIENvRGEgZGVuZHJvcy4KYXJjaF91bmlmb3JtaXR5KEdSX05GWywtYygxOjMsMTMpXSkjUmVtb3ZlIGNhdGVnb3JpY2FsIGNvbHVtbnMKYGBgCgojIyNIZWF0bWFwCgpgYGB7cn0KYXJjaF9oZWF0bWFwKEdSX05GWywtYygxOjMsMTMpXSkKYGBgCgoKIyMjU3VtbWFyeSB0YWJsZSAoYXBwbGllZCB0byB0aGUgR1JfTkYgZGF0YXNldCkKYGBge3IsIGVjaG89RkFMU0V9CnNvdXJjZSgnLi4vLi4vUl9mdW4vc3VtX3RhYmxlLlInKQpyZXF1aXJlKFJjbWRyTWlzYykKcHJpbnQoc3VtX3RhYmxlKEdSX05GWywtYygxOjMsMTMpXSkpICAjIFRoaXMgY29kZSBpcyBleHRlcm5hbApgYGAKCgoKIyMjTVZDCmBgYHtyfQphcmNoX3Zhcm1hdChHUl9ORlssLWMoMTozLDEzKV0pIC0+IE1WQ19HUl9ORiAgI3NhdmUgdGhlIHZhcmlhdGlvbiBtYXRyaXgKYGBgCgojI0dSX1dBIGdyb3VwCgpgYGB7cn0KR1JfV0EKYGBgCgojIyNWYXJpYXRpb24gTWF0cml4IChNVkMpIHBsb3QsIE1WQyBkZW5kcm9ncmFtIGFuZCBDb2RhRGVuZHJvZ3JhbSAoR1JfR0xPKQpgYGB7ciwgZWNobz1GQUxTRX0Kc291cmNlKCcuLi8uLi9SX2Z1bi9lbnRyb3BpYTAyLlInKSN1c2UgaW4gdW5pZm9ybWl0eQpzb3VyY2UoJy4uLy4uL1JfZnVuL2NsYXNzaWZpY2EuUicpI3VzZWQgaW4gdW5pZm9ybXRpdHkKc291cmNlKCcuLi8uLi9SX2Z1bi9hcmNoX3VuaWZvcm1pdHkuUicpI01WQywgYW5kIENvRGEgZGVuZHJvcy4KYXJjaF91bmlmb3JtaXR5KEdSX1dBWywtYygxOjMsMTMpXSkjUmVtb3ZlIGNhdGVnb3JpY2FsIGNvbHVtbnMKYGBgCgojIyNIZWF0bWFwCgpgYGB7cn0KYXJjaF9oZWF0bWFwKEdSX1dBWywtYygxOjMsMTMpXSkKYGBgCgoKIyMjU3VtbWFyeSB0YWJsZSAoYXBwbGllZCB0byB0aGUgR1JfV0EgZGF0YXNldCkKYGBge3IsIGVjaG89RkFMU0V9CnNvdXJjZSgnLi4vLi4vUl9mdW4vc3VtX3RhYmxlLlInKQpyZXF1aXJlKFJjbWRyTWlzYykKcHJpbnQoc3VtX3RhYmxlKEdSX1dBWywtYygxOjMsMTMpXSkpICAjIFRoaXMgY29kZSBpcyBleHRlcm5hbApgYGAKCiMjI01WQwpgYGB7cn0KYXJjaF92YXJtYXQoR1JfV0FbLC1jKDE6MywxMyldKSAtPiBNVkNfR1JfV0EgICNzYXZlIHRoZSB2YXJpYXRpb24gbWF0cml4CmBgYAoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAnRXhhbXBsZSBvbiBBcmNoZGF0YSBwYWNrYWdlOiAwMiBDcmVhdGlvbiBvZiB0aGUgZ3JvdXBzIGNvbXBvc2l0aW9ucycKb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6CiAgICB0b2M6IHllcwogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IHllcwogIHBkZl9kb2N1bWVudDoKICAgIHRvYzogeWVzCi0tLQoKCiMjUmVwbG90IHRoZSBkZW5kcm9ncmFtIHdpdGhvdXQgb3V0bGllcnMgZWxlbWVudHMKRnJvbSBwcmV2aW91cyBleHBsb3JhdGlvbiBpdCBpcyBvYnZpb3VzIHRoYXQgVGlPMiBoYXMgYW4gb3V0bGllciB2YWx1ZSBkdWUgdG8gYSBwb3NzaWJsZSB0eXBvZ3JhcGhpYyBlcnJvciBwb2ludGVkIG91dCBwcmV2aW91c2x5IGZvciB0aGUgc2FtcGxlIEdBNC4KCkRlbmRyb2dyYW0gd2l0aG91dCBUaU8yIChjb2wgbsK6ID0gNykKCmBgYHtyLCBlY2hvPUZBTFNFfQphcmNoX2RlbmRybyhkZl9jaGVtWywtYyg3KV0sIHByaW50RGVuZHJvID0gVFJVRSwgbnBsb3Q9YygyLDMpLCBkZl9yYXcgPSBkZl9yYXcpCmBgYAoKIyNDcmVhdGUgdGhlIGdyb3VwcwoKQ3JlYXRlIGdyb3VwcyAoc3Vic2V0IG9mIHRoZSBtYWluIGRhdGFzZXQpIGFjY29yZGluZyB0byB0aGUgY2x1c3RlciBhbmFseXNpcy4gaz0zIG1lYW5zIHdlIGFyZSBjdXR0aW5nIGl0IGludG8gdGhlcmVlIGdyb3VwcyBzaW5jZSB0aGVzZSBhcmUgdmVyeSBjbGVhciAoYWZ0ZXIgcmVtb3ZpbmcgdGhlIFRpTzIpLiAKCmBgYHtyfQojV2F0Y2ggdG8gcGVyZm9ybSBjb3JyZWN0bHkgdGhlIEhjbHVzdCAKZ3JvdXBzIDwtIGN1dHJlZSguSENsdXN0LCBrID0gMywgaCA9IE5VTEwpICNhIHZlY3RvciB3aXRoIHRoZSBuYW1lcyBhbmQgdGhlIGdyb3VwIGFzc2lnbmVkIGFjY29yZGluZyB0byB0aGUgZGVuZ3JvcmFtLgoKR1JfR0xPIDwtIHN1YnNldChkZl9yYXcsIGdyb3Vwcz09MSkgI3N1YnNldCBvZiB0aGUgd2hvbGUgZGF0YXNldApHUl9ORiA8LSBzdWJzZXQoZGZfcmF3LCBncm91cHM9PTIpICNzdWJzZXQgb2YgdGhlIHdob2xlIGRhdGFzZXQKR1JfV0EgPC0gc3Vic2V0KGRmX3JhdywgZ3JvdXBzPT0zKSAjc3Vic2V0IG9mIHRoZSB3aG9sZSBkYXRhc2V0CgojY2JpbmQoZGZfcmF3LCBncm91cHMpIC0+IGRmX3JhdwpgYGAKCiMjI0NoZWNrIGdyb3VwcwpgYGB7cn0KZ3JvdXBzCmBgYAoKYGBge3IsIGVjaG89RkFMU0V9IAojSU1QT1JUQU5UIENPREUgVE8gUlVOCnNvdXJjZSgnLi4vLi4vUl9mdW4vZW50cm9waWEwMi5SJykjdXNlIGluIHVuaWZvcm1pdHkKc291cmNlKCcuLi8uLi9SX2Z1bi9jbGFzc2lmaWNhLlInKSN1c2VkIGluIHVuaWZvcm10aXR5CnNvdXJjZSgnLi4vLi4vUl9mdW4vYXJjaF91bmlmb3JtaXR5LlInKSNNVkMsIGFuZCBDb0RhIGRlbmRyb3MuCnNvdXJjZSgnLi4vLi4vUl9mdW4vYXJjaF92YXJtYXQuUicpCmxpYnJhcnkoUmNtZHJNaXNjKQpsaWJyYXJ5KHN0YXJnYXplcikKYGBgCgoKIyMjTVZDICsgU1VNIFRBQkxFIEZPUiBFQUNIIEdST1VQIApJbnRyb2R1Y2UgaGVyZSB0aGUgZGVmaW5lZCBncm91cHMKCmBgYHtyfQpncm91cF9saXN0IDwtIGxpc3QoR1JfR0xPLCBHUl9ORiwgR1JfV0EpICNpbmNsdWRlIHRoZSBkZXNpcmVkIGdyb3VwcwpuYW1lcyhncm91cF9saXN0KSA8LSBjKCJHUi1HTE8iLCAiR1ItTkYiLCAiR1ItV0EiKSAjaW5jbHVkZSB0aGUgbmFtZXMgd2l0aCAiLSIgaW5zdGVhZCBvZiAiXyIgdG8gYXZvaWQgTGFUZXggcHJvYmxlbXMKcm1fdmFycyA8LSBjKDE6MywxMykgI2luY2x1ZGVkIG5vbiBkZXNpcmVkIGNvbHVtbnMgKGUuZy4gbmVnYXRpdmUgdmFsdWVzLCBjYXRlZ29yaWNhbC4uLikKYGBgCgojUGxvdCBNVkMgYW5kIFN1bW1hcnkgVGFibGVzCmBgYHtyfQpqIDwtIDEgI2ltcG9ydGFudCB0byBydW4gdGhlIG5hbWVzIGluIHRoZSBmb2xsb3dpbmcgY29kZQoKZm9yIChpIGluIGdyb3VwX2xpc3QpewogIG5hbWVzKGdyb3VwX2xpc3QpW2pdIC0+IGlfbmFtZQogIGorMSAtPiBqCiAgbWVzc2FnZShpX25hbWUpCiAgYXJjaF91bmlmb3JtaXR5KGlbLC1jKHJtX3ZhcnMpXSkjCiAgcHJpbnQoc3VtX3RhYmxlKGlbLC1jKHJtX3ZhcnMpXSkpCiAgcHJpbnQoYXJjaF92YXJtYXQoaVssLWMocm1fdmFycyldKSkKICMgV1AgYXJjaF9oZWF0bWFwKGlbLC1jKHJtX3ZhcnMpXSkgICAKICB9CmBgYAoKCgojIyNHZW5lcmF0ZSBMYVRleCBDb2RlIGZvciBlYWNoIFN1bW1hcnkgYW5kIE1WQyB0YWJsZSAKYGBge3J9CmogPC0gMQpmb3IgKGkgaW4gZ3JvdXBfbGlzdCl7CiAgI3ByaW50IG5hbWVzCiAgbmFtZXMoZ3JvdXBfbGlzdClbal0gLT4gaV9uYW1lCiAgaisxIC0+IGoKCiAgCm1lc3NhZ2UoIiUiLGlfbmFtZSkKICAKc3RhcmdhemVyKHN1bV90YWJsZShpWywtYyhybV92YXJzKV0pLCB0aXRsZSA9IHBhc3RlKCJTdW1tYXJ5IHRhYmxlIG9mIiwgaV9uYW1lLCBzZXAgPSAiICIpLCBzdW1tYXJ5ID0gRkFMU0UsIGRpZ2l0cyA9IDEsIGxhYmVsID0gcGFzdGUoIlN1bV90YWJsZSIsIGlfbmFtZSwgc2VwID0gIl8iKSkKCiAgc3RhcmdhemVyKGFyY2hfdmFybWF0KGlbLC1jKHJtX3ZhcnMpXSksIAogICAgICAgICAgICB0aXRsZSA9IHBhc3RlKCJNVkMgb2YiLCBpX25hbWUsIHNlcCA9ICIgIiksIAogICAgICAgICAgICBzdW1tYXJ5PSBGQUxTRSwKICAgICAgICAgICAgbGFiZWwgPSBwYXN0ZSgiU3VtX3RhYmxlIiwgaV9uYW1lLCBzZXAgPSAiXyIpKQogIAp9ICAKYGBgCgoKIyMjSGVhdG1hcCBvZiBlYWNoIGdyb3VwCmBgYHtyfQptZXNzYWdlKCJIZWF0bWFwIG9mIEdSX0dMTyIpCmFyY2hfaGVhdG1hcChHUl9HTE9bLC1jKHJtX3ZhcnMpXSkgCm1lc3NhZ2UoIkhlYXRtYXAgb2YgR1JfV0EiKQphcmNoX2hlYXRtYXAoR1JfV0FbLC1jKHJtX3ZhcnMpXSkgIAptZXNzYWdlKCJIZWF0bWFwIG9mIEdSX05GIikKYXJjaF9oZWF0bWFwKEdSX05GWywtYyhybV92YXJzKV0pICAKCmBgYAoK</div>
 
 
 

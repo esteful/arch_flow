@@ -30,11 +30,11 @@
   varmat2[p+3,]<- varcor
   varmat2[p+4,1]<- totvar
   dimnames(varmat2)<-list(c(dimnames(x)[[2]],"t.i","vt/t.i","r v,t","vt"),c(dimnames(x)[[2]]))
-  cat("Values of vt/t.i (in Buxeda's notation).\n\nMaximum determines variable to use as divisor in subsequent log-ratio transformation.\n\n\n",
-      varprop, "\n\n")
+  cat("%Values of vt/t.i (in Buxeda's notation).\n\n
+    %Maximum determines variable to use as divisor in subsequent log-ratio transformation.\n\n\n", "%", varprop, "\n\n")
   ord <- order(varprop)
-  cat("Maximum value : ", max(varprop), "\n")
-  cat("Variable : ", ord[p], "\n")
+  cat("%Maximum value : ", max(varprop), "\n")
+  cat("%Variable : ", ord[p], "\n")
   
   #lvar: less variying element
   assign(".lvar", ord[p],.GlobalEnv)
