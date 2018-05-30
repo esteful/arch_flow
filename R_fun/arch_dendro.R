@@ -46,7 +46,7 @@
   for (i in nplot)
     { 
       #plot options  
-        my_dend <- set(my_dend, "labels_cex", 0.9) #labels text size
+        my_dend <- set(my_dend, "labels_cex", 0.6) #labels text size
         par(mar = c(2,2,2,2)) #set legend scale
   
      #add colors to labels
