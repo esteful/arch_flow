@@ -58,12 +58,35 @@ Baxter, M. J. 2003. Statistics in Archaeology. Arnold.
 Tubb, A., A. J. Parker, and G. Nickless. 1980. The Analysis of Romano-British Pottery by Atomic
 Absorption Spectrophotometry. Archaeometry 22: 153-71.
 
-## Load Libraries and source functions from R_Fun folder
+## Install and load libraries
 ```{r}
-  require(archdata) # Load CRAN Archdata package
-  require(ggplot2)
-  require(plyr)
-  require(dplyr)
+
+#libraries
+
+if (!require("archdata")) {
+    install.packages("archdata", dependencies = TRUE)
+     library(archdata)} # Load CRAN Archdata package
+ 
+if (!require("ggplot2")) {
+    install.packages("ggplot2", dependencies = TRUE)
+     library(ggplot2)} # Load CRAN Archdata package
+
+if (!require("plyr")) {
+    install.packages("plyr", dependencies = TRUE)
+     library(plyr)} # Load CRAN Archdata package
+
+if (!require("plyr")) {
+    install.packages("plyr", dependencies = TRUE)
+     library(dplyr)} # Load CRAN Archdata package
+```
+
+## Install and load libraries
+
+
+##Load functions
+```{r}
+#these are located in R_fun folder, watch the path
+
   source('../../R_fun/entropia02.R')#external code (catalan)
   source('../../R_fun/classifica.R')#external code (catalan)
   source('../../R_fun/arch_uniformity.R') #mofified code (english), it uses functions from entropia02.R and classifica.R
@@ -75,11 +98,13 @@ Absorption Spectrophotometry. Archaeometry 22: 153-71.
   source('../../R_fun/arch_triangles.R')
 ```
 
-### Load RBPottery from Archdata pachage
+
+### Load RBPottery from Archdata pachage (example data). Alternatively, import csv
 ```{r}
   data(RBPottery)
   print(RBPottery)
 ```
+
 
 ###Declare df_raw and df_chem, and set the row.names
 ```{r}
