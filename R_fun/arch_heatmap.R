@@ -1,26 +1,14 @@
 "arch_heatmap" <- function(df_chem){
-<<<<<<< HEAD
-=======
-
->>>>>>> EA2EGA-xabier
   
   if (!require("d3heatmap")) {
     install.packages("d3heatmap", dependencies = TRUE)
     require(d3heatmap)
   }
   
-  
-<<<<<<< HEAD
-
   ## Load Library
   require(d3heatmap)
 
-=======
- ## Load Library
-  require(d3heatmap)
 
-
->>>>>>> EA2EGA-xabier
   #### Heatmap of the chemical composition ####
     mat_div <- t(t(df_chem)/colMeans(df_chem))
   #get the relative values of each composition
