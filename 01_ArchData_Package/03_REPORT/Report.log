@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.17)  18 MAY 2018 18:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.17)  4 JUN 2018 18:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -178,13 +178,19 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 105.
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))) (./Report.aux
 
-LaTeX Warning: Label `Sum_table_GR-GLO' multiply defined.
+LaTeX Warning: Label `' multiply defined.
 
 
-LaTeX Warning: Label `Sum_table_GR-NF' multiply defined.
+LaTeX Warning: Label `' multiply defined.
 
 
-LaTeX Warning: Label `Sum_table_GR-WA' multiply defined.
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
 
 )
 \openout1 = `Report.aux'.
@@ -270,44 +276,43 @@ e
 ))
 (./Report-concordance.tex)
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 19.
+(Font)              <7> on input line 22.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 19.
+(Font)              <5> on input line 22.
 
-Overfull \hbox (59.91634pt too wide) in paragraph at lines 52--72
- [][] 
- []
-
-
-Overfull \hbox (59.91634pt too wide) in paragraph at lines 113--133
- [][] 
- []
-
-
-Overfull \hbox (59.91634pt too wide) in paragraph at lines 174--194
+Overfull \hbox (59.91634pt too wide) in paragraph at lines 40--60
  [][] 
  []
 
 [1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] (./Report.aux)
+Overfull \hbox (59.91634pt too wide) in paragraph at lines 90--110
+ [][] 
+ []
+
+[2]
+Overfull \hbox (59.91634pt too wide) in paragraph at lines 140--160
+ [][] 
+ []
+
+[3] (./Report.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2644 strings out of 493014
- 38107 string characters out of 6133351
- 118655 words of memory out of 5000000
- 6158 multiletter control sequences out of 15000+600000
+ 2642 strings out of 493014
+ 38057 string characters out of 6133351
+ 97639 words of memory out of 5000000
+ 6156 multiletter control sequences out of 15000+600000
  11195 words of font info for 25 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,8n,23p,246b,202s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,8n,23p,246b,223s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on Report.pdf (3 pages, 43384 bytes).
+Output written on Report.pdf (3 pages, 43463 bytes).
 PDF statistics:
  27 PDF objects out of 1000 (max. 8388607)
  17 compressed objects within 1 object stream

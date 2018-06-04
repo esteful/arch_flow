@@ -128,7 +128,6 @@ select(df_raw,c(CaO,Calcareous))
 
 ###Variation Matrix
 ```{r}
-source('../../R_fun/arch_varmat.R')
 arch_varmat(df_chem)
 ```
 
