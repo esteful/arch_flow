@@ -1,6 +1,6 @@
 #All the packages required to run ArchFlow
 
-#packages:
+####   packages ######:
 #archdata
 #plyr
 #dplyr
@@ -17,13 +17,8 @@
 #rmarkdown
 
 
-#for (i in package_list){
-#if (!require(i) 
-#	    install.packages(i, dependencies = TRUE)
-	#    library(i)} # Load CRAN Archdata package
-	#}
 
-###Functions
+### Functions #####
 #arch_dendro
 #arch_PCA
 #arch_heatmap
@@ -40,81 +35,30 @@
 
 #Example data
 
-	if (!require("archdata")) {
-	    install.packages("archdata", dependencies = TRUE)
-	     library(archdata)} # Load CRAN Archdata package
-	 
-
-##Data handling
-
-	if (!require("plyr")) {
-	    install.packages("plyr", dependencies = TRUE)
-	     library(plyr)} # Load CRAN plyr package
-
-	if (!require("dplyr")) {
-	    install.packages("dplyr", dependencies = TRUE)
-	     library(dplyr)} # Load CRAN dplyr package
-
-	if (!require("RcmdrMisc")) {
-	    install.packages("RcmdrMisc", dependencies = TRUE)
-	     library(RcmdrMisc)} # Load CRAN RcmdrMisc package
-
-	if (!require("compositions")) {
-	    install.packages("compositions", dependencies = TRUE)
-	     library(compositions)} # Load CRAN compositions package
+packages <- c("archdata",
+                        "plyr",
+                        "dplyr",
+                        "RcmdrMisc",
+                        "compositions",
+                        "ggplot2",
+                        "ggthemes",
+                        "plotrix",
+                        "dendextend",
+                        "d3heatmap",
+                        "stargazer",
+                        "devEMF",
+                        "devtools",
+                        "rmarkdown")
 
 
+new <- packages[!(packages %in% installed.packages()[,"Package"])]
 
-#Data visualization
-
-	if (!require("ggplot2")) {
-	    install.packages("ggplot2", dependencies = TRUE)
-	     library(ggplot2)} # Load CRAN ggplot2 package
-
-	if (!require("ggthemes")) {
-	    install.packages("ggthemes", dependencies = TRUE)
-	     library(ggthemes)} # Load CRAN ggthemes package
-
-	if (!require("plotrix")) {
-	    install.packages("plotrix", dependencies = TRUE)
-	     library(plotrix)} # Load CRAN plotrix package
-
-	if (!require("dendextend")) {
-	    install.packages("dendextend", dependencies = TRUE)
-	     library(dendextend)} # Load CRAN dendextend package
+if(length(new)) install.packages(new)
+a=lapply(packages, require, character.only=TRUE)
 
 
-	if (!require("d3heatmap")) {
-	    install.packages("d3heatmap", dependencies = TRUE)
-	     library(d3heatmap)} # Load CRAN d3heatmap package
+rm(list=ls()) #clear the environment 
 
-	#if (!require("vqv/ggbiplot")) {
-	#   install.packages("vqv/ggbiplot", dependencies = TRUE)
-	#    library(vqv/ggbiplot)} # Load CRAN vqv/ggbiplo package
-
-
-
-#Output
-
-	if (!require("stargazer")) {
-	    install.packages("stargazer", dependencies = TRUE)
-	     library(stargazer)} # Load CRAN stargazer package
-
-	if (!require("devEMF")) {
-	    install.packages("devEMF", dependencies = TRUE)
-	     library(devEMF)} # Load CRAN devEMF package
-
-
-#System requirements
-
-		if (!require("devtools")) {
-		    install.packages("devtools", dependencies = TRUE)
-		     library(devtools)} # Load CRAN devtools package
-
-
-		if (!require("rmarkdown")) {
-		    install.packages("rmarkdown", dependencies = TRUE)
-		     library(rmarkdown)} # Load CRAN rmarkdown package
 
 
 
@@ -190,6 +134,9 @@
 ##########################################################
 ######################   P C A   ##############################
 ##########################################################
+
+
+
 "arch_PCA" <- function(df_chem,df_raw, lvar=.lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= TRUE)
   #built with ggbiplot and comopistions
   
