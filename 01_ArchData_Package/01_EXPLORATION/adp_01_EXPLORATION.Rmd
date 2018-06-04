@@ -58,44 +58,11 @@ Baxter, M. J. 2003. Statistics in Archaeology. Arnold.
 Tubb, A., A. J. Parker, and G. Nickless. 1980. The Analysis of Romano-British Pottery by Atomic
 Absorption Spectrophotometry. Archaeometry 22: 153-71.
 
-## Install and load libraries
+
+
+## Install and load packages and functions
 ```{r}
-
-#libraries
-
-if (!require("archdata")) {
-    install.packages("archdata", dependencies = TRUE)
-     library(archdata)} # Load CRAN Archdata package
- 
-if (!require("ggplot2")) {
-    install.packages("ggplot2", dependencies = TRUE)
-     library(ggplot2)} # Load CRAN Archdata package
-
-if (!require("plyr")) {
-    install.packages("plyr", dependencies = TRUE)
-     library(plyr)} # Load CRAN Archdata package
-
-if (!require("plyr")) {
-    install.packages("plyr", dependencies = TRUE)
-     library(dplyr)} # Load CRAN Archdata package
-```
-
-## Install and load libraries
-
-
-##Load functions
-```{r}
-#these are located in R_fun folder, watch the path
-
-  source('../../R_fun/entropia02.R')#external code (catalan)
-  source('../../R_fun/classifica.R')#external code (catalan)
-  source('../../R_fun/arch_uniformity.R') #mofified code (english), it uses functions from entropia02.R and classifica.R
-  source('../../R_fun/arch_scattermatrix.R')
-  source('../../R_fun/logcenter.tran.R')#for clr 
-  source('../../R_fun/arch_dendro.R')# for dendrogram
-  source('../../R_fun/arch_PCA.R')
-  source('../../R_fun/arch_heatmap.R')
-  source('../../R_fun/arch_triangles.R')
+source('../../install.R')
 ```
 
 
@@ -127,27 +94,7 @@ In df_chem only integers (int) or nummerical (num). Num class contain decimmals
 Most of the sampless are from Gloucester region (n=22), where only one kiln is present. Following by Wales, were two kilns are found (Llanedeyrn (n=14) and Caldicot), the last with only two samples. Finally there are 5 and 5 individuals in the two kilns from New Forest, distributed in the Islands Thorns Kiln and the Ashley Rails kiln.
 
 ```{r}
-  y <-df_raw[,1:3]
-
-  .df <- data.frame(y = df_raw$ID, #pie charts
-                    s = df_raw$Kiln, #riws 
-                    t = df_raw$Region) #columns
-
-  .df <- as.data.frame(with(.df, prop.table(table(y, s, t), margin = 2:3)))
-
-  .plot <-  ggplot(data = .df, aes(x = factor(1), y = Freq, fill = y)) + 
-            geom_bar(width = 1, stat = "identity") + 
-            scale_y_continuous(labels = scales::percent_format(), limits = c(0, 1)) + 
-            coord_polar(theta = "y") + 
-            facet_grid(s ~ t) + 
-            xlab(NULL) + 
-            labs(fill = "ID") + 
-            theme_bw(base_size = 8, base_family = "sans") + 
-            theme(panel.spacing = unit(0.3, "lines"), legend.position = "right", 
-            axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text.y 
-            = element_blank(), axis.ticks = element_blank())
-
-  print(.plot)
+arch_pie_plot(df_raw$ID,df_raw$Region, df_raw$Kiln)
 ```
 
 ###Boxplot with the concentrations
@@ -172,9 +119,10 @@ Elemental distribution of the chemical elements
 ```
 
 
-We might want to have a glance at how is the calcium content of the samples 
+We might want to have a glance at how is the calcium content of the samples (two options)
 ```{r}
-  select(df_raw,c(CaO,Calcareous)) 
+df_raw[,c("CaO", "Calcareous")]
+select(df_raw,c(CaO,Calcareous)) 
 ```
 ##Applying statistics to the dataset
 
@@ -218,6 +166,9 @@ nplot: is the vector of plots to be displayed. Chose the index of categorical co
 arch_dendro(df_chem = df_chem, df_raw = df_raw, printDendro = FALSE, nplot=c(2,3))
 ```
 
+
+
+
 ###Principal Component Analysis 
 
 For the alr transformation, the less variable element is generated in arch_uniformity and saved as .lvar.
@@ -226,7 +177,7 @@ nplot: is the vector of plots to be displayed. Chose the index of categorical co
 printPCA = TRUE for generating pdf and emf files. 
 
 ```{r}
-arch_PCA(df_chem, df_raw =df_raw,lvar=.lvar, nplot=c(2,3)) #nplot is the vector containing categories to be shown
+#arch_PCA(df_chem, df_raw =df_raw,lvar=.lvar, nplot=c(2,3)) #nplot is the vector containing categories to be shown
 ```
 
 ###Heatmap (table with the concentrations)

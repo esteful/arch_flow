@@ -76,6 +76,8 @@ rstudio arch_flow.Rproj
 
 Open the "install.r" file and hit the "Run" button or press Ctrl+Enter keys. This may take a while, it takes more than 40 minutes in a i5 with 4 GB RAM and SSD.
 
+##Updates
+The scripts run on 3.3.5 Version of R. When RStudio renders html, requires some packages to be updated.
 
 ## Credits
 

@@ -8,8 +8,6 @@ output:
   pdf_document:
     toc: yes
 ---
-
-
 ##Replot the dendrogram without outliers elements
 From previous exploration it is obvious that TiO2 has an outlier value due to a possible typographic error pointed out previously for the sample GA4.
 
@@ -39,15 +37,6 @@ GR_WA <- subset(df_raw, groups==3) #subset of the whole dataset
 groups
 ```
 
-```{r, echo=FALSE} 
-#IMPORTANT CODE TO RUN
-source('../../R_fun/entropia02.R')#use in uniformity
-source('../../R_fun/classifica.R')#used in uniformtity
-source('../../R_fun/arch_uniformity.R')#MVC, and CoDa dendros.
-source('../../R_fun/arch_varmat.R')
-library(RcmdrMisc)
-library(stargazer)
-```
 
 
 ###MVC + SUM TABLE FOR EACH GROUP 
@@ -58,6 +47,8 @@ group_list <- list(GR_GLO, GR_NF, GR_WA) #include the desired groups
 names(group_list) <- c("GR-GLO", "GR-NF", "GR-WA") #include the names with "-" instead of "_" to avoid LaTex problems
 rm_vars <- c(1:3,13) #included non desired columns (e.g. negative values, categorical...)
 ```
+
+
 
 #Plot MVC and Summary Tables
 ```{r}
@@ -78,24 +69,12 @@ for (i in group_list){
 
 ###Generate LaTex Code for each Summary and MVC table 
 ```{r}
-j <- 1
-for (i in group_list){
-  #print names
-  names(group_list)[j] -> i_name
-  j+1 -> j
-
-  
-message("%",i_name)
-  
-stargazer(sum_table(i[,-c(rm_vars)]), title = paste("Summary table of", i_name, sep = " "), summary = FALSE, digits = 1, label = paste("Sum_table", i_name, sep = "_"))
-
-  stargazer(arch_varmat(i[,-c(rm_vars)]), 
-            title = paste("MVC of", i_name, sep = " "), 
-            summary= FALSE,
-            label = paste("Sum_table", i_name, sep = "_"))
-  
-}  
+arch_latex(group_list, landscape = FALSE, MVC = TRUE, rm_vars= rm_vars)
 ```
+
+
+
+
 
 
 ###Heatmap of each group
