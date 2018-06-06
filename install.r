@@ -300,7 +300,7 @@ arch_scatter_matrix <- function(df_raw, vars, group, title){
 ##########################################################
 
 "arch_triangles"<-
-  function(x,grup=1,idioma=3,paleta=1,ordenar=2,llegenda=grup, encerclat=1, SiO = 0)
+  function(x,grup=1,idioma=3,paleta=1,ordenar=2,llegenda=grup, encerclat=1)
   {
     # change the labels language language: 1- catala, 2- spanish, 3- english
     # paleta: color palette, 0-arqub en blanc i negre, 1-arqub (default), 2-rainbow, 3-heat.colors, 4-terrain.colors, 5- topo.colors, 6- cm.colors
@@ -414,10 +414,7 @@ arch_scatter_matrix <- function(df_raw, vars, group, title){
 	    text(c(48,34.5,22,9.5,-3),c(85.7365146, 64.951905, 43.30127, 21.650635, 1.7320508),labels=c("0","25","50","75","100"),cex=0.8)
 	    text(c(50,30.3,59.5,82.5,48.135),c(89.2006162,45.8993462,35.0740287,23.25278199,17.320508), labels=c("Qz","Wo","An","Mul","Gh"),cex=1,font=2)
     
-   ##little adaptation to plot when no SiO is used
-    if (SiO== 0){punts[,2]<-x[,"Fe2O3"]} 
-    if (SiO== 1){punts[,2]<-x[,"SiO2"]} 
-   #########
+   
 
 	    punts[,1]<-x$"Al2O3"
 	   # punts[,2]<-x$"SiO2" (before the change above)
@@ -570,11 +567,6 @@ arch_scatter_matrix <- function(df_raw, vars, group, title){
 	    
 
 
-	     ##little adaptation to plot when no SiO is used (TiO is used instead of Fe2O3 because this is already in use)
-	    if (SiO== 0){ text(60,82.272413, labels=expression(bold("TiO"["2"])),pos=4,cex=1.4)} 
-	    if (SiO== 1){ text(60,82.272413, labels=expression(bold("SiO"["2"])),pos=4,cex=1.4)} 
-	   #########
-
 
 	    text(2.8,14.9, labels=expression(bold("Fe"["2"]*"O"["3"]~"+")),pos=2,cex=1.4)
 	    text(0.2,9.2, labels=expression(bold("MgO +")),pos=2,cex=1.4)
@@ -586,11 +578,6 @@ arch_scatter_matrix <- function(df_raw, vars, group, title){
 	    
 
 	    
-	    ##little adaptation to plot when no SiO is used (TiO is used instead of Fe2O3 because this is already in use)
-	    if (SiO== 0){punts[,2]<-x[,"TiO2"]} 
-	    if (SiO== 1){punts[,2]<-x[,"SiO2"]} 
-	   #########
-
 	    punts[,1]<-x[,"Al2O3"]
 	    #punts[,2]<-x[,"SiO2"] (before)
 	    punts[,3]<-x[,"CaO"]+ x[,"MgO"]+ x[,"Fe2O3"]
@@ -758,12 +745,7 @@ arch_scatter_matrix <- function(df_raw, vars, group, title){
 	    #text(60,82.272413, labels=expression(bold("SiO"["2"])),pos=4,cex=1.4)
 	    text(-5,5, labels=expression(bold("CaO")),pos=2,cex=1.4)
 	    
- ##little adaptation to plot when no SiO is used
-        if (SiO== 0){text(60,82.272413, labels=expression(bold("Fe"["2"]*"O"["3"])),pos=4,cex=1.4)} 
-        if (SiO== 1){text(60,82.272413, labels=expression(bold("SiO"["2"])),pos=4,cex=1.4)} 
-   #########
-
-
+ 
 
 	    #etiquetes dels eixos
 	    text(c(1,25,50,75,98),c(-2,-2,-2,-2,-2),labels=c("0","25","50","75","100"),cex=0.8)
