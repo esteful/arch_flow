@@ -1,5 +1,10 @@
 
 "arch_triangles"<-
+
+ #Attention! In windows uncomment the following codes "windows(record=T)"  
+
+
+
   function(x,grup=1,idioma=3,paleta=1,ordenar=2,llegenda=grup, encerclat=1)
   {
     # change the labels language language: 1- catala, 2- spanish, 3- english
