@@ -41,6 +41,7 @@ packages <- c("archdata",
                         "RcmdrMisc",
                         "compositions",
                         "ggplot2",
+                        "ggfortify",
                         "ggthemes",
                         "plotrix",
                         "dendextend",
@@ -129,82 +130,70 @@ rm(list=ls()) #clear the environment
 }
 
 
-
-
 ##########################################################
 ######################   P C A   ##############################
 ##########################################################
 
 
-
-"arch_PCA" <- function(df_chem,df_raw, lvar=.lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= TRUE)
-  #built with ggbiplot and comopistions
+"arch_PCA" <- function(df_chem, df_raw, lvar=.lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= FALSE, shape_cat_number = 15, frame = TRUE){
   
-  {
-#Plot PCAs on alr transformed data (if desired) showing coloured categories according to nplot given values.
-
-#alr tranformation (only if alr = TRUE)
+  #Plot PCAs on alr transformed data (if desired) showing colored categories according to "nplot" given number
+  
+  #alr tranformation (only if alr = TRUE)
   if (alr == TRUE){
-    df_chem <-  alr(df_chem,lvar) #lvar is the less variable element in the dataset. Calculated previously.
-      }
-
-#show label names or only points   
-  if (labels == TRUE){
-    labels_names = row.names(df_chem)
+    df_chem <-  alr(df_chem,lvar) #lvar is the less variable element in the dataset. Saved to the global environment previously by function "uniformity" 
   }
   
-  if (labels == FALSE){
-    labels_names = NULL
-  }
-
+  
+  
+for (i in nplot){
     
-#loop for generating PCAs 
-  for (i in nplot){
+  
+    pca <- paste("pca_cat", i, sep = "_")               #generate names (eg. pca_cat_1, pca_cat_2,...)
     
-    pca <- paste("pca_cat", i, sep = "_") #generate names (eg. pca_cat_1, pca_cat_2,...)
-    assign(pca,
-           ggbiplot(prcomp
-                    (df_chem),
-                    #choices == 2,  #principal components number to include 
-                    labels= labels_names,
-                    center= TRUE, 
-                    scale.= TRUE,
-                    obs.scale = 1, 
-                    var.scale = 1, 
-                    groups = as.factor(df_raw[,i]), #e.g. df_raw[,2] (Site: Gloucester, New Forest, Wales) 
-                    ellipse = TRUE, 
-                    circle = FALSE,
-                    varname.size= 3, 
-                    varname.adjust= TRUE) 
+    assign(pca, autoplot(prcomp(df_chem),               #compute PCA on alr transformed matrix (only if alr = TRUE)
+                         
+                         data = df_raw,                 #set the df with the categorical data for labeling
+                         
+                         #labels
+                         colour = colnames(df_raw[i]),  #set the categories to be displayed  
+                         label = labels,                #TRUE if the name of the ANIDs are to be displayed
+                         label.size = 5,                #set the label sizes (not shapes)
+                         
+                         #shapes      
+                         shape = colnames(df_raw)[shape_cat_number],        #set the category to display by shapes, or chose from 1-25 shapes to display all equally, 15 by default       
+                         size = 2,                        #set the size of the shapes
+                         
+                         #loadings        
+                         loadings = TRUE,
+                         loadings.label = TRUE, 
+                         loadings.colour = 'gray', 
+                         loadings.label.colour = "black",
+                         
+                         #eLlipse   
+                         frame = frame,   #true by default, if "norm" is removed the shaope of the frame is geometrical
+                         frame.type = "norm") + ggtitle(label = "PCA") + theme(plot.title = element_text(hjust = 0.5)) + labs(caption= paste("PCA using:", paste(noquote(colnames(df_chem)), collapse = ", "))) + theme(plot.caption = element_text(size=7, hjust=0.5, margin=margin(t=1))))
     
-           + theme(legend.direction = 'vertical', 
-                      legend.position = 'right',
-                      plot.caption=element_text(size=7, hjust=0.5, margin=margin(t=1))
-                      )
-           + labs(caption= paste("PCA using:", paste(noquote(colnames(df_chem)), collapse = ",")))
-                  
-           + scale_color_discrete(name = as.character(paste(colnames(df_raw[i]))))
-           + ggtitle(label = "PCA")
-           )
-
-      plot(eval(parse(text =paste("pca_cat", i, sep = "_")))) #plot PCAs according to ncpa vector
-      
-      
+    
+    
+    plot(eval(parse(text =paste("pca_cat", i, sep = "_")))) #plot PCAs according to npca vector
+    
+    
+    
+    pcaplot <-recordPlot(pca)
+    
+    if (printPCA == TRUE){
+      emf("PCA.emf")
+      replayPlot(pcaplot)
+      dev.off()
+      pdf("PCA.pdf")
+      replayPlot(pcaplot)
+      dev.off()
+    }
   }
-  
-  pcaplot <-recordPlot(pca)
-  
-  if (printPCA == TRUE){
-    emf("PCA.emf")
-    replayPlot(pcaplot)
-    dev.off()
-    pdf("PCA.pdf")
-    replayPlot(pcaplot)
-    dev.off()
-  }
-  
-
 }
+
+
 
 
 
@@ -309,7 +298,7 @@ arch_scatter_matrix <- function(df_raw, vars, group, title){
     # encerclat: 1-circle around the points, 2-only dots, withouth circle 
     
     
-
+    
     #the column with groups
     x[,grup]<-as.factor(x[,grup])
     
@@ -356,7 +345,7 @@ arch_scatter_matrix <- function(df_raw, vars, group, title){
     
     #el primer triangle es el sialcap
     
-    #language of text
+    #text language
     plot(c(0,100,50,0),c(0,0,100,0),xlab="",ylab="",axes=F,type="n",xlim=c(-20,120),ylim=c(-20,120))
     if (idioma==1) {
       text(50,115,labels=expression(bold("Sistema CaO-Al"["2"]*"O"["3"]*"-SiO"["2"])),cex=1.4)
@@ -367,156 +356,147 @@ arch_scatter_matrix <- function(df_raw, vars, group, title){
       text(50,108,labels="(% en peso)",font=2)
     }
     
-
     if (idioma==3) {
-
-    	if (SiO==1){text(50,115,labels=expression(bold("CaO-Al"["2"]*"O"["3"]*"-SiO"["2"]~"System")),cex=1.4)
+      text(50,115,labels=expression(bold("CaO-Al"["2"]*"O"["3"]*"-SiO"["2"]~"System")),cex=1.4)
       text(50,108,labels="(wt %)",font=2)}
-
-      if (SiO==0){  text(50,115,labels=expression(bold("CaO-Al"["2"]*"O"["3"]*"-Fe"["2"]*"O"["3"]~"System")),cex=1.4)
-      text(50,108,labels="(wt %)",font=2)}
-  
-    }
     
     
-    		
+    
     ###First triangle
     
-	    lines(c(0,100,50,0),c(0,0,86.60254,0))
-	    #lines(c(0,40,20,0),c(60,60,100,60))
-	    lines(c(25,62.5),c(0,64.951905),lty=4,col="grey")
-	    lines(c(50,75),c(0,43.30127),lty=4,col="grey")
-	    lines(c(75,87.5),c(0,21.650635),lty=4,col="grey")
-	    lines(c(12.5,87.5),c(21.650635, 21.650635),lty=3,col="grey")
-	    lines(c(25,75),c(43.30127, 43.30127),lty=3,col="grey")
-	    lines(c(37.5,62.5),c(64.951905, 64.951905),lty=3,col="grey")
-	    lines(c(25,12.5),c(0, 21.650635),lty=2,col="grey")
-	    lines(c(50,25),c(0, 43.30127),lty=2,col="grey")
-	    lines(c(75,37.5),c(0, 64.951905),lty=2,col="grey")
-	    lines(c(0,100,50,0),c(0,0, 86.60254,0))
-	    lines(c(50,58.245),c(86.60254,37.403637))
-	    lines(c(58.245,25.86),c(37.403637,44.7908337))
-	    lines(c(58.245,48.135),c(37.403637,18.9746165))
-	    lines(c(58.245,85.9),c(37.403637,24.4219163))
-	    lines(c(25.86,48.135),c(44.7908337, 18.9746165))
-	    
-	    text(100,-10, labels=expression(bold("Al"["2"]*"O"["3"])),pos=2,cex=1.4)
-
-	   if(SiO==0){text(60,82.272413, labels=expression(bold("Fe"["2"]*"O"["3"])) ,pos=4,cex=1.4)}
-	   if(SiO==1){text(60,82.272413, labels=expression(bold("SiO"["2"])),pos=4,cex=1.4)}
-
-
- 
-
-	    text(-5,5, labels=expression(bold("CaO")),pos=2,cex=1.4)
-	    text(c(1,25,50,75,98),c(-2,-2,-2,-2,-2),labels=c("0","25","50","75","100"),cex=0.8)
-	    text(c(102,90.5,78,65.5,54),c(1.7320508,21.650635, 43.30127, 64.951905,85.7365146),labels=c("0","25","50","75","100"),cex=0.8)
-	    text(c(48,34.5,22,9.5,-3),c(85.7365146, 64.951905, 43.30127, 21.650635, 1.7320508),labels=c("0","25","50","75","100"),cex=0.8)
-	    text(c(50,30.3,59.5,82.5,48.135),c(89.2006162,45.8993462,35.0740287,23.25278199,17.320508), labels=c("Qz","Wo","An","Mul","Gh"),cex=1,font=2)
+    lines(c(0,100,50,0),c(0,0,86.60254,0))
+    #lines(c(0,40,20,0),c(60,60,100,60))
+    lines(c(25,62.5),c(0,64.951905),lty=4,col="grey")
+    lines(c(50,75),c(0,43.30127),lty=4,col="grey")
+    lines(c(75,87.5),c(0,21.650635),lty=4,col="grey")
+    lines(c(12.5,87.5),c(21.650635, 21.650635),lty=3,col="grey")
+    lines(c(25,75),c(43.30127, 43.30127),lty=3,col="grey")
+    lines(c(37.5,62.5),c(64.951905, 64.951905),lty=3,col="grey")
+    lines(c(25,12.5),c(0, 21.650635),lty=2,col="grey")
+    lines(c(50,25),c(0, 43.30127),lty=2,col="grey")
+    lines(c(75,37.5),c(0, 64.951905),lty=2,col="grey")
+    lines(c(0,100,50,0),c(0,0, 86.60254,0))
+    lines(c(50,58.245),c(86.60254,37.403637))
+    lines(c(58.245,25.86),c(37.403637,44.7908337))
+    lines(c(58.245,48.135),c(37.403637,18.9746165))
+    lines(c(58.245,85.9),c(37.403637,24.4219163))
+    lines(c(25.86,48.135),c(44.7908337, 18.9746165))
     
-   
-
-	    punts[,1]<-x$"Al2O3"
-	   # punts[,2]<-x$"SiO2" (before the change above)
-	    punts[,3]<-x$"CaO"
-	    punts[,c(1:3)]<-sweep(punts[,c(1:3)]/0.01,1,apply(punts[,c(1:3)],1,sum),FUN="/")
-	    #La coordenada x es el valor de l’eix inferior mes el catet del triangle rectangle. La seva hipotenusa
-	    #es el valor del eix dret i es multiplica pel sinus de 30 graus, que es 0.5
-	    punts[,4]<-punts[,1]+(punts[,2]/2)
-	    
+    text(100,-10, labels=expression(bold("Al"["2"]*"O"["3"])),pos=2,cex=1.4)
+    text(60,82.272413, labels=expression(bold("SiO"["2"])),pos=4,cex=1.4)
+    
+    
+    
+    text(-5,5, labels=expression(bold("CaO")),pos=2,cex=1.4)
+    text(c(1,25,50,75,98),c(-2,-2,-2,-2,-2),labels=c("0","25","50","75","100"),cex=0.8)
+    text(c(102,90.5,78,65.5,54),c(1.7320508,21.650635, 43.30127, 64.951905,85.7365146),labels=c("0","25","50","75","100"),cex=0.8)
+    text(c(48,34.5,22,9.5,-3),c(85.7365146, 64.951905, 43.30127, 21.650635, 1.7320508),labels=c("0","25","50","75","100"),cex=0.8)
+    text(c(50,30.3,59.5,82.5,48.135),c(89.2006162,45.8993462,35.0740287,23.25278199,17.320508), labels=c("Qz","Wo","An","Mul","Gh"),cex=1,font=2)
+    
+    
+    
+    punts[,1]<-x$"Al2O3"
+    punts[,2]<-x$"SiO2" 
+    punts[,3]<-x$"CaO"
+    punts[,c(1:3)]<-sweep(punts[,c(1:3)]/0.01,1,apply(punts[,c(1:3)],1,sum),FUN="/")
+    
+    #La coordenada x es el valor de l’eix inferior mes el catet del triangle rectangle. La seva hipotenusa
+    #es el valor del eix dret i es multiplica pel sinus de 30 graus, que es 0.5
+    punts[,4]<-punts[,1]+(punts[,2]/2)
     
     
     
     
-	    #color palettes first triangle
-	    if (paleta==0) {
-	      if (encerclat==2) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
-	        }
-	        legend(-15,91, bty="n",pch=19, legend = unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
-	      }
-	      if (encerclat==1) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
-	        }
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    
-	    if (paleta==1) {
-	      if (encerclat==2) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
-	        }
-	        legend(-15,91, bty="n",pch=19, legend = unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
-	      }
-	      if (encerclat==1) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
-	        }
-	        legend(-15,91, bty="n",pch=19, legend = unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==2) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==3) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==4) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==5) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==6) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
+    
+    #color palettes first triangle
+    if (paleta==0) {
+      if (encerclat==2) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
+        }
+        legend(-15,91, bty="n",pch=19, legend = unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
+      }
+      if (encerclat==1) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
+        }
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    
+    if (paleta==1) {
+      if (encerclat==2) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
+        }
+        legend(-15,91, bty="n",pch=19, legend = unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
+      }
+      if (encerclat==1) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
+        }
+        legend(-15,91, bty="n",pch=19, legend = unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==2) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==3) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==4) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==5) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==6) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
     
     #plot first triangle
     xxx<-recordPlot()
@@ -529,350 +509,340 @@ arch_scatter_matrix <- function(df_raw, vars, group, title){
     
     
     
-##Second triangle 
-	    par(mar=c(0,0,0,0)+0.1,mgp=c(3,1,0))
-	    n<-dim(x)[1]
-	    punts<-matrix(0,n,4)
-	    plot(c(0,100,50,0),c(0,0,100,0),xlab="",ylab="",axes=F,type="n",xlim=c(-20,120),ylim=c(-20,120))
-	    if (idioma==1) {
-	      text(50,115,labels=expression(bold("Triangle ceràmic")),cex=1.4)
-	      text(50,108,labels="(% en pes)",font=2)
-	    }
-	    if (idioma==2) {
-	      text(50,115,labels=expression(bold("Triángulo cerámico")),cex=1.4)
-	      text(50,108,labels="(% en peso)",font=2)
-	    }
-	    if (idioma==3) {
-	      text(50,115,labels=expression(bold("Ceramic triangle")),cex=1.4)
-	      text(50,108,labels="(wt %)",font=2)
-	    }
-	    lines(c(0,100,50,0),c(0,0,86.60254,0))
-	    #lines(c(0,40,20,0),c(60,60,100,60))
-	    lines(c(25,62.5),c(0,64.951905),lty=4,col="grey")
-	    lines(c(50,75),c(0,43.30127),lty=4,col="grey")
-	    lines(c(75,87.5),c(0,21.650635),lty=4,col="grey")
-	    lines(c(12.5,87.5),c(21.650635, 21.650635),lty=3,col="grey")
-	    lines(c(25,75),c(43.30127, 43.30127),lty=3,col="grey")
-	    lines(c(37.5,62.5),c(64.951905, 64.951905),lty=3,col="grey")
-	    lines(c(25,12.5),c(0, 21.650635),lty=2,col="grey")
-	    lines(c(50,25),c(0, 43.30127),lty=2,col="grey")
-	    lines(c(75,37.5),c(0, 64.951905),lty=2,col="grey")
-	    lines(c(0,100,50,0),c(0,0, 86.60254,0))
-	    lines(c(50,58.245),c(86.60254,37.403637))
-	    lines(c(58.245,25.86),c(37.403637,44.7908337))
-	    lines(c(58.245,48.135),c(37.403637,18.9746165))
-	    lines(c(58.245,85.9),c(37.403637,24.4219163))
-	    lines(c(25.86,48.135),c(44.7908337, 18.9746165))
-	    text(100,-10, labels=expression(bold("Al"["2"]*"O"["3"])),pos=2,cex=1.4)
-	    
-
-
-
-	    text(2.8,14.9, labels=expression(bold("Fe"["2"]*"O"["3"]~"+")),pos=2,cex=1.4)
-	    text(0.2,9.2, labels=expression(bold("MgO +")),pos=2,cex=1.4)
-	    text(-5,5, labels=expression(bold("CaO")),pos=2,cex=1.4)
-	    text(c(1,25,50,75,98),c(-2,-2,-2,-2,-2),labels=c("0","25","50","75","100"),cex=0.8)
-	    text(c(102,90.5,78,65.5,54),c(1.7320508,21.650635, 43.30127, 64.951905,85.7365146),labels=c("0","25","50","75","100"),cex=0.8)
-	    text(c(48,34.5,22,9.5,-3),c(85.7365146, 64.951905, 43.30127, 21.650635, 1.7320508),labels=c("0","25","50","75","100"),cex=0.8)
-	    text(c(50,30.3,59.5,82.5,48.135),c(89.2006162,45.8993462,35.0740287,23.25278199,17.320508), labels=c("Qz","Wo","An","Mul","Gh"),cex=1,font=2)
-	    
-
-	    
-	    punts[,1]<-x[,"Al2O3"]
-	    #punts[,2]<-x[,"SiO2"] (before)
-	    punts[,3]<-x[,"CaO"]+ x[,"MgO"]+ x[,"Fe2O3"]
-	    punts[,c(1:3)]<-sweep(punts[,c(1:3)]/0.01,1,apply(punts[,c(1:3)],1,sum),FUN="/")
-	    
-
-
-	    #La coordenada x es el valor de l’eix inferior mes el catet del triangle rectangle. La seva hipotenusa
-	    #es el valor del eix dret i es multiplica pel sinus de 30 graus, que es 0.5
-	    punts[,4]<-punts[,1]+(punts[,2]/2)
-	    if (paleta==0) {
-	      if (encerclat==2) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
-	        }
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
-	      }
-	      if (encerclat==1) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
-	        }
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==1) {
-	      if (encerclat==2) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
-	        }
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
-	      }
-	      if (encerclat==1) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
-	        }
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==2) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==3) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==4) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==5) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==6) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    xxx<-recordPlot()
-	    emf("triangle2.emf")
-	    replayPlot(xxx)
-	    dev.off()
-	    pdf("triangle2.pdf")
-	    replayPlot(xxx)
-	    dev.off()
+    ##Second triangle 
+    par(mar=c(0,0,0,0)+0.1,mgp=c(3,1,0))
+    n<-dim(x)[1]
+    punts<-matrix(0,n,4)
+    plot(c(0,100,50,0),c(0,0,100,0),xlab="",ylab="",axes=F,type="n",xlim=c(-20,120),ylim=c(-20,120))
+    if (idioma==1) {
+      text(50,115,labels=expression(bold("Triangle ceràmic")),cex=1.4)
+      text(50,108,labels="(% en pes)",font=2)
+    }
+    if (idioma==2) {
+      text(50,115,labels=expression(bold("Triángulo cerámico")),cex=1.4)
+      text(50,108,labels="(% en peso)",font=2)
+    }
+    if (idioma==3) {
+      text(50,115,labels=expression(bold("Ceramic triangle")),cex=1.4)
+      text(50,108,labels="(wt %)",font=2)
+    }
+    lines(c(0,100,50,0),c(0,0,86.60254,0))
+    #lines(c(0,40,20,0),c(60,60,100,60))
+    lines(c(25,62.5),c(0,64.951905),lty=4,col="grey")
+    lines(c(50,75),c(0,43.30127),lty=4,col="grey")
+    lines(c(75,87.5),c(0,21.650635),lty=4,col="grey")
+    lines(c(12.5,87.5),c(21.650635, 21.650635),lty=3,col="grey")
+    lines(c(25,75),c(43.30127, 43.30127),lty=3,col="grey")
+    lines(c(37.5,62.5),c(64.951905, 64.951905),lty=3,col="grey")
+    lines(c(25,12.5),c(0, 21.650635),lty=2,col="grey")
+    lines(c(50,25),c(0, 43.30127),lty=2,col="grey")
+    lines(c(75,37.5),c(0, 64.951905),lty=2,col="grey")
+    lines(c(0,100,50,0),c(0,0, 86.60254,0))
+    lines(c(50,58.245),c(86.60254,37.403637))
+    lines(c(58.245,25.86),c(37.403637,44.7908337))
+    lines(c(58.245,48.135),c(37.403637,18.9746165))
+    lines(c(58.245,85.9),c(37.403637,24.4219163))
+    lines(c(25.86,48.135),c(44.7908337, 18.9746165))
+    text(100,-10, labels=expression(bold("Al"["2"]*"O"["3"])),pos=2,cex=1.4)
+    text(60,82.272413, labels=expression(bold("SiO"["2"])),pos=4,cex=1.4)
     
-
-  #third trianle 
-
-	     par(mar=c(0,0,0,0)+0.1,mgp=c(3,1,0))
-	    n<-dim(x)[1]
-	    punts<-matrix(0,n,4)
-	    plot(c(0,100,50,0),c(0,0,100,0),xlab="",ylab="",axes=F,type="n",xlim=c(-20,120),ylim=c(-20,120))
-	    
-	    if (idioma==1) {
-	      text(50,115,labels=expression(bold("Sistema CaO-MgO-SiO"["2"])),cex=1.4)
-	      text(50,108,labels="(% en pes)",font=2)
-	    }
-	    if (idioma==2) {
-	      text(50,115,labels=expression(bold("Sistema CaO-MgO-SiO"["2"])),cex=1.4)
-	      text(50,108,labels="(% en peso)",font=2)
-	    }
-	    
-	    #changed for TiO
-	    if (idioma==3) {
-	    	if (SiO== 1){text(50,115,labels=expression(bold("CaO-MgO-SiO"["2"]~"System")),cex=1.4)
-	      text(50,108,labels="(wt %)",font=2)}
-	      	if (SiO==0){  text(50,115,labels=expression(bold("CaO-MgO-Fe"["2"]*"O"["3"]~"System")),cex=1.4)
-      		text(50,108,labels="(wt %)",font=2)}
-	    }
-
-
-
- 
-
-
-
-	    lines(c(0,100,50,0),c(0,0,86.60254,0))
-	    #lines(c(0,40,20,0),c(60,60,100,60))
-	    #es dibuixa el grid
-	    lines(c(25,62.5),c(0,64.951905),lty=4,col="grey")
-	    lines(c(50,75),c(0,43.30127),lty=4,col="grey")
-	    lines(c(75,87.5),c(0,21.650635),lty=4,col="grey")
-	    lines(c(12.5,87.5),c(21.650635, 21.650635),lty=3,col="grey")
-	    lines(c(25,75),c(43.30127, 43.30127),lty=3,col="grey")
-	    lines(c(37.5,62.5),c(64.951905, 64.951905),lty=3,col="grey")
-	    lines(c(25,12.5),c(0, 21.650635),lty=2,col="grey")
-	    lines(c(50,25),c(0, 43.30127),lty=2,col="grey")
-	    lines(c(75,37.5),c(0, 64.951905),lty=2,col="grey")
-	    #es dibuixa el triangle
-	    lines(c(0,100,50,0),c(0,0, 86.60254,0))
-	    #es dibuixen els triangles d’equilibri termodinamic
-	    lines(c(50,46.355),c(86.60254,48.0557494))
-	    lines(c(25.86, 46.355),c(44.7908337,48.0557494))
-	    lines(c(70.075, 46.355),c(51.8316202, 48.0557494))
-	    lines(c(36.825, 46.355),c(38.1657394, 48.0557494))
-	    lines(c(78.65, 46.355),c(36.9792846, 48.0557494))
-	    lines(c(36.825, 25.86),c(38.1657394, 44.7908337))
-	    lines(c(36.825, 78.65),c(38.1657394, 36.9792846))
-	    lines(c(36.825, 44.96),c(38.1657394, 33.2553754))
-	    lines(c(78.65, 44.96),c(36.9792846, 33.2553754))
-	    
-
-	    #etiquetes del triangle
-	    text(100,-10, labels=expression(bold("MgO")),pos=2,cex=1.4)
-	    #text(60,82.272413, labels=expression(bold("SiO"["2"])),pos=4,cex=1.4)
-	    text(-5,5, labels=expression(bold("CaO")),pos=2,cex=1.4)
-	    
- 
-
-	    #etiquetes dels eixos
-	    text(c(1,25,50,75,98),c(-2,-2,-2,-2,-2),labels=c("0","25","50","75","100"),cex=0.8)
-	    text(c(102,90.5,78,65.5,54),c(1.7320508,21.650635, 43.30127, 64.951905,85.7365146),labels=c("0","25","50","75","100"),cex=0.8)
-	    text(c(48,34.5,22,9.5,-3),c(85.7365146, 64.951905, 43.30127, 21.650635, 1.7320508),labels=c("0","25","50","75","100"),cex=0.8)
-	    #etiquetes de les fases
-	    text(c(50,27.2,46.9,69.4,35.4,77.6,44.96),c(89.2006162, 41.6,45.2, 49.8, 37,35,31), labels=c("Qz","Wo","Di","En","Ak","Fo","Mtc"),cex=1,font=2)
-	   
-	   ##little adaptation to plot when no SiO is used
-	    if (SiO== 0){punts[,2]<-x[,"Fe2O3"]} 
-	    if (SiO== 1){punts[,2]<-x[,"SiO2"]} 
-	   #########
-
-
-	    #punts[,2]<-x[,"SiO2"] (before)
-	    punts[,1]<-x[,"MgO"]
-	    punts[,3]<-x[,"CaO"]
-	    punts[,c(1:3)]<-sweep(punts[,c(1:3)]/0.01,1,apply(punts[,c(1:3)],1,sum),FUN="/")
-	   
-	    #La coordenada x es el valor de l’eix inferior mes el catet del triangle rectangle. La seva hipotenusa
-	    #es el valor del eix dret i es multiplica pel sinus de 30 graus, que es 0.5
-	    punts[,4]<-punts[,1]+(punts[,2]/2)
-	    
-	    
-	    ###different color palettes
-	    if (paleta==0) {
-	      if (encerclat==2) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
-	        }
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
-	      }
-	      if (encerclat==1) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
-	        }
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==1) {
-	      if (encerclat==2) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
-	        }
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
-	      }
-	      if (encerclat==1) {
-	        for (w in 1:n) {
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
-	          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
-	        }
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==2) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==3) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==4) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==5) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    if (paleta==6) {
-	      if (encerclat==2) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
-	      }
-	      if (encerclat==1) {
-	        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
-	        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
-	        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
-	      }
-	    }
-	    
-	    ###output plots 
-	    xxx<-recordPlot()
-	    emf("triangle3.emf")
-	    replayPlot(xxx)
-	    dev.off()
-	    pdf("triangle3.pdf")
-	    replayPlot(xxx)
-	    dev.off()
-	    #fi i posem els marges per defecte
-	    par(mar=c(5,4,4,2)+0.1,mgp=c(3,1,0))
-	    palette("default")
-	    
-	   
- }
+    
+    
+    text(2.8,14.9, labels=expression(bold("Fe"["2"]*"O"["3"]~"+")),pos=2,cex=1.4)
+    text(0.2,9.2, labels=expression(bold("MgO +")),pos=2,cex=1.4)
+    text(-5,5, labels=expression(bold("CaO")),pos=2,cex=1.4)
+    text(c(1,25,50,75,98),c(-2,-2,-2,-2,-2),labels=c("0","25","50","75","100"),cex=0.8)
+    text(c(102,90.5,78,65.5,54),c(1.7320508,21.650635, 43.30127, 64.951905,85.7365146),labels=c("0","25","50","75","100"),cex=0.8)
+    text(c(48,34.5,22,9.5,-3),c(85.7365146, 64.951905, 43.30127, 21.650635, 1.7320508),labels=c("0","25","50","75","100"),cex=0.8)
+    text(c(50,30.3,59.5,82.5,48.135),c(89.2006162,45.8993462,35.0740287,23.25278199,17.320508), labels=c("Qz","Wo","An","Mul","Gh"),cex=1,font=2)
+    
+    
+    
+    punts[,1]<-x[,"Al2O3"]
+    punts[,2]<-x[,"SiO2"] 
+    punts[,3]<-x[,"CaO"]+ x[,"MgO"]+ x[,"Fe2O3"]
+    punts[,c(1:3)]<-sweep(punts[,c(1:3)]/0.01,1,apply(punts[,c(1:3)],1,sum),FUN="/")
+    
+    
+    
+    #La coordenada x es el valor de l’eix inferior mes el catet del triangle rectangle. La seva hipotenusa
+    #es el valor del eix dret i es multiplica pel sinus de 30 graus, que es 0.5
+    punts[,4]<-punts[,1]+(punts[,2]/2)
+    if (paleta==0) {
+      if (encerclat==2) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
+        }
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
+      }
+      if (encerclat==1) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
+        }
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==1) {
+      if (encerclat==2) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
+        }
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
+      }
+      if (encerclat==1) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
+        }
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==2) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==3) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==4) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==5) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==6) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    xxx<-recordPlot()
+    emf("triangle2.emf")
+    replayPlot(xxx)
+    dev.off()
+    pdf("triangle2.pdf")
+    replayPlot(xxx)
+    dev.off()
+    
+    
+    #third trianle 
+    
+    par(mar=c(0,0,0,0)+0.1,mgp=c(3,1,0))
+    n<-dim(x)[1]
+    punts<-matrix(0,n,4)
+    plot(c(0,100,50,0),c(0,0,100,0),xlab="",ylab="",axes=F,type="n",xlim=c(-20,120),ylim=c(-20,120))
+    
+    
+    if (idioma==1) {
+      text(50,115,labels=expression(bold("Sistema CaO-MgO-SiO"["2"])),cex=1.4)
+      text(50,108,labels="(% en pes)",font=2)
+    }
+    if (idioma==2) {
+      text(50,115,labels=expression(bold("Sistema CaO-MgO-SiO"["2"])),cex=1.4)
+      text(50,108,labels="(% en peso)",font=2)
+    }
+    
+    if (idioma==3) {
+      text(50,115,labels=expression(bold("CaO-MgO-SiO"["2"]~"System")),cex=1.4)
+      text(50,108,labels="(wt %)",font=2)
+    }
+    
+    
+    
+    
+    lines(c(0,100,50,0),c(0,0,86.60254,0))
+    #lines(c(0,40,20,0),c(60,60,100,60))
+    #es dibuixa el grid
+    lines(c(25,62.5),c(0,64.951905),lty=4,col="grey")
+    lines(c(50,75),c(0,43.30127),lty=4,col="grey")
+    lines(c(75,87.5),c(0,21.650635),lty=4,col="grey")
+    lines(c(12.5,87.5),c(21.650635, 21.650635),lty=3,col="grey")
+    lines(c(25,75),c(43.30127, 43.30127),lty=3,col="grey")
+    lines(c(37.5,62.5),c(64.951905, 64.951905),lty=3,col="grey")
+    lines(c(25,12.5),c(0, 21.650635),lty=2,col="grey")
+    lines(c(50,25),c(0, 43.30127),lty=2,col="grey")
+    lines(c(75,37.5),c(0, 64.951905),lty=2,col="grey")
+    #es dibuixa el triangle
+    lines(c(0,100,50,0),c(0,0, 86.60254,0))
+    #es dibuixen els triangles d’equilibri termodinamic
+    lines(c(50,46.355),c(86.60254,48.0557494))
+    lines(c(25.86, 46.355),c(44.7908337,48.0557494))
+    lines(c(70.075, 46.355),c(51.8316202, 48.0557494))
+    lines(c(36.825, 46.355),c(38.1657394, 48.0557494))
+    lines(c(78.65, 46.355),c(36.9792846, 48.0557494))
+    lines(c(36.825, 25.86),c(38.1657394, 44.7908337))
+    lines(c(36.825, 78.65),c(38.1657394, 36.9792846))
+    lines(c(36.825, 44.96),c(38.1657394, 33.2553754))
+    lines(c(78.65, 44.96),c(36.9792846, 33.2553754))
+    
+    
+    #etiquetes del triangle
+    text(100,-10, labels=expression(bold("MgO")),pos=2,cex=1.4)
+    text(60,82.272413, labels=expression(bold("SiO"["2"])),pos=4,cex=1.4)
+    text(-5,5, labels=expression(bold("CaO")),pos=2,cex=1.4)
+    
+    
+    
+    #etiquetes dels eixos
+    text(c(1,25,50,75,98),c(-2,-2,-2,-2,-2),labels=c("0","25","50","75","100"),cex=0.8)
+    text(c(102,90.5,78,65.5,54),c(1.7320508,21.650635, 43.30127, 64.951905,85.7365146),labels=c("0","25","50","75","100"),cex=0.8)
+    text(c(48,34.5,22,9.5,-3),c(85.7365146, 64.951905, 43.30127, 21.650635, 1.7320508),labels=c("0","25","50","75","100"),cex=0.8)
+    
+    #etiquetes de les fases
+    text(c(50,27.2,46.9,69.4,35.4,77.6,44.96),c(89.2006162, 41.6,45.2, 49.8, 37,35,31), labels=c("Qz","Wo","Di","En","Ak","Fo","Mtc"),cex=1,font=2)
+    
+    punts[,1]<-x[,"MgO"]
+    punts[,2]<-x[,"SiO2"] 
+    punts[,3]<-x[,"CaO"]
+    punts[,c(1:3)]<-sweep(punts[,c(1:3)]/0.01,1,apply(punts[,c(1:3)],1,sum),FUN="/")
+    
+    #La coordenada x es el valor de l’eix inferior mes el catet del triangle rectangle. La seva hipotenusa
+    #es el valor del eix dret i es multiplica pel sinus de 30 graus, que es 0.5
+    punts[,4]<-punts[,1]+(punts[,2]/2)
+    
+    
+    ###different color palettes
+    if (paleta==0) {
+      if (encerclat==2) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
+        }
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
+      }
+      if (encerclat==1) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqubBN[x[w,grup]])
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
+        }
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqubBN[1:nlevels(x[,grup])])
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==1) {
+      if (encerclat==2) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
+        }
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
+      }
+      if (encerclat==1) {
+        for (w in 1:n) {
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=19,cex=0.8,col=arqub[x[w,grup]])
+          points(punts[w,4],(punts[w,2]*0.8660254),pch=21,cex=0.8)
+        }
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = arqub[1:nlevels(x[,grup])])
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==2) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = rainbow(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==3) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = heat.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==4) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = terrain.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==5) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = topo.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    if (paleta==6) {
+      if (encerclat==2) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=19,cex=0.8,col=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
+      }
+      if (encerclat==1) {
+        points(punts[,4],(punts[,2]*0.8660254),pch=21,cex=0.8,bg=colx)
+        legend(-15,91, bty="n",pch=19, legend =  unique(x[,grup]), col = cm.colors(nlevels(x[,grup])))
+        legend(-15,91, bty="n",pch=21, legend = rep("",nlevels(x[,grup])))
+      }
+    }
+    
+    ###output plots 
+    xxx<-recordPlot()
+    emf("triangle3.emf")
+    replayPlot(xxx)
+    dev.off()
+    pdf("triangle3.pdf")
+    replayPlot(xxx)
+    dev.off()
+    #fi i posem els marges per defecte
+    par(mar=c(5,4,4,2)+0.1,mgp=c(3,1,0))
+    palette("default")
+    
+    
+  }
 
 
 
@@ -1413,16 +1383,6 @@ arch_scatter_matrix <- function(df_raw, vars, group, title){
 
   "sum_table" <- function(x) {
 
-  if (!require("RcmdrMisc")) {
-    install.packages("RcmdrMisc", dependencies = TRUE)
-    require(RcmdrMisc)}
-  
-  if (!require("dplyr")) {
-    install.packages("dplyr", dependencies = TRUE)
-    require(dplyr)}
-  
-  
-  
 	sum <- #calculate the values using numSummary 
 	numSummary(x, 
 			statistics=c("mean", "sd", "cv") #specify the stats to display

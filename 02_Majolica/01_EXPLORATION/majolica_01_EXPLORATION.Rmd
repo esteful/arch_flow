@@ -12,44 +12,23 @@ output:
 
 ##Summary
 
-The Archdata package is a CRAN package, providing several types of data that are typically used in archaeological research. 
+The current dataset used correspond to majolica pottery from Spain 
 
-In this parcticular R Script we will be using the RBPottery dataset.
 
 ## Dataset Description
 
-The RBPottery which is a a dataset containing results of chemical analyses of 48 specimens of Romano-British pottery from 5 sites in 3 regions. 
+The majolica_df which is a a dataset containing results of chemical analyses of 37 specimens of Majolica pottery from 4 different provenances. 
 
-A data frame with 48 observations on the following 12 variables:
+A data frame with 37 observations on the following variables:
 
-* ID Sample ID
-* Kiln Kiln: Gloucester, Llanedeyrn, Caldicot, Islands Thorns, and Ashley Rails
-* Region Region: Gloucester, Wales, and New Forest
-* Al2O3 Percentage aluminum trioxide
-* Fe2O3 Percentage Iron trioxide
-* MgO Percentage magnesium oxide
-* CaO Percentage calcium oxide
-* Na2O Percentage sodium oxide
-* K2O Percentage potassium oxide
-* TiO2 Percentage titanium dioxide
-* MnO Percentage manganese oxide
-* BaO Percantage barium oxide
+*Al2O3,P2O5,Na2O,MgO,SiO2,K2O,CaO,SiO2,MnO,Fe2O3,Rb,Sr,Pb,Sn,Zr,Nb,Cs,Ba,La,Ce,Pr,Nd,Sm,Eu,Gd,Tb,Dy,Ho,Er,Tm,Yb,Lu,Hf,Ta,Th,U,V,Cr,Co,Ni,Cu,Zn
 
 **Details**:
 
-Results of chemical analyses of 48 specimens of Romano-British pottery published by Tubb, et al.
-(1980). The numbers are the percentage metal oxide. "Kiln" indicates at which kiln site the pottery
-was found. The kiln sites come from three regions (1=Gloucester, (2=Llanedeyrn, 3=Caldicot),
-(4=Islands Thorns, 5=Ashley Rails)). The data were scanned from Table 2.2 in Baxter (2003, p.
-21) and preserve three probable typographical errors in the original publication. Those errors are
-the values for TiO2 in line 4 (sample GA4), for MnO in line 35 (sample C13), and for K2O in line
-36 (sample C14). Versions of these data are also available as Pottery in package car, pottery in
-package HSAUR, and Pottery2 in package heplots.
 
 **Source**:
 
-David L. Carlson and Georg Roth (2016). archdata: Example Datasets from Archaeological
-Research. R package version 1.1. https://CRAN.R-project.org/package=archdata
+
 
 **References**
 
@@ -68,16 +47,15 @@ source('../../install.R')
 
 ### Load RBPottery from Archdata pachage (example data). Alternatively, import csv
 ```{r}
-  data(RBPottery)
-  print(RBPottery)
+read.csv("../DATA/majolica_data.csv", sep = ";") -> df_majolica
 ```
 
 
 ###Declare df_raw and df_chem, and set the row.names
 ```{r}
-  row.names(RBPottery) <- RBPottery[,1]
-  df_raw <- RBPottery  #we are calling to the whole dataset
-  df_chem <- RBPottery[,-c(1:3)] #ignore all the columns containing categorical data, 9 in this case. 
+  row.names(df_majolica) <- df_majolica[,1]
+  df_raw <- df_majolica  #we are calling to the whole dataset
+  df_chem <- df_majolica[,-c(1:2)] #ignore all the columns containing categorical data, 9 in this case. 
 ```
 
 ###Check the structure of the new dataset (skip if desired)
@@ -89,21 +67,14 @@ In df_chem only integers (int) or nummerical (num). Num class contain decimmals
   str(df_chem)
 ```
 
-###Facet plots
-
-Most of the sampless are from Gloucester region (n=22), where only one kiln is present. Following by Wales, were two kilns are found (Llanedeyrn (n=14) and Caldicot), the last with only two samples. Finally there are 5 and 5 individuals in the two kilns from New Forest, distributed in the Islands Thorns Kiln and the Ashley Rails kiln.
-
-```{r}
-arch_pie_plot(df_raw$ID,df_raw$Region, df_raw$Kiln)
-```
 
 ###Boxplot with the concentrations
 
 Elemental distribution of the chemical elements
 ```{r}
   for (i in 1:ncol(df_chem)){
-  .datt <- data.frame(REGION=df_raw$Region, i= df_chem[,i], KILN=df_raw$Kiln)
-  plot(ggplot(.datt, aes(x= KILN, y = i, fill=REGION)) + geom_boxplot() + ylab(colnames(df_chem)[i]))
+  .datt <- data.frame(GRUPO=df_raw$GRUPO, i= df_chem[,i])
+  plot(ggplot(.datt, aes(x= GRUPO, y = i, fill=GRUPO)) + geom_boxplot() + ylab(colnames(df_chem)[i]))
   }
 ```
 
@@ -195,7 +166,7 @@ arch_heatmap(df_chem)
 In ArchFlow a ternary diagram is included, where the values of CaO, \ch Al2O3 and \ch SiO2 are included in a single plot. However, as for the Tubbs's dataset the \ch SiO2 is not provided there is no chance to generate these kind of plots. See the ternary diagram of the case study instead. 
 
 ```{r}
-arch_triangles(df_raw, grup =2, SiO= 0) #grup = indicates the column from which the factors will be for the legend 
+arch_triangles(df_raw, grup =2) #grup = indicates the column from which the factors will be for the legend 
 ```
 
 ###Outlier detection 
