@@ -59,11 +59,13 @@ Tubb, A., A. J. Parker, and G. Nickless. 1980. The Analysis of Romano-British Po
 Absorption Spectrophotometry. Archaeometry 22: 153-71.
 
 
-
 ## Install and load packages and functions
 ```{r}
-source('../../install.R')
+source("../../installation/install.R")
 ```
+
+
+
 
 
 ### Load RBPottery from Archdata pachage (example data). Alternatively, import csv
