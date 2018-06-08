@@ -51,7 +51,7 @@ rm_vars <- c(1:3,13) #included non desired columns (e.g. negative values, catego
 
 
 
-#Plot MVC and Summary Tables
+###Plot MVC and Summary Tables
 ```{r warning=FALSE}
 j <- 1 #important to run the names in the following code
 
@@ -89,7 +89,7 @@ arch_heatmap(GR_NF[,-c(rm_vars)])
 ```
 
 
-### Group Membership Probability 
+# Group Membership Probability 
 Using Mahalanobis distance and T2 Hotelling. 
 
 ```{r}
