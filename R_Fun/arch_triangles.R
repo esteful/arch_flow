@@ -5,7 +5,7 @@
 
 
 
-  function(x,grup=1,idioma=3,paleta=1,ordenar=2,llegenda=grup, encerclat=1)
+  function(x,grup=1,idioma=3,ordenar=2, paleta = 2, llegenda=grup, encerclat=1)
   {
     # change the labels language language: 1- catala, 2- spanish, 3- english
     # paleta: color palette, 0-arqub en blanc i negre, 1-arqub (default), 2-rainbow, 3-heat.colors, 4-terrain.colors, 5- topo.colors, 6- cm.colors

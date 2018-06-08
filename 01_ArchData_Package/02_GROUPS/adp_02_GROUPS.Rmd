@@ -32,6 +32,7 @@ GR_WA <- subset(df_raw, groups==3) #subset of the whole dataset
 #cbind(df_raw, groups) -> df_raw
 ```
 
+
 ###Check groups
 ```{r}
 groups
@@ -51,7 +52,7 @@ rm_vars <- c(1:3,13) #included non desired columns (e.g. negative values, catego
 
 
 #Plot MVC and Summary Tables
-```{r}
+```{r warning=FALSE}
 j <- 1 #important to run the names in the following code
 
 for (i in group_list){
@@ -71,9 +72,9 @@ for (i in group_list){
 ```{r}
 arch_latex(group_list, landscape = FALSE, MVC = TRUE, rm_vars= rm_vars)
 ```
-
-
-
+```{r}
+summary(df_raw)
+```
 
 
 
@@ -84,7 +85,37 @@ arch_heatmap(GR_GLO[,-c(rm_vars)])
 message("Heatmap of GR_WA")
 arch_heatmap(GR_WA[,-c(rm_vars)])  
 message("Heatmap of GR_NF")
-arch_heatmap(GR_NF[,-c(rm_vars)])  
-
+arch_heatmap(GR_NF[,-c(rm_vars)]) 
 ```
+
+
+### Group Membership Probability 
+Using Mahalanobis distance and T2 Hotelling. 
+
+```{r}
+test_sample =  GR_GLO["GA5",] #change for the ANID to be tested
+#rm_vars previously defined (are the categorical data) 
+arch_mahala(group_list, test_sample, rm_vars = rm_vars)
+```
+
+
+`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
