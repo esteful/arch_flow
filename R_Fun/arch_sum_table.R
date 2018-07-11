@@ -9,7 +9,13 @@
   
 	table$cv <- table$cv*100  #the cv  in % (RSD)
 		
-	table <- round(table,2)
+
+	#3 significant digits for meand and sd
+	row.names(table) -> row_names
+	lapply(table[,c(1:2)], function(N)   formatC(signif(N, digits=3), digits = 3, flag="#")) -> table_ICP_3sig
+	as.data.frame(table_ICP_3sig)-> table_ICP_df
+	cbind(table_ICP_df, round(table[,c(3)], 2)) ->table
+	row.names(table) <- row_names
 
 	table$N <- sum$n
 
@@ -23,7 +29,7 @@
 
  	row.names(table) <- table$izenak 	#put it back the names of elements
 
-    colnames(table)[1]<-  "Mean"			#names of columns
+  colnames(table)[1]<-  "Mean"			#names of columns
 	colnames(table)[2] <- "St. Dev"
 	colnames(table)[3] <- "RSD"
 	colnames(table)[4] <- "N"
