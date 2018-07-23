@@ -7,10 +7,10 @@
 
 * A series of routines for exploratory analysis of ceramic compositions 
 * Designed for fully reproducible research
-* It is applied on two datasets: well known Roman-British Pottery published by Tubb et al.(1980) and secondly to new data from northern Iberian Peninsula pottery production centers
-* Based on M.J. Baxter and Jaume Buxeda i Garrigós variation matrix
+* It is applied on two datasets: well known Roman-British Pottery published by Tubb et al (1980)
+* Statistics based on M.J. Baxter and Jaume Buxeda i Garrigós observations on compositional data
 * Includes data visualization tools and robust statistical treatments
-* To use with a new dataset change the name of the csv file and run the code on each Rmarkdown file, included in the following folders and following the order:
+* The routines are contained in three folders:
 
          * 01_Exploration
 
