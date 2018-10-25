@@ -1,4 +1,4 @@
-"arch_dendro" <- function(df_chem, nplot, printDendro = TRUE, df_raw){
+"arch_dendro" <- function(df_chem, nplot, printDendro = TRUE, df_raw, cex=0.4){
 
 #This code is to plot hierarchical clustering of clr transformed data, using centroid algorithm and squared euclidean distance
 
@@ -25,7 +25,7 @@
   for (i in nplot)
     { 
       #plot options  
-        my_dend <- set(my_dend, "labels_cex", 0.6) #labels text size
+        my_dend <- set(my_dend, "labels_cex", cex) #labels text size
         par(mar = c(2,2,2,2)) #set legend scale
   
      #add colors to labels
@@ -33,8 +33,9 @@
       
         #MORE COLOR PALETTES: heat.colors, rainbow, terrain.colors, cm.colors, topo.colors
         
-     #create the plot
-        plot(my_dend, main= "Hierarchical Clustering", horiz =  FALSE)
+     
+    #create the plot
+        plot(my_dend, main= "Hierarchical Clustering", horiz =  FALSE) 
         legend("topright",cex = 1, legend = unique(as.factor(df_raw[,i])), 
         fill = unique(rainbow(nlevels(as.factor(df_raw[,i])))[as.factor(df_raw[,i])]))
 
@@ -52,6 +53,7 @@
     }         
   
   assign("my_dend", my_dend,.GlobalEnv)
-  
-     
+ print(paste("HCA using:", paste(noquote(colnames(df_chem)), collapse = ", ")))
+ print(paste("Samples:", nrow(df_chem)))
+
 }

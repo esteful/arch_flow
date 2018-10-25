@@ -21,7 +21,7 @@ for (i in nplot){
                          #labels
                          colour = colnames(df_raw[i]),  #set the categories to be displayed  
                          label = labels,                #TRUE if the name of the ANIDs are to be displayed
-                         label.size = 5,                #set the label sizes (not shapes)
+                         label.size = 5,                 #set the label sizes (not shapes)
                          
                          #shapes      
                          shape = colnames(df_raw)[shape_cat_number],        #set the category to display by shapes, or chose from 1-25 shapes to display all equally, 15 by default       
@@ -35,7 +35,7 @@ for (i in nplot){
                          
                          #eLlipse   
                          frame = frame,   #true by default, if "norm" is removed the shaope of the frame is geometrical
-                         frame.type = "norm") + ggtitle(label = "PCA") + theme(plot.title = element_text(hjust = 0.5)) + labs(caption= paste("PCA using:", paste(noquote(colnames(df_chem)), collapse = ", "))) + theme(plot.caption = element_text(size=7, hjust=0.5, margin=margin(t=1))))
+                         frame.type = "norm") + ggtitle(label = "PCA") + theme(plot.title = element_text(hjust = 0.5)) + labs(caption= paste("PCA using:", paste(noquote(colnames(df_chem)), collapse = ", ")))+ theme(plot.caption = element_text(size=7, hjust=0.5, margin=margin(t=1))))
     
     
     

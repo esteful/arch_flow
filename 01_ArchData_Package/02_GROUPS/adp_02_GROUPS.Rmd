@@ -8,10 +8,10 @@ output:
   pdf_document:
     toc: yes
 ---
-##Replot the dendrogram without outliers elements
-From previous exploration it is obvious that TiO2 has an outlier value due to a possible typographic error pointed out previously for the sample GA4.
+##Replot the dendrogram without problematic elements 
+From previous exploration it is obvious that TiO~2~ has an outlier value due to a possible typographic error pointed out previously for the sample GA4.
 
-Dendrogram without TiO2 (col nº = 7)
+Dendrogram without TiO~2~ (col nº = 7)
 
 ```{r, echo=FALSE}
 arch_dendro(df_chem[,-c(7)], printDendro = TRUE, nplot=c(2,3), df_raw = df_raw)
@@ -19,9 +19,11 @@ arch_dendro(df_chem[,-c(7)], printDendro = TRUE, nplot=c(2,3), df_raw = df_raw)
 
 ##Create the groups
 
+###Create the groups AUTOMATICALLY
 Create groups (subset of the main dataset) according to the cluster analysis. k=3 means we are cutting it into theree groups since these are very clear (after removing the TiO2). 
 
 ```{r}
+#OPTION A
 #Watch to perform correctly the Hclust 
 groups <- cutree(.HClust, k = 3, h = NULL) #a vector with the names and the group assigned according to the dengroram.
 
@@ -30,7 +32,43 @@ GR_NF <- subset(df_raw, groups==2) #subset of the whole dataset
 GR_WA <- subset(df_raw, groups==3) #subset of the whole dataset
 
 #cbind(df_raw, groups) -> df_raw
+
+#OPTION C (Get the same by a loop)
+  #cutree_1h.dendrogram(my_dend, h = 0.9 ) -> DEND_GROUP
+
+      #for (i in unique(DEND_GROUP))
+       #       {
+        #      subset(df,DEND_GROUP == i) -> GROUP
+        #      cat <- paste("GROUP", i,  sep ="_")
+         #     GROUP[,-c(ncol(GROUP))] -> GROUP
+          #    assign(cat, GROUP)
+           #   print(cat)
+              
+            #  }
 ```
+###Create the groups MANUALLY (Alternative to previous step)
+```{r}
+#GR_GLO
+##write here the samples to include in the first group
+gr_glo_vec <- match(c("GA1","GA2","GA3","GA4","GA5","GB1","GB2","GB3","GB4","GB5","GC1","GC2","GC3","GC4","GD1","GD2","GD3", "GD4","GD5","GE1","GE2","GE3"), df_raw$ID) 
+
+GR_GLO <- subset(df_raw[c(gr_glo_vec),]) #create a subset according to the vector above
+
+
+#GR_NF
+gr_nf_vec <- match(c("C01","CO2","CO3","C04","CO5","C06","C07","C08","C09","C10","C11","C12","C13","C14","GO1","G02"), df_raw$ID) 
+
+GR_NF <- subset(df_raw[c(gr_nf_vec),])
+
+
+#GR_WA
+gr_wa_vec <- match(c("T11","T12","T13","T14","T16","A11","Al2","A16","A18","A26"), df_raw$ID) 
+GR_WA <- subset(df_raw[c(gr_wa_vec),])
+```
+
+
+
+
 
 
 ###Check groups
@@ -59,10 +97,10 @@ for (i in group_list){
   names(group_list)[j] -> i_name
   j+1 -> j
   message(i_name)
-  arch_uniformity(i[,-c(rm_vars)])#
+  arch_evenness(i[,-c(rm_vars)])#
   print(sum_table(i[,-c(rm_vars)]))
   print(arch_varmat(i[,-c(rm_vars)]))
- # WP arch_heatmap(i[,-c(rm_vars)])   
+  #WP arch_heatmap(i[,-c(rm_vars)])   
   }
 ```
 
@@ -71,9 +109,6 @@ for (i in group_list){
 ###Generate LaTex Code for each Summary and MVC table 
 ```{r}
 arch_latex(group_list, landscape = FALSE, MVC = TRUE, rm_vars= rm_vars)
-```
-```{r}
-summary(df_raw)
 ```
 
 
@@ -90,7 +125,7 @@ arch_heatmap(GR_NF[,-c(rm_vars)])
 
 
 # Group Membership Probability 
-Using Mahalanobis distance and T2 Hotelling. 
+Using Mahalanobis distance and T^2 Hotelling. 
 
 ```{r}
 test_sample =  GR_GLO["GA5",] #change for the ANID to be tested

@@ -1,5 +1,5 @@
 
-"arch_uniformity" <- function(df_chem)
+"arch_evenness" <- function(df_chem)
 #compositions plotrix and devEMF
   {
   

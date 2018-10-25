@@ -30,7 +30,7 @@ packages <- c("archdata",
             source("../../R_Fun/arch_pie_plot.R")
             source("../../R_Fun/arch_sum_table.R")
             source("../../R_Fun/arch_triangles.R")
-            source("../../R_Fun/arch_uniformity.R")
+            source("../../R_Fun/arch_evenness.R")
             source("../../R_Fun/arch_varmat.R")
             source("../../R_Fun/classifica.R")
             source("../../R_Fun/entropia.R") 
