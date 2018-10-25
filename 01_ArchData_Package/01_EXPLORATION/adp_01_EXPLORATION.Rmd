@@ -117,7 +117,7 @@ arch_pie_plot(df_raw$ID,df_raw$Region, df_raw$Kiln)
 
 We might want to have a glance at which is the calcium content of the samples (two options)
 ```{r}
-df_raw[,c("CaO", "Calcareous")]
+df_raw[,c("CaO", "Calcium")]
 #select(df_raw,c(CaO,Calcareous)) 
 ```
 ##Applying statistics to the dataset
@@ -151,7 +151,7 @@ arch_evenness(df_chem)
   #a pdf file is saved in the working directory
 ```
 
-###Cluster Analysis
+###Hierarchical Cluster Analysis (HCA)
 
 Create the dendrograms based on the clr data. Required: define df_chem for numerical df_raw whole dataset (containing categorical data). If desired the emf and pdf can be directly saved to the local folder turning the argument of printDendro = TRUE, by default is false.
 
@@ -164,7 +164,7 @@ arch_dendro(df_chem = df_chem, df_raw = df_raw, printDendro = FALSE, nplot=c(2,3
 
 
 
-###Principal Component Analysis 
+###Principal Component Analysis (PCA)
 
 For the alr transformation, the less variable element is generated in arch_evenness and saved as .lvar.
 Here ".lvar" is read automatically. 

@@ -171,10 +171,10 @@
 ##Print plots  
   
  #Uniformity
-  emf("uniformity.emf")
+  emf("evenness.emf")
   replayPlot(xxx)
   dev.off()
-  pdf("uniformity.pdf")
+  pdf("evenness.pdf")
   replayPlot(xxx)
   dev.off()
   
