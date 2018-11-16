@@ -30,14 +30,15 @@
   
      #add colors to labels
         labels_colors(my_dend) <-rainbow(nlevels(as.factor(df_raw[,i])))[as.factor(df_raw[,i])][order.dendrogram(my_dend)]
-      
-        #MORE COLOR PALETTES: heat.colors, rainbow, terrain.colors, cm.colors, topo.colors
         
-     
+        #MORE COLOR PALETTES: heat.colors, rainbow, terrain.colors, cm.colors, topo.colors
+
     #create the plot
         plot(my_dend, main= "Hierarchical Clustering", horiz =  FALSE) 
         legend("topright",cex = 1, legend = unique(as.factor(df_raw[,i])), 
         fill = unique(rainbow(nlevels(as.factor(df_raw[,i])))[as.factor(df_raw[,i])]))
+
+        
 
      #save the plot
         dendro <-recordPlot(my_dend)

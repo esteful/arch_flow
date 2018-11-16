@@ -55,16 +55,18 @@ Research. R package version 1.1. https://CRAN.R-project.org/package=archdata
 
 Baxter, M. J. 2003. Statistics in Archaeology. Arnold.
 
-Tubb, A., A. J. Parker, and G. Nickless. 1980. The Analysis of Romano-British Pottery by Atomic
-Absorption Spectrophotometry. Archaeometry 22: 153-71.
+Tubb, A., A. J. Parker, and G. Nickless. 1980. The Analysis of Romano-British Pottery by Atomic Absorption Spectrophotometry. Archaeometry 22: 153-71.
 
 
 ### Install and load packages and functions
 ```{r warning=FALSE, cache=FALSE, include=FALSE}
 source("../../R_Fun/install.R")
 ```
+
+
 ### Load RBPottery from Archdata pachage (example data). Alternatively, import csv
 ```{r}
+View()
   data(RBPottery)
   print(RBPottery)
 ```
@@ -184,11 +186,34 @@ arch_PCA(df_chem, df_raw =df_raw, printPCA= TRUE, labels = FALSE, nplot = c(2,3)
 arch_heatmap(df_chem)
 ```
 
+
 ###Ternary Diagram
+
+```{r}
+
+
+if (!"SiO2" %in% colnames(df_chem) == TRUE)  {
+
+  df_chem$SiO2 <- c(rep(0, nrow(df_chem)))
+
+for (i in 1:nrow(df_chem)){
+  
+  df_chem$SiO2[i] <- 98 - sum(df_chem[i,])
+
+
+}
+}
+
+cbind(df_raw[,1], df_chem) -> df_raw
+
+#rm(df_chem$SiO2)
+
+```
+
 
 In ArchFlow a ternary diagram is included, where the values of CaO, \ch Al2O3 and \ch SiO2 are included in a single plot. However, as for the Tubbs's dataset the \ch SiO2 is not provided there is no chance to generate these kind of plots. See the ternary diagram of the case study instead. 
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 arch_triangles(df_raw, grup =1) #grup = indicates the column from which the factors will be for the legend 
 ```
 

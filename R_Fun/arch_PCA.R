@@ -21,11 +21,11 @@ for (i in nplot){
                          #labels
                          colour = colnames(df_raw[i]),  #set the categories to be displayed  
                          label = labels,                #TRUE if the name of the ANIDs are to be displayed
-                         label.size = 5,                 #set the label sizes (not shapes)
+                         label.size = 3,                 #set the label sizes (not shapes)
                          
                          #shapes      
                          shape = colnames(df_raw)[shape_cat_number],        #set the category to display by shapes, or chose from 1-25 shapes to display all equally, 15 by default       
-                         size = 2,                        #set the size of the shapes
+                         size = 1,                        #set the size of the shapes
                          
                          #loadings        
                          loadings = TRUE,

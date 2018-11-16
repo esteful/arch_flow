@@ -90,6 +90,12 @@ rm_vars <- c(1:3,13) #included non desired columns (e.g. negative values, catego
 
 
 ###Plot MVC and Summary Tables
+In this step for each compositional group, the Matrix of Compositional Variation (MVC), its corresponding dendrogram and the summary tables including: the number of individuals (N), the mean concentration, the standard deviation and the relative standard deviation (RSD). 
+
+The values can be formatted according to the desired significant figures or digits, turning signif = TRUE and indicating the number of desired significant figures (by default signif = 3).
+
+To express values with a fixed decimal number, turn signif = FALSE and indicate the desired number of decimmals (by default decimals = 2).  
+
 ```{r warning=FALSE}
 j <- 1 #important to run the names in the following code
 
@@ -98,7 +104,7 @@ for (i in group_list){
   j+1 -> j
   message(i_name)
   arch_evenness(i[,-c(rm_vars)])#
-  print(sum_table(i[,-c(rm_vars)]))
+  print(sum_table(i[,-c(rm_vars)], signif = FALSE, sig_digits = 2))
   print(arch_varmat(i[,-c(rm_vars)]))
   #WP arch_heatmap(i[,-c(rm_vars)])   
   }
