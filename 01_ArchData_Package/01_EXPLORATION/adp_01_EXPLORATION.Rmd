@@ -189,32 +189,47 @@ arch_heatmap(df_chem)
 
 ###Ternary Diagram
 
+Estimate SiO2 if not available in the dataset.
 ```{r}
+SiO2 <- 0
+total <- 98
 
 
 if (!"SiO2" %in% colnames(df_chem) == TRUE)  {
-
-  df_chem$SiO2 <- c(rep(0, nrow(df_chem)))
-
-for (i in 1:nrow(df_chem)){
   
-  df_chem$SiO2[i] <- 98 - sum(df_chem[i,])
+      SiO2 <- 1
+    
+      df_chem$SiO2 <- c(rep(0, nrow(df_chem)))
+    
+  for (i in 1:nrow(df_chem)){
+      
+      df_chem$SiO2[i] <- total - sum(df_chem[i,])
 
+      }
+      
+print("SiO2 column has been created by estimation")
+cbind(df_raw[,c(1:3)], df_chem) -> df_raw
 
 }
-}
-
-cbind(df_raw[,1], df_chem) -> df_raw
-
-#rm(df_chem$SiO2)
 
 ```
 
 
 In ArchFlow a ternary diagram is included, where the values of CaO, \ch Al2O3 and \ch SiO2 are included in a single plot. However, as for the Tubbs's dataset the \ch SiO2 is not provided there is no chance to generate these kind of plots. See the ternary diagram of the case study instead. 
 
-```{r eval=FALSE, include=FALSE}
-arch_triangles(df_raw, grup =1) #grup = indicates the column from which the factors will be for the legend 
+
+
+```{r fig.height=7, fig.width=7}
+arch_triangles(df_raw, grup =3) #grup = indicates the column from which the factors will be for the legend 
+
+
+#Remove the column of estimated SiO2
+if (SiO2 == 1){
+  df_chem[,-c(ncol(df_chem))] -> df_chem
+  df_raw[,-c(ncol(df_raw))] -> df_raw
+  SiO2 <- 0
+}
+
 ```
 
 ###Outlier detection 
