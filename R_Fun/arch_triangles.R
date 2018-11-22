@@ -65,16 +65,16 @@
     plot(c(0,100,50,0),c(0,0,100,0),xlab="",ylab="",axes=F,type="n",xlim=c(-20,120),ylim=c(-20,120))
     if (idioma==1) {
       text(50,115,labels=expression(bold("Sistema CaO-Al"["2"]*"O"["3"]*"-SiO"["2"])),cex=1.4)
-      text(50,108,labels="(% en pes)",font=2)
+      text(50,108,labels="(% de massa)",font=2)
     }
     if (idioma==2) {
       text(50,115,labels=expression(bold("Sistema CaO-Al"["2"]*"O"["3"]*"-SiO"["2"])),cex=1.4)
-      text(50,108,labels="(% en peso)",font=2)
+      text(50,108,labels="(% de masa)",font=2)
     }
     
     if (idioma==3) {
       text(50,115,labels=expression(bold("CaO-Al"["2"]*"O"["3"]*"-SiO"["2"]~"System")),cex=1.4)
-      text(50,108,labels="(wt %)",font=2)}
+      text(50,108,labels="(% by mass)",font=2)}
     
     
     
@@ -232,15 +232,15 @@
     plot(c(0,100,50,0),c(0,0,100,0),xlab="",ylab="",axes=F,type="n",xlim=c(-20,120),ylim=c(-20,120))
     if (idioma==1) {
       text(50,115,labels=expression(bold("Triangle ceràmic")),cex=1.4)
-      text(50,108,labels="(% en pes)",font=2)
+      text(50,108,labels="(% de massa)",font=2)
     }
     if (idioma==2) {
       text(50,115,labels=expression(bold("Triángulo cerámico")),cex=1.4)
-      text(50,108,labels="(% en peso)",font=2)
+      text(50,108,labels="(% de masa)",font=2)
     }
     if (idioma==3) {
       text(50,115,labels=expression(bold("Ceramic triangle")),cex=1.4)
-      text(50,108,labels="(wt %)",font=2)
+      text(50,108,labels="(% by mass)",font=2)
     }
     lines(c(0,100,50,0),c(0,0,86.60254,0))
     #lines(c(0,40,20,0),c(60,60,100,60))
@@ -390,16 +390,16 @@
     
     if (idioma==1) {
       text(50,115,labels=expression(bold("Sistema CaO-MgO-SiO"["2"])),cex=1.4)
-      text(50,108,labels="(% en pes)",font=2)
+      text(50,108,labels="(% de massa)",font=2)
     }
     if (idioma==2) {
       text(50,115,labels=expression(bold("Sistema CaO-MgO-SiO"["2"])),cex=1.4)
-      text(50,108,labels="(% en peso)",font=2)
+      text(50,108,labels="(% de masa)",font=2)
     }
     
     if (idioma==3) {
       text(50,115,labels=expression(bold("CaO-MgO-SiO"["2"]~"System")),cex=1.4)
-      text(50,108,labels="(wt %)",font=2)
+      text(50,108,labels="(% by mass)",font=2)
     }
     
     
