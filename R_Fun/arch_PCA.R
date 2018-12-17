@@ -1,4 +1,4 @@
-"arch_PCA" <- function(df_chem, df_raw, lvar=.lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= FALSE, shape_cat_number = 15, frame = TRUE){
+"arch_PCA" <- function(df_chem, df_raw, lvar=.lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= FALSE, shape_cat_number = 15, frame = TRUE, PCx = 1, PCy =2, nshapes=10){
   
   #Plot PCAs on alr transformed data (if desired) showing colored categories according to "nplot" given number
   
@@ -38,7 +38,7 @@ for (i in nplot){
                          frame.type = "norm") 
                          
             
-                 + scale_shape_manual(values=c(1:15))
+                 + scale_shape_manual(values=c(1:nshapes))
                  + ggtitle(label = "PCA") 
                  + theme(plot.title = element_text(hjust = 0.5))  
                  + labs(caption= paste("PCA using:", paste(noquote(colnames(df_chem)), collapse = ", "))) 
