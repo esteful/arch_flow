@@ -1,4 +1,4 @@
-"arch_PCA" <- function(df_chem, df_raw, lvar=.lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= FALSE, shape_cat_number = 15, frame = TRUE, PCx = 1, PCy =2, nshapes=10){
+"arch_PCA" <- function(df_chem, df_raw, lvar=.lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= FALSE, shape_cat_number = 15, frame = TRUE, PCx = 1, PCy =2, nshapes=10, label.size = 3){
   
   #Plot PCAs on alr transformed data (if desired) showing colored categories according to "nplot" given number
   
@@ -21,10 +21,10 @@ for (i in nplot){
                          #labels
                          colour = colnames(df_raw[i]),  #set the categories to be displayed  
                          label = labels,                #TRUE if the name of the ANIDs are to be displayed
-                         label.size = 3,                 #set the label sizes (not shapes)
+                         label.size = label.size,                 #set the label sizes (not shapes)
                                             
                          #shapes      
-                         shape = colnames(df_raw)[shape_cat_number],        #set the category to display by shapes, or chose from 1-25 shapes to display all equally, 15 by default       
+                         shape = colnames(df_raw)[shape_cat_number],  #set the category to display by shapes     
                          size = 1,                        #set the size of the shapes
                          
                          #loadings        
@@ -34,11 +34,11 @@ for (i in nplot){
                          loadings.label.colour = "black",
                          
                          #eLlipse   
-                         frame = frame,   #true by default, if "norm" is removed the shaope of the frame is geometrical
-                         frame.type = "norm") 
+                         frame = frame, #true by default
+                         frame.type = "norm")   # if "norm" is removed the shaope of the frame is geometrical
                          
-            
-                 + scale_shape_manual(values=c(1:nshapes))
+               
+                 + scale_shape_manual(values=c(1:nshapes)) # or chose from 1-25 shapes to display all equally, 15 by default
                  + ggtitle(label = "PCA") 
                  + theme(plot.title = element_text(hjust = 0.5))  
                  + labs(caption= paste("PCA using:", paste(noquote(colnames(df_chem)), collapse = ", "))) 
