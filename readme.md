@@ -22,9 +22,9 @@
 
 ### Debian Linux
 
-All commands should be excuted with root privileges, unless contrary especified:
+All commands should be executed with root privileges, unless contrary specified:
 
-Add dirmngr for adding public keys and add CRAN publick key:
+Add dirmngr for adding public keys and add CRAN public key:
 
 ```
 apt-get update
@@ -55,7 +55,7 @@ apt-get install libcurl4-openssl-dev
 apt-get install libssl-dev
 ```
 
-Then download the appropiate package for your architecture and version from https://www.rstudio.com/products/rstudio/download/ and open a terminal with root privileges in the directory of the downloaded file and execute the dkpg command (rstudio-1.1.423-amd64.deb used as example, use your downloaded file version):
+Then download the appropriate package for your architecture and version from https://www.rstudio.com/products/rstudio/download/ and open a terminal with root privileges in the directory of the downloaded file and execute the dkpg command (rstudio-1.1.423-amd64.deb used as example, use your downloaded file version):
 
 ```
 dpkg --install rstudio-1.1.423-amd64.deb

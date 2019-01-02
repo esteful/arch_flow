@@ -14,7 +14,7 @@ output:
 
 The Archdata package is a CRAN package, providing several types of data that are typically used in archaeological research. 
 
-In this parcticular R Script we will be using the RBPottery dataset.
+In this particular R Script we will be using the RBPottery dataset.
 
 ## Dataset Description
 
@@ -33,7 +33,7 @@ A data frame with 48 observations on the following 11 variables:
 * K~2~O Percentage potassium oxide
 * TiO~2~ Percentage titanium dioxide
 * MnO Percentage manganese oxide
-* BaO Percantage barium oxide
+* BaO Percentage barium oxide
 
 **Details**:
 
@@ -64,7 +64,7 @@ source("../../R_Fun/install.R")
 ```
 
 
-### Load RBPottery from Archdata pachage (example data). Alternatively, import csv
+### Load RBPottery from Archdata package (example data). Alternatively, import csv
 ```{r}
   data(RBPottery)
   print(RBPottery)
@@ -82,19 +82,19 @@ source("../../R_Fun/install.R")
 ```{r}
   str(df_raw)
 ```
-In df_chem only integers (int) or nummerical (num). Num class contain decimals 
+In df_chem only integers (int) or numerical (num). Num class contain decimals 
 ```{r}
   str(df_chem)
 ```
 
 ###Facet plots
-Most of the sampless are from Gloucester region (n=22), where only one kiln is present. Following byIn Wales, were two kilns are found (Llanedeyrn (n=14) and Caldicot), the latter)  with only two samples. Finally, there are 5 and 5 individuals in the twoboth kilns from New Forest, distributed in the Islands Thorns Kiln and the Ashley Rails kiln.
+Most of the samples are from Gloucester region (n=22), where only one kiln is present. Following byIn Wales, were two kilns are found (Llanedeyrn (n=14) and Caldicot), the latter)  with only two samples. Finally, there are 5 and 5 individuals in the twoboth kilns from New Forest, distributed in the Islands Thorns Kiln and the Ashley Rails kiln.
 
 ```{r}
 arch_pie_plot(df_raw$ID,df_raw$Region, df_raw$Kiln)
 ```
 
-###Boxplots wih the distribution of the chemical elements
+###Boxplots with the distribution of the chemical elements
 ```{r}
   for (i in 1:ncol(df_chem)){
   .datt <- data.frame(REGION=df_raw$Region, i= df_chem[,i], KILN=df_raw$Kiln)
@@ -104,7 +104,7 @@ arch_pie_plot(df_raw$ID,df_raw$Region, df_raw$Kiln)
 
 ###Create categories based on the calcium content or any other condition (optional)
 ```{r}
-  df_raw$Calcium <- c() #Crete the desrired column
+  df_raw$Calcium <- c() #Crete the desired column
   
   "Low-Calcareous(CaO<6%)" ->   df_raw$Calcium[df_raw$CaO < 6]
   "Calcareous (6%<CaO<20%)" ->       df_raw$Calcium[df_raw$CaO> 6]
@@ -233,7 +233,7 @@ if (SiO2 == 1){
 
 ###Outlier detection 
 Through the boxplot functions outliers can be removed. 
-In this case, TiO~2~ is chosen to be removed as a variable in order to asses that the groupping remmains similar and therefore, being able to assingn a group to CA4 sample, which is the one outliying due to the value of TiO~2~. This value, has been reported as a typographic error before by the ArchData package creator. 
+In this case, TiO~2~ is chosen to be removed as a variable in order to asses that the grouping remains similar and therefore, being able to assign a group to CA4 sample, which is the one outlying due to the value of TiO~2~. This value, has been reported as a typographic error before by the ArchData package creator. 
 
 
 ###Final Remarks
