@@ -7,7 +7,7 @@
 
 * A series of routines for exploratory analysis of ceramic compositions 
 * Designed for fully reproducible research
-* It is applied on two datasets: well known Roman-British Pottery published by Tubb et al (1980)
+* It is applied on a well-known Roman-British Pottery data published by Tubb et al (1980)
 * Statistics based on M.J. Baxter and Jaume Buxeda i Garrigós observations on compositional data
 * Includes data visualization tools and robust statistical treatments
 * The routines are contained in three folders:
