@@ -1,4 +1,4 @@
-"sum_table" <- function(x, signif = FALSE, decimals = 2, sig_digits = 3) {
+"arch_sum_table" <- function(x, signif = FALSE, decimals = 2, sig_digits = 3) {
   
      
   ##Obtain Mean, SD and RSD of the given dataframe
