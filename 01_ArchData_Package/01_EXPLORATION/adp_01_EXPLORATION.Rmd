@@ -60,7 +60,7 @@ Tubb, A., A. J. Parker, and G. Nickless. 1980. The Analysis of Romano-British Po
 
 ### Install and load packages and functions
 ```{r warning=FALSE, cache=FALSE, include=FALSE}
-source("../../R_Fun/install.R")
+source("R_Fun/install.R")
 ```
 
 

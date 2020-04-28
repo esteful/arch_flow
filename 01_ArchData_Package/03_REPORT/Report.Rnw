@@ -1,3 +1,6 @@
+
+%BUGS: WHEN DOING STARGAZER FOR LATEX THE DIGITS ARE NOT ROUNDED IN RSD!!!
+
 \documentclass{article}
 \usepackage{chemformula}% chemical compounds or formulas
 
