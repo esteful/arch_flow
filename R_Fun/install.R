@@ -17,7 +17,7 @@ packages <- c("archdata",
             
             
             new <- packages[!(packages %in% installed.packages()[,"Package"])]
-            
+            #watch out the difference between installed.packages and install.packages
             if(length(new)) install.packages(new)
             lapply(packages, require, character.only=TRUE)
 

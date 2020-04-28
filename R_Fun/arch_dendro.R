@@ -35,7 +35,7 @@
 
     #create the plot
         plot(my_dend, main= "Hierarchical Clustering", horiz =  FALSE) 
-        legend("topright",cex = 1, legend = unique(as.factor(df_raw[,i])), 
+        legend("topright",cex = 0.5, legend = unique(as.factor(df_raw[,i])), 
         fill = unique(rainbow(nlevels(as.factor(df_raw[,i])))[as.factor(df_raw[,i])]))
 
         

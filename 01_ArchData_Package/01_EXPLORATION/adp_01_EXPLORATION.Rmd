@@ -104,7 +104,7 @@ arch_pie_plot(df_raw$ID,df_raw$Region, df_raw$Kiln)
 
 ###Create categories based on the calcium content or any other condition (optional)
 ```{r}
-  df_raw$Calcium <- c() #Crete the desired column
+  df_raw$Calcium <- c() #Create the desired column
   
   "Low-Calcareous(CaO<6%)" ->   df_raw$Calcium[df_raw$CaO < 6]
   "Calcareous (6%<CaO<20%)" ->       df_raw$Calcium[df_raw$CaO> 6]
@@ -241,7 +241,6 @@ In this case, TiO~2~ is chosen to be removed as a variable in order to asses tha
 ```{r echo = FALSE}
 message("This is the first step of the ArchFlow workflow")
 ```
-
 
 
 

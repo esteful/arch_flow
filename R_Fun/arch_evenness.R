@@ -105,6 +105,7 @@
   }
   
 #Create the labels for the variables and lines to add on the plot
+
     
   axis(1, at=1:pop, labels=dimnames(mat)[[1]],font=2, las=2) #add chemical variables in the x axis
   lines(mat[c(1:pop-1),1]) # add lines between points 
@@ -132,6 +133,11 @@
          text(pop-5, (trunc(mat[1,1]) +1)-((trunc(mat[1,1]) +1)/14),label=bquote(""*"H"[2]*" = "*.(h2)*" Sh"), cex=0.8, adj=0)
          text(pop-5, (trunc(mat[1,1]) +1)- ((trunc(mat[1,1]) +1)/8.5),label=bquote("H"[2]*" % = "*.(h2p)),cex=0.8,adj=0)
          text(pop-5, (trunc(mat[1,1]) +1)- ((trunc(mat[1,1]) +1)/6.2),label=bquote("     "*"vt = "*.(vt)),cex=0.8,adj=0)
+         
+   
+
+         
+         
   
        #save the plot of MVC  
        xxx<-recordPlot()

@@ -135,7 +135,7 @@ Using Mahalanobis distance and T^2 Hotelling.
 
 ```{r}
 test_sample =  GR_GLO["GA5",] #change for the ANID to be tested
-#rm_vars previously defined (are the categorical data) 
+#rm_vars previously defined (the categorical data and undesired variables) 
 arch_mahala(group_list, test_sample, rm_vars = rm_vars)
 ```
 
