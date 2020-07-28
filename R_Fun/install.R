@@ -52,7 +52,7 @@ packages <- c("archdata",
 message("The following folder is the working directory of this project:")
 print(getwd())
 
-message("#All the packages were installed and loaded succesfull! #All the functions were loaded to the system succesfully! # The ArchFlow rmd files are ready to Run!")
+message("#All the packages were installed and loaded succesfully! #All the functions were loaded to the system succesfully! # The ArchFlow rmd files are ready to run!")
 
 #sessionInfo() 
 
