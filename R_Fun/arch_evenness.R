@@ -1,7 +1,7 @@
 
 "arch_evenness" <- function(df_chem)
-#compositions plotrix and devEMF
-  {
+  #depends on compositions, plotrix and devEMF
+{
   
 #Code modified from the original code from J.Buxeda i Garrigos 
 #Based on the observations from M.Baxter and Buxeda on compositional data
