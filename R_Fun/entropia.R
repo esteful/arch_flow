@@ -23,7 +23,7 @@
  
   {
     # normalize to 1 all values in the dataframe
-    varmat2<-as.matrix(sweep(x,1,apply(df_chem,1,sum),FUN="/"))
+    varmat2<-as.matrix(sweep(df_chem,1,apply(df_chem,1,sum),FUN="/"))
   }
   
   for (j in 1:n) #for every row
