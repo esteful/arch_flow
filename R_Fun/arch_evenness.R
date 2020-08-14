@@ -84,9 +84,9 @@
   
   
   ##FOR MVC plot and its cuts, and also MVC dendro
-  mat <- matrix(0, pop,1)       # a matrix with all variables + 1 
   pop <-dim(df_chem)[2]+1            # all variables + 1
-  
+  mat <- matrix(0, pop,1)       # a matrix with all variables + 1 
+
   #Create a dataframe
   MVC<-as.data.frame(varmat2)               #MVC (Compositional variation matrix) varmat2 previously created
   
