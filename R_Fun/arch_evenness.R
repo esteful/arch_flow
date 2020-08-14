@@ -124,7 +124,7 @@
   vec3<- length(cuts)            # 3
   matrix3<- matrix(0,vec3,1)         # (0,3,1)
   
-  for (i in 1:aaa) {
+  for (i in 1:vec3) {
     matrix3[i,1]<-length(which(MVC[pop+1,]<cuts[i])) #matrix with n observation below cuts
   }
   
