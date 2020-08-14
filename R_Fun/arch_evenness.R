@@ -11,7 +11,7 @@
   #Evennes plot, MVC dendrogram and CoDa Dendrogram. 
   #Code developed from the original code from J.Buxeda i Garrigos 
   #Based on the observations from M.Baxter and Buxeda on compositional data
-  #depends on following packages: compositions, plotrix, ggplot2 and devEMF
+  #depends on following packages: compositions, plotrix, ggplot2, ggthemes and devEMF
   #depens on following functions: "entropia2" and "classifica"
   
   
@@ -48,7 +48,7 @@
   
   #add values to the matrix
   for(i in 1:p) 
-    varmat2[i,]  <-  varmat[i,]  #add previously calculated values
+  varmat2[i,]  <-  varmat[i,]  #add previously calculated values
   varmat2[p+1,]<-  varsum      #add the sum of all variabilities 
   varmat2[p+2,]<-  varprop     #add the ration of total variation and individual variation
   varmat2[p+3,]<-  varcor      #add correlation values  
@@ -118,9 +118,6 @@
   
   #add doted lines 
   cuts=c(0.3, 0.5, 0.9) #vertical doted axis 
-  #mida.boxplot= 30
-  #rang.boxplot=c(-4,4)
-  
   vec3<- length(cuts)            # 3
   matrix3<- matrix(0,vec3,1)         # (0,3,1)
   
@@ -234,12 +231,25 @@
   
   
   
-  
   ##CoDadendrogram
+
+  mida.boxplot= 30 #used in codadendro
+  rang.boxplot=c(-4,4) #used in codadendro
+
+  
   classi<-classifica(dendroMVC)
   Signary<-as.data.frame(t(classi$signary))
+  
   dimnames(Signary)[[1]]<-dimnames(df_chem)[[2]]
-  CoDaDendrogram(acomp(df_chem),signary=Signary, border="red4", col="goldenrod3", type="boxplot", box.space=mida.boxplot, range=rang.boxplot)
+ 
+  CoDaDendrogram(
+    acomp(df_chem),
+      signary=Signary, 
+      border="red4", 
+      col="goldenrod3", 
+      type="boxplot", 
+      box.space=mida.boxplot, 
+      range=rang.boxplot)
   
   
   
