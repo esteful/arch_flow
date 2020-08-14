@@ -30,6 +30,7 @@ packages <- c("archdata",
 #All the functions used to run ArchFLow
                        
             source("R_Fun/arch_latex.R")
+            source("R_Fun/arch_dendro.R")
             source("R_Fun/arch_logcenter.R")
             source("R_Fun/arch_PCA.R")
             source("R_Fun/arch_pie_plot.R")
