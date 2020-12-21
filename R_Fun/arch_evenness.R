@@ -46,11 +46,11 @@
   }
   
   
-  #add values to the matrix
+  #add values to the matrix #falta mirar si aquí no hace falta {}
   for(i in 1:p) 
   varmat2[i,]  <-  varmat[i,]  #add previously calculated values
   varmat2[p+1,]<-  varsum      #add the sum of all variabilities 
-  varmat2[p+2,]<-  varprop     #add the ration of total variation and individual variation
+  varmat2[p+2,]<-  varprop     #add the ratio of total variation and individual variation
   varmat2[p+3,]<-  varcor      #add correlation values  
   varmat2[p+4,1]<- totvar      #add the total variation, only one value in the first column
   
