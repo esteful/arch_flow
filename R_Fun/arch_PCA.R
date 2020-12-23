@@ -1,11 +1,48 @@
-"arch_PCA" <- function(df_chem, df_raw, lvar=.lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= FALSE, shape_cat_number = 15, frame = TRUE, PCx = 1, PCy =2, nshapes=10, label.size = 3){
+"arch_PCA" <- function(df_chem, df_raw, lvar=lvar, nplot=nplot, alr = TRUE, printPCA = FALSE, labels= FALSE, shape_cat_number = 15, frame = TRUE, PCx = 1, PCy =2, nshapes=10, label.size = 3){
   
   #Plot PCAs on alr transformed data (if desired) showing colored categories according to "nplot" given number
   
+  
+
+    
+  
   #alr tranformation (only if alr = TRUE)
   if (alr == TRUE){
-    df_chem <-  alr(df_chem,lvar) #lvar is the less variable element in the dataset. Saved to the global environment previously by function "uniformity" 
+    
+    ##create the compostional variation matrix 
+    #crete the empty matrix
+    n_variables <- ncol(df_chem) 
+    varmat <- matrix(0, n_variables, n_variables) 
+    varmat2<-matrix(0, n_variables + 4, n_variables) 
+    #add values (diagonal of the variances of log ratios)
+    for(i in 1:n_variables) {
+      varmat[, i] <- 
+        diag(var(log(df_chem/df_chem[, i]))) 
+    }
+    ##From the matrix created  
+    #calculate total variation
+    totvar <- sum(varmat)/(2 * n_variables)
+    #"t.i": a vector with the sum of the individual variabilities for each variable
+    varsum  <- apply(varmat, 2, sum)   
+    # vt/t.i (ratio of total variation and individual variation)
+    varprop <- totvar/varsum      
+    #vt/t.i values by order
+    ord <- order(varprop)
+    colnames(df_chem)[ord[n_variables]] -> lvar #get the name of the variable
+    assign("lvar", lvar,.GlobalEnv)
+    
+    
+    
+    df_chem <-  alr(df_chem,
+                    grep(x = colnames(df_chem), pattern = lvar)) #lvar is the less variable element in the dataset. Saved to the global environment previously by function "uniformity" 
   }
+  
+  
+  
+  
+  
+  
+  
   
   
   
