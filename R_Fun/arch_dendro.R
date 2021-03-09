@@ -1,6 +1,6 @@
 "arch_dendro" <- function(df_chem, nplot, printDendro = TRUE, df_raw, cex=0.4){
 
-#This code is to plot hierarchical clustering of clr transformed data, using centroid algorithm and squared euclidean distance
+#This code is to plot hierarchical clustering of clr transformed data,using centroid algorithm and squared euclidean distance
 
   df_chem -> x
   
