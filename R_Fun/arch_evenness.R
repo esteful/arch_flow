@@ -209,7 +209,7 @@
     #save the plot
     ggsave("MVC_plot.pdf",MVC_plot)
     
-    MVC_plot
+    plot(MVC_plot)
     
   
   #Dendrogram of MVC
