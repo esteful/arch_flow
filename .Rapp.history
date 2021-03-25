@@ -1,0 +1,1144 @@
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))
+d
+str(d)
+for (i in 1:length(d[i]))#
+print(i)
+for (i in 1:length(d))#
+print(i)
+d
+seq(as.Date("2012/01/01"), as.Date("2012/12/31"), "days")-> DATES#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))
+d
+for (i in 1:length(d))#
+#
+		ifelse (d[i] >= Spr | d[i] < Sum)#
+ 			{print("Spring")}#
+          ifelse (d[i] >= Sum & d[i] < Mon)#
+          	 {print("Summer")}#
+             	ifelse (d[i] >= Mon & d[i] < Aut)#
+                		{print("Monsoon")}#
+                         ifelse (d[i] >= Aut & d[i] < Win)#
+                        	{print("Autumn")}
+for (i in 1:length(d))#
+#
+		ifelse (d[i] >= Spr | d[i] < Sum, "Spring")#
+ 			  ifelse (d[i] >= Sum & d[i] < Mon, "Summer")#
+             	ifelse (d[i] >= Mon & d[i] < Aut, "Monsoon")#
+                       ifelse (d[i] >= Aut & d[i] < Win, "Autumm")#
+   	                       ifelse (d[i] >= Win & d[i] < Spr, "Winter")
+D
+d
+Spr
+Sum
+Spr <- as.Date("2012-02-30", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter
+Spr
+as.Date("2012-02-30", format = "%Y-%m-%d")
+Sum <- as.Date("2012-04-07", format = "%Y-%m-%d")
+Sum
+as.Date("2012-02-29", format = "%Y-%m-%d")
+Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter  # Convert dates from any year to 2012 dates#
+  d <- as.Date(strftime(DATES, format="2012-%m-%d"))  #
+#
+  ifelse (d >= Spr | d < Sum, "Spring",#
+        ifelse (d >= Sum & d < Mon, "Summer",#
+                  ifelse (d >= Mon & d < Aut, "Monsoon", #
+                          ifelse (d >= Aut & d < Win, "Autumn", "Winter"))))
+for (i in 1:length(d))#
+#
+		ifelse (d[i] >= Spr | d[i] < Sum, "Spring")#
+ 			  ifelse (d[i] >= Sum & d[i] < Mon, "Summer")#
+             	ifelse (d[i] >= Mon & d[i] < Aut, "Monsoon")#
+                       ifelse (d[i] >= Aut & d[i] < Win, "Autumm")#
+   	                       ifelse (d[i] >= Win & d[i] < Spr, "Winter")
+ifelse (d[i] >= Spr | d[i] < Sum, "Spring",no= "NA" )
+for (i in 1:length(d))#
+#
+		ifelse (d[i] >= Spr | d[i] < Sum, "Spring", no = "NA")#
+ 			  ifelse (d[i] >= Sum & d[i] < Mon, "Summer", no = "NA")#
+             	ifelse (d[i] >= Mon & d[i] < Aut, "Monsoon", no = "NA")#
+                       ifelse (d[i] >= Aut & d[i] < Win, "Autumm", no = "NA")#
+   	                       ifelse (d[i] >= Win & d[i] < Spr, "Winter", no = "NA")
+for (i in 1:length(d))
+{ifelse (d[i] >= Win & d[i] < Spr, "Winter", no = "NA")}
+for (i in 1:length(d)){}
+ifelse (d[i] >= Mon & d[i] < Aut, "Monsoon", no = "NA")
+{ifelse (d[i] >= Win & d[i] < Spr, "Winter", no = "NA")}
+D
+d
+for (i in 1:length(d))#
+{print(i)}
+for (i in 1:length(d))#
+{print(d(i))}
+d
+for (i in 1:length(d))#
+{print(d[i])}
+for (i in 1:length(d))#
+{		ifelse (d[i] >= Spr | d[i] < Sum, yes= "Spring", no = "NA")#
+}
+ifelse (d[i] >= Spr | d[i] < Sum, yes= "Spring", no = "NA")
+ifelse (d[i] >= Win & d[i] < Spr, yes = "Winter", no = "NA")
+for (i in 1:length(d))#
+#
+		ifelse (d[i] >= Spr | d[i] < Sum, yes= "Spring", no = "NA")#
+ 			  ifelse (d[i] >= Sum | d[i] < Mon, "Summer", no = "NA")#
+             	ifelse (d[i] >= Mon | d[i] < Aut, "Monsoon", no = "NA")#
+                       ifelse (d[i] >= Aut | d[i] < Win, "Autumm", no = "NA")#
+   	                       ifelse (d[i] >= Win | d[i] < Spr, yes = "Winter", no = "NA")
+for (i in 1:length(d))#
+#
+		{ifelse (d[i] >= Spr | d[i] < Sum, yes= "Spring", no = "NA")#
+ 			  ifelse (d[i] >= Sum | d[i] < Mon, "Summer", no = "NA")#
+             	ifelse (d[i] >= Mon | d[i] < Aut, "Monsoon", no = "NA")#
+                       ifelse (d[i] >= Aut | d[i] < Win, "Autumm", no = "NA")#
+   	                       ifelse (d[i] >= Win | d[i] < Spr, yes = "Winter", no = "NA")}
+d
+d[d>Sum]
+d[d >= Spr | d[i] < Sum]
+d[d >= Spr & d[i] < Sum]
+d[d >= Spr & < Sum]
+d[d >= Spr & d < Sum]
+d[d >= Spr & d < Sum] <- "Spring"
+grep(d[d >= Spr & d < Sum])
+grep(d,d[d >= Spr & d < Sum])
+which(d[d >= Spr & d < Sum])
+which(d, d[d >= Spr & d < Sum])
+d[d >= Spr & d < Sum]
+d[d >= Spr & d < Sum] <- as.character(d[d >= Spr & d < Sum])
+d[d >= Spr & d < Sum]
+str(d[d >= Spr & d < Sum] )
+d[d >= Spr & d < Sum] <- "a"
+which(d,[d >= Spr & d < Sum])
+which(d[d >= Spr & d < Sum])
+which(d, >= Spr & d < Sum)
+which(d >= Spr & d < Sum)
+d[which(d >= Spr & d < Sum)] <- "Spring"
+df <- c("Dates", "Seasons")
+df$Dates <- as.character(d)
+df$Dates <- d
+df$Seasons <- "Season"
+df
+View(df)
+str(df)
+df<- c(Dates = d, Seasons = c())
+df
+str(df)
+df<- c(Dates, Seasons)#
+df
+df<- c(Dates, Seasons)
+Dates
+Seasons
+df <- c("Dates", "Seasons")
+df
+str()
+str(df)
+df <- c("Dates" = Dates, "Seasons" = c())
+df <- c("Dates" = d, "Seasons" = c())
+df
+d
+str(df)
+df <- c()
+df
+df$Dates <- d
+df$Seasons
+df$Dates <- d#
+df$Season <- c(1:length(d))
+df
+df$Season[which(d >= Spr & d < Sum)]
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"
+df
+getSeason <- function(DATES)#
+{#
+#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+#
+assign(df, "df", .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+seq(as.Date("2012/01/01"), as.Date("2012/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason <- function(DATES)
+seq(as.Date("2012/01/01"), as.Date("2012/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+df$Season[which(d >= Win & d < Spr)]
+df$Season[which(d >= Aut & d < Win)]
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column
+df
+df$Season[which(d >= Spr & d < Sum)]
+df$Season[which(d >= Win & d < Spr)]
+eq(as.Date("2012/01/01"), as.Date("2012/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+seq(as.Date("2012/01/01"), as.Date("2012/12/31"), "days")-> DATES
+getSeason(DATES)
+df
+df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+df$Season
+d
+Spr
+class(d)
+class(Spr)
+as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")
+as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-11-18", format = "%Y-%m-%d")
+d[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-11-18", format = "%Y-%m-%d")]
+d
+as.Date("2012-11-16", format = "%Y-%m-%d")
+c(as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-11-18", format = "%Y-%m-%d"))
+d[c(as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-11-18", format = "%Y-%m-%d"))]
+DATES
+seq(as.Date("2012/01/01"), as.Date("2012/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+#
+df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+df
+getSeason(DATES)
+df
+seq(as.Date("2012/01/01"), as.Date("2012/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+seq(as.Date("2012/01/01"), as.Date("2012/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NY  <- as.Date("2012-12-31", format = "%Y-%m-%d") # beginning of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < NY)] <- "Winter"#
+df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+DF
+df
+seq(as.Date("2012/01/01"), as.Date("2012/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  Spr <- as.Date("2012-02-30", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NY  <- as.Date("2012-12-31", format = "%Y-%m-%d") # beginning of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < NY)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  Spr <- as.Date("2012-02-30", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NY  <- as.Date("2012-12-31", format = "%Y-%m-%d") # beginning of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < NY)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES
+DATES
+getSeason(DATES)
+df
+summary(df)
+summary(df$Season)
+summarize(df)
+df$Season[which(d >= NY & d < Spr)]
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-30", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE  <- as.Date("2012-12-31", format = "%Y-%m-%d") # end of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < NYE)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-30", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE  <- as.Date("2012-12-31", format = "%Y-%m-%d") # end of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d =< NYE)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-30", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE  <- as.Date("2012-12-31", format = "%Y-%m-%d") # end of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d <= NYE)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+DATES
+NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-30", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE  <- as.Date("2012-12-31", format = "%Y-%m-%d") # end of year
+df$Season[which(d >= NY & d < Spr)]
+df$Season[which(d >= Spr & d < Sum)]
+D
+d
+df$Season[which(d >= Sum & d < Mon)]
+d[which(d >= Sum & d < Mon)]
+d[which(d >= NY & d < Spr)]
+NY
+Spr
+Spr <- as.Date("2012-02-30", format = "%Y-%m-%d") # beginning of spring
+as.Date("2012-02-30", format = "%Y-%m-%d")
+as.Date("2012-02-29", format = "%Y-%m-%d")
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE  <- as.Date("2012-12-31", format = "%Y-%m-%d") # end of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d <= NYE)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  #NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  #NYE  <- as.Date("2012-12-31", format = "%Y-%m-%d") # end of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+#df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+#df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  #NYE  <- as.Date("2012-12-31", format = "%Y-%m-%d") # end of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  #NYE  <- as.Date("2012-12-31", format = "%Y-%m-%d") # end of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+#df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+df$Season[which(d >= Aut & d < Spr)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE  <- as.Date("2012-12-31", format = "%Y-%m-%d") # end of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+#df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+df$Season[which(d >= Win & d >= NYE)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE  <- as.Date("2012-12-31", format = "%Y-%m-%d") # end of year#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+df$Dates <- d #add the dates in the first column#
+df$Season <- c(1:length(d)) #add the seasons in the second column#
+#
+df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+#df$Season[which(d >= Win & d < Spr)] <- "Winter"#
+df$Season[which(d >= Win & d <= NYE)] <- "Winter"#
+#df$Season[as.Date("2012-11-16", format = "%Y-%m-%d"):as.Date("2012-02-29", format = "%Y-%m-%d")] <- "Winter"#
+#
+assign("df", df, .GlobalEnv) #save the dataframe #
+}
+getSeason(DATES)
+df
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES
+getSeason(DATES)
+DF
+df
+class(df)
+as.data.frame(df)
+as.data.frame(df) -> df_table
+table
+df_table
+class(df_table)
+str(data_table)
+str(df_table)
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+#Define seasons#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE <- as.Date("2012-12-31", format = "%Y-%m-%d") #end of year#
+#Set to 2012 the year for every value in DATES#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+as.data.frame(df) <- df#
+#
+#add the dates in the first column#
+df$Dates <- d #
+#
+#add the seasons in the second column#
+df$Season <- c(1:length(d)) #
+#Provide the season for each range#
+	df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+	df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+	df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+	df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+	df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+	df$Season[which(d >= Win & d <= NYE)] <- "Winter"#
+#save the dataframe to the global environment#
+assign("df", df, .GlobalEnv) #
+}
+getSeason(DATS)
+getSeason(DATES)
+as.data.frame
+df
+class(df)
+as.data.frame(df)
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+#Define seasons#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE <- as.Date("2012-12-31", format = "%Y-%m-%d") #end of year#
+#Set to 2012 the year for every value in DATES#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+#add the dates in the first column#
+df$Dates <- d #
+#
+#add the seasons in the second column#
+df$Season <- c(1:length(d)) #
+#Provide the season for each range#
+	df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+	df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+	df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+	df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+	df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+	df$Season[which(d >= Win & d <= NYE)] <- "Winter"#
+#save the dataframe to the global environment#
+as.data.frame(df) <- df#
+#
+assign("df", df, .GlobalEnv) #
+}
+getSeason(df)
+getSeason(DATES)
+f<- c() #create an empty dataframe#
+#
+#add the dates in the first column#
+df$Dates <- d #
+#
+#add the seasons in the second column#
+df$Season <- c(1:length(d))
+class(df)
+df$Season
+df$Dates
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+#Define seasons#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE <- as.Date("2012-12-31", format = "%Y-%m-%d") #end of year#
+#Set to 2012 the year for every value in DATES#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+#add the dates in the first column#
+df$Dates <- d #
+#
+#add the seasons in the second column#
+df$Season <- c(1:length(d)) #
+#Provide the season for each range#
+	df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+	df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+	df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+	df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+	df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+	df$Season[which(d >= Win & d <= NYE)] <- "Winter"#
+#save the dataframe to the global environment#
+data.frame(df)-> df#
+#
+assign("df", df, .GlobalEnv) #
+}
+getSeason(DATES)
+df
+class(df)
+df
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+#Define seasons#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE <- as.Date("2012-12-31", format = "%Y-%m-%d") #end of year#
+#Set to 2012 the year for every value in DATES#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+#add the dates in the first column#
+df$Dates <- d #
+#
+#add the seasons in the second column#
+df$Season <- c(1:length(d)) #
+#Provide the season for each range#
+	df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+	df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+	df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+	df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+	df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+	df$Season[which(d >= Win & d <= NYE)] <- "Winter"#
+#save the dataframe to the global environment#
+data.frame(df)-> df#
+#
+assign("df", df, .GlobalEnv) #
+#
+write.csv("df")#
+}
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+#Define seasons#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE <- as.Date("2012-12-31", format = "%Y-%m-%d") #end of year#
+#Set to 2012 the year for every value in DATES#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+#add the dates in the first column#
+df$Dates <- d #
+#
+#add the seasons in the second column#
+df$Season <- c(1:length(d)) #
+#Provide the season for each range#
+	df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+	df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+	df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+	df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+	df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+	df$Season[which(d >= Win & d <= NYE)] <- "Winter"#
+#save the dataframe to the global environment#
+data.frame(df)-> df#
+#
+assign("df", df, .GlobalEnv) #
+#
+write.csv(df, "my_seasons_table")#
+}
+getSeason(DATES)
+df
+seq(as.Date("2018/11/05"), as.Date("2020/05/07"), "days")-> DATES#
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+#Define seasons#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE <- as.Date("2012-12-31", format = "%Y-%m-%d") #end of year#
+#Set to 2012 the year for every value in DATES#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+#add the dates in the first column#
+df$Dates <- d #
+#
+#add the seasons in the second column#
+df$Season <- c(1:length(d)) #
+#Provide the season for each range#
+	df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+	df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+	df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+	df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+	df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+	df$Season[which(d >= Win & d <= NYE)] <- "Winter"#
+#save the dataframe to the global environment#
+data.frame(df)-> df#
+#
+assign("df", df, .GlobalEnv) #
+#
+write.csv(df, "my_seasons_table.csv")#
+}
+getSeason(DATES)
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+#Define seasons#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE <- as.Date("2012-12-31", format = "%Y-%m-%d") #end of year#
+#Set to 2012 the year for every value in DATES#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+#add the dates in the first column#
+df$Dates <- d #
+#
+#add the seasons in the second column#
+#df$Season <- c(1:length(d)) #
+#Provide the season for each range#
+	df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+	df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+	df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+	df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+	df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+	df$Season[which(d >= Win & d <= NYE)] <- "Winter"#
+#save the dataframe to the global environment#
+data.frame(df)-> df#
+#
+assign("df", df, .GlobalEnv) #
+#
+write.csv(df, "my_seasons_table.csv")#
+}
+getSeason(DATES)
+df
+restart()
+seq(as.Date("2018/01/01"), as.Date("2018/12/31"), "days")-> DATES#
+getSeason <- function(DATES)#
+{#
+#
+#Define seasons#
+#
+  NY  <- as.Date("2012-01-01", format = "%Y-%m-%d") # beginning of year#
+  Spr <- as.Date("2012-02-29", format = "%Y-%m-%d") # beginning of spring#
+  Sum <- as.Date("2012-04-07", format = "%Y-%m-%d") # beginning of summer#
+  Mon <- as.Date("2012-06-30", format = "%Y-%m-%d") # beginning of monsoon#
+  Aut <- as.Date("2012-09-15", format = "%Y-%m-%d") # beginning of autumn#
+  Win <- as.Date("2012-11-15", format = "%Y-%m-%d") # beginning of winter#
+  NYE <- as.Date("2012-12-31", format = "%Y-%m-%d") #end of year#
+#Set to 2012 the year for every value in DATES#
+d <- as.Date(strftime(DATES, format="2012-%m-%d"))#
+df<- c() #create an empty dataframe#
+#
+#add the dates in the first column#
+df$Dates <- d #
+#Provide the season for each range#
+	df$Season[which(d >= NY & d < Spr)] <- "Winter"#
+	df$Season[which(d >= Spr & d < Sum)] <- "Spring"#
+	df$Season[which(d >= Sum & d < Mon)] <- "Summer"#
+	df$Season[which(d >= Mon & d < Aut)] <- "Moonson"#
+	df$Season[which(d >= Aut & d < Win)] <- "Autumn"#
+	df$Season[which(d >= Win & d <= NYE)] <- "Winter"#
+#save the dataframe to the global environment#
+data.frame(df)-> df#
+#
+assign("df", df, .GlobalEnv) #
+#
+write.csv(df, "my_seasons_table.csv")#
+}
+DATES
+getSeasons(DATES)
+getSeason(DATES)
+df
+install.packages("openxlsx")#
+library("openxlsx")
+packages <- c("archdata",#
+                      "plyr",#
+                      "dplyr",#
+                      "RcmdrMisc",#
+                      "compositions",#
+                      "ggplot2",#
+                      "ggfortify",#
+                      "ggthemes",#
+                      "plotrix",#
+                      "dendextend",#
+                      "d3heatmap",#
+                      "stargazer",#
+                      "devEMF",#
+                      "devtools",#
+                      "rmarkdown")#
+            new <- packages[!(packages %in% installed.packages()[,"Package"])]#
+            #watch out the difference between installed.packages and install.packages#
+            if(length(new)) install.packages(new)#
+            lapply(packages, require, character.only=TRUE)#
+#
+#All the functions used to run ArchFLow#
+            source("../arch_flow/R_Fun/arch_latex.R")#
+            source("../arch_flow/R_Fun/arch_dendro.R")#
+            source("../arch_flow/R_Fun/arch_logcenter.R")#
+            source("../arch_flow/R_Fun/arch_PCA.R")#
+            source("../arch_flow/R_Fun/arch_pie_plot.R")#
+            source("../arch_flow/R_Fun/arch_sum_table.R")#
+            source("../arch_flow/R_Fun/arch_triangles.R")#
+            source("../arch_flow/R_Fun/arch_evenness.R")#
+            source("../arch_flow/R_Fun/arch_varmat.R")#
+            source("../arch_flow/R_Fun/classifica.R")#
+            source("../arch_flow/R_Fun/entropia.R") #
+            source("../arch_flow/R_Fun/etiquetes_elements.R")#
+            source("../arch_flow/R_Fun/arch_heatmap.R")#
+            source("../arch_flow/R_Fun/arch_scatter_matrix.R")#
+            rm(new)#
+            rm(packages)#
+message("The following folder is the working directory of this project:")#
+print(getwd())#
+#
+message("#All the packages were installed and loaded succesfully! #All the functions were loaded to the system succesfully! # The ArchFlow rmd files are ready to run!")#
+#
+#sessionInfo()
+setwd(/Users/estefaniacalparsoroforcada/Documents/GitHub)
+setwd("/Users/estefaniacalparsoroforcada/Documents/GitHub")
+get_wd
+get_wd()
+source("../arch_flow/R_Fun/arch_latex.R")#
+            source("../arch_flow/R_Fun/arch_dendro.R")#
+            source("../arch_flow/R_Fun/arch_logcenter.R")#
+            source("../arch_flow/R_Fun/arch_PCA.R")#
+            source("../arch_flow/R_Fun/arch_pie_plot.R")#
+            source("../arch_flow/R_Fun/arch_sum_table.R")#
+            source("../arch_flow/R_Fun/arch_triangles.R")#
+            source("../arch_flow/R_Fun/arch_evenness.R")#
+            source("../arch_flow/R_Fun/arch_varmat.R")#
+            source("../arch_flow/R_Fun/classifica.R")#
+            source("../arch_flow/R_Fun/entropia.R") #
+            source("../arch_flow/R_Fun/etiquetes_elements.R")#
+            source("../arch_flow/R_Fun/arch_heatmap.R")#
+            source("../arch_flow/R_Fun/arch_scatter_matrix.R")
+getwd() -> current_wd
+current_wd
+setwd("/Users/estefaniacalparsoroforcada/Documents/GitHub/arch_flow")
+source("../arch_flow/R_Fun/arch_latex.R")#
+            source("../arch_flow/R_Fun/arch_dendro.R")#
+            source("../arch_flow/R_Fun/arch_logcenter.R")#
+            source("../arch_flow/R_Fun/arch_PCA.R")#
+            source("../arch_flow/R_Fun/arch_pie_plot.R")#
+            source("../arch_flow/R_Fun/arch_sum_table.R")#
+            source("../arch_flow/R_Fun/arch_triangles.R")#
+            source("../arch_flow/R_Fun/arch_evenness.R")#
+            source("../arch_flow/R_Fun/arch_varmat.R")#
+            source("../arch_flow/R_Fun/classifica.R")#
+            source("../arch_flow/R_Fun/entropia.R") #
+            source("../arch_flow/R_Fun/etiquetes_elements.R")#
+            source("../arch_flow/R_Fun/arch_heatmap.R")#
+            source("../arch_flow/R_Fun/arch_scatter_matrix.R")
+arch_evenness
+df_majolica <- #
+#
+read.xlsx("/Users/estefaniacalparsoroforcada/Documents/GitHub/majolica_R/02_Majolica_dataset/majolica_dataset/df_majolica_def.xlsx",rowNames = TRUE) #
+#
+df_raw <- df_majolica#
+df_chem <- df_majolica[,-c(1:16,45:48)]
+arch_evenness(df_chem)

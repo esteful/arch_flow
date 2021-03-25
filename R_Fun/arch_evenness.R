@@ -203,12 +203,13 @@
       annotate("segment", x = 0, xend =dim(df_varsum)[1], y = min(df_varsum), yend = min(df_varsum), 
                linetype="dashed", colour = "black", size =0.1) 
     
-    MVC_plot
+    
   
     
     #save the plot
     ggsave("MVC_plot.pdf",MVC_plot)
     
+    MVC_plot
     
   
   #Dendrogram of MVC
