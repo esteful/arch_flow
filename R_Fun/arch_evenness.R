@@ -144,54 +144,76 @@
   ##CREATE THE MVC PLOT
   
   MVC_plot <- 
-    ggplot(df_varsum, aes(x=row.names(df_varsum), y=varsum_ordered_vec)) +  #especify data to plot 
+    ggplot(df_varsum, 
+           aes(x=row.names(df_varsum),  #especify data to plot x axis
+               y=varsum_ordered_vec)) +  #especify data to plot y axis
     geom_line(aes(group=1)) + #add the line between dots
     geom_point(size=3, shape=20) +  #add the dots (change size or shape)
-    scale_x_discrete(limits = c(row.names(df_varsum)), labels = NULL) +#avoid alphabetical order of elements
-    theme_few(base_size = 7, base_family = "sans") + #change theme 
-    theme(plot.margin = unit(c(1, 1, 1, 1), "cm"), text = element_text(size=rel(4))) +
-    labs(y=expression(tau[.i]), x = NULL) + # add X label
-    #expand_limits(x = 30) + #add space between the right bar and the last element (label)
-    geom_text(
-      data = df_varsum,
-      label = row.names(df_varsum),
-      parse = TRUE,
-      #nudge_x = 0.5, #change this for label position in x axis  
-      nudge_y = (ifelse(test = nrow(df_chem)>20, #change this for label position in y axis
-                        yes = ncol(df_chem)*0.03, 
-                        no = 0.05)),  #if more than 20 individuals change the label position
-      check_overlap = FALSE,
-      na.rm = FALSE,
-      show.legend = NA,
-      inherit.aes = TRUE, 
-      angle = 69 #change the angle of the labels
-    ) +
     
-    theme(plot.title = element_text(hjust = 0.5, size = rel(4)))+  #Graphic title
+    #change theme 
+    #theme_few(base_size = 7, base_family = "sans") 
+    
+    #adjust margin
+    theme(plot.margin = unit(c(1, 1, 1, 1), "cm"), text = element_text(size=rel(4))) +
+    
+    
+    scale_x_discrete(limits = c(row.names(df_varsum)), #order elements from max to min varsum
+                    labels = names(varsum_ordered_vec)) + #include names 
+    theme(axis.text.x = element_text(angle = 90)) + #rotate x labels
+                    
+    #use this to add padding between the last element and right part of the plot
+    #expand_limits(x = 30) + 
+    
+    #optional: use this to include labels over the dots instead of the x axis
+        #geom_text(
+         # data = df_varsum,
+          #label = row.names(df_varsum),
+          #parse = TRUE,
+          #nudge_x = 0.5, #change this for label position in x axis  
+          #nudge_y = (ifelse(test = nrow(df_chem)>20, #change this for label position in y axis
+          #                  yes = ncol(df_chem)*0.03, 
+          #                  no = 0.05)),  #if more than 20 individuals change the label position
+          #check_overlap = FALSE,
+          #na.rm = FALSE,
+          #show.legend = NA,
+          #inherit.aes = TRUE, 
+          #angle = 69 #change the angle of the labels
+        #) +
+    
+    theme(plot.title = element_text(hjust = 0, size = rel(4)))+  #Graphic title
     ggtitle(paste0("Data (n = ", nrow(df_chem),")", collapse = NULL))+  #paste0 removes the space
     
-    labs(caption =  bquote(""*"H"[2]*" = "*.(h2)*" Sh, " ~ "H"[2]*" % = "*.(h2p) ~ "     "*"vt = "*.(vt))) +
-    theme(plot.caption = element_text(size = 12)) +
+    labs(x = NULL,
+         y = expression(tau[.i]),
+         subtitle = bquote(""*"H"[2]*" = "*.(h2)*" Sh   " ~ 
+                            "H"[2]*" % = "*.(h2p) ~ 
+                             "    "*"vt = "*.(vt))) +
+         theme(plot.subtitle =  element_text(hjust = 1, size = 12)) +
     
-    
+
+
     ##Add data and dotted lines to the MVC plot
     
-    #0.3   
-    annotate("segment", x = matrix3[1]+0.5, xend = matrix3[1]+0.5, y = 0, yend = max(varsum_ordered_vec)/2, 
-             linetype="dashed", colour = "black", size =0.1) +
-    annotate("text", x = matrix3[1]+0.5, y = 0, label = "0.3")+ 
-    #0.5
-    annotate("segment", x = matrix3[2]+0.5, xend = matrix3[2]+0.5, y = 0, yend = max(varsum_ordered_vec)/2, 
-             linetype="dashed", colour = "black", size =0.1) +
-    annotate("text", x = matrix3[2]+0.5, y = 0, label = "0.5") +
-    #0.9
-    annotate("segment", x = matrix3[3]+0.5, xend = matrix3[3]+0.5, y = 0, yend = max(varsum_ordered_vec)/2, 
-             linetype="dashed", colour = "black", size =0.1) +
-    annotate("text", x = matrix3[3]+0.5, y = 0, label = "0.9") +
+    #0.3 line + text   
+      annotate("segment", x = matrix3[1]+0.5, xend = matrix3[1]+0.5, y = 0.3, yend = max(varsum_ordered_vec)/1.5, 
+               linetype="dashed", colour = "black", size =0.3) +
+      annotate("text", x = matrix3[1]+0.5, y = 0, label = "0.3")+ 
+     
+    #0.5 line + text  
+      annotate("segment", x = matrix3[2]+0.5, xend = matrix3[2]+0.5, y = 0.3, yend = max(varsum_ordered_vec)/1,5, 
+               linetype="dashed", colour = "black", size =0.3) +
+      annotate("text", x = matrix3[2]+0.5, y = 0, label = "0.5") +
+
     
-    annotate("segment", x = 0, xend =dim(df_varsum)[1], y = min(df_varsum), yend = min(df_varsum), 
-             linetype="dashed", colour = "black", size =0.1) 
-  
+    #0.9 line + text  
+      annotate("segment", x = matrix3[3]+0.5, xend = matrix3[3]+0.5, y = 0.3, yend = max(varsum_ordered_vec)/1.5, 
+               linetype="dashed", colour = "black", size =0.3) +
+      annotate("text", x = matrix3[3]+0.5, y = 0, label = "0.9") +
+    
+    # horizontal line vt
+      annotate("segment", x = 0, xend =dim(df_varsum)[1], y = min(df_varsum), yend = min(df_varsum), 
+               linetype="dashed", colour = "black", size =0.3) 
+    
   
   #save the plot
   ggsave("MVC_plot.pdf",MVC_plot)
@@ -279,4 +301,6 @@
   assign("lvar", lvar,.GlobalEnv)
   
 }
+
+
 
