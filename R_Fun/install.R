@@ -43,6 +43,8 @@ packages <- c("archdata",
             source("../arch_flow/R_Fun/etiquetes_elements.R")
             source("../arch_flow/R_Fun/arch_heatmap.R")
             source("../arch_flow/R_Fun/arch_scatter_matrix.R")
+            source("R_Fun/arch_mahala")
+
             
             rm(new)
             rm(packages)

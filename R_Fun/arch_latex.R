@@ -9,7 +9,7 @@
       j+1 -> j
       
       message("%",i_name)
-      stargazer(sum_table(i[,-c(rm_vars)]), title = paste("Summary table of", i_name, sep = " "), summary = FALSE, digits = 1, label = paste("Sum_table", i_name, sep = "_"))
+      stargazer(arch_sum_table(i[,-c(rm_vars)]), title = paste("Summary table of", i_name, sep = " "), summary = FALSE, digits = 1, label = paste("Sum_table", i_name, sep = "_"))
       
       
       
