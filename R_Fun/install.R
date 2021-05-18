@@ -7,7 +7,7 @@ setwd(current_wd)
 
 packages <- c("archdata",
                       "plyr",
-                      "dplyr",
+                      #"dplyr",
                       "RcmdrMisc",
                       "compositions",
                       "ggplot2",
@@ -15,7 +15,7 @@ packages <- c("archdata",
                       "ggthemes",
                       "plotrix",
                       "dendextend",
-                      "d3heatmap",
+                      #"d3heatmap",
                       "stargazer",
                       "devEMF",
                       "devtools",
@@ -26,6 +26,10 @@ packages <- c("archdata",
             #watch out the difference between installed.packages and install.packages
             if(length(new)) install.packages(new)
             lapply(packages, require, character.only=TRUE)
+            
+          
+            #install package d3heatmap (otherwise gives an R)
+            devtools::install_github("rstudio/d3heatmap")
 
 #All the functions used to run ArchFLow
                        
@@ -43,7 +47,7 @@ packages <- c("archdata",
             source("../arch_flow/R_Fun/etiquetes_elements.R")
             source("../arch_flow/R_Fun/arch_heatmap.R")
             source("../arch_flow/R_Fun/arch_scatter_matrix.R")
-            source("R_Fun/arch_mahala")
+            source("../arch_flow/R_Fun/arch_mahala.R")
 
             
             rm(new)

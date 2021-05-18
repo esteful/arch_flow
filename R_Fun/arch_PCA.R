@@ -29,8 +29,7 @@
     #vt/t.i values by order
     ord <- order(varprop)
     colnames(df_chem)[ord[n_variables]] -> lvar #get the name of the variable
-    assign("lvar", lvar,.GlobalEnv)
-    
+    assign("lvar", lvar, .GlobalEnv)
     
     
     df_chem <-  alr(df_chem,
