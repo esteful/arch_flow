@@ -17,6 +17,8 @@
   #Total Variation as a Measure of Variability in Chemical Data Sets. Patterns and Process. 
   #A Festchrift in Honor to Dr. Edward Sayre, March, 185–198.
   
+  ############################    DEFINE VARIABLES   #######################################################    
+  
   
   # number of columns
   n_variables <- ncol(df_chem) 
@@ -40,23 +42,25 @@
   totvar <- sum(varmat)/(2 * n_variables)
   
   #"t.i": the sum of the individual variabilities for each value in a given column
+  #numeric vector
   varsum  <- apply(varmat, 2, sum)   
   
   # vt/t.i (ratio of total variation and individual variation)
+  #numeric vector
   varprop <- totvar/varsum      
   
   #"r v,t" calculate the correlation between individual and total variation
+  #numeric vector with 0s
   varcor  <- vector(mode="numeric", length= n_variables)    
   
+      #Correlation vector (provides numeric vector)
+      for(i in 1:n_variables) {
+        varcor[i] <- 
+          cor(varmat[-c(i),i], varsum[-i])
+        }
+      
   
-  #Correlation vector
-  
-  for(i in 1:n_variables) {
-    varcor[i] <- 
-      cor(varmat[-c(i),i], varsum[-i])
-  }
-  
-  #add values to the empty matrix 
+  #add values to the variation matrix (in the las four rows)
   for(i in 1:n_variables)
   { 
     varmat2[i,]  <-  varmat[i,]  #add previously calculated values
@@ -66,9 +70,10 @@
     varmat2[n_variables+4,1]<- totvar      #add the total variation, only one value in the first column
   }
   
-  #set the names
-  dimnames(varmat2) <-
-    list(c(dimnames(df_chem)[[2]],"t.i","vt/t.i","r v,t","vt"),c(dimnames(df_chem)[[2]])) 
+  
+  #set the names to varmat2
+   dimnames(varmat2) <-
+   list(c(dimnames(df_chem)[[2]],"t.i","vt/t.i","r v,t","vt"),c(dimnames(df_chem)[[2]])) 
   
   #vt/t.i values by order
   ord <- order(varprop)
@@ -78,22 +83,6 @@
   names(varsum) <-  colnames(df_chem) #
   varsum[order(varsum, decreasing = T)] -> varsum_ordered_vec
   as.data.frame(varsum_ordered_vec) -> df_varsum
-  
-  ##For MVC plot (set oxide names when these are in the dataset)
-  for (i in 1:length(row.names(df_varsum))) {
-    if (regexpr ("^Fe2O3$",as.character(row.names(df_varsum)[i]))==T) row.names(df_varsum)[i]<-expression("Fe"["2"]*"O"["3"])
-    if (regexpr ("^Al2O3$", as.character(row.names(df_varsum)[i]))==T) row.names(df_varsum)[i]<-expression("Al"["2"]*"O"["3"])
-    if (regexpr ("^P2O5$", as.character(row.names(df_varsum)[i]))==T) row.names(df_varsum)[i]<-expression("P"["2"]*"O"["5"])
-    if (regexpr ("^TiO2$", as.character(row.names(df_varsum)[i]))==T) row.names(df_varsum)[i]<-expression("TiO"["2"])
-    if (regexpr ("^Na2O$", as.character(row.names(df_varsum)[i]))==T) row.names(df_varsum)[i]<-expression("Na"["2"]*"O")
-    if (regexpr ("^K2O$", as.character(row.names(df_varsum)[i]))==T) row.names(df_varsum)[i]<-expression("K"["2"]*"O")
-    if (regexpr ("^SiO2$", as.character(row.names(df_varsum)[i]))==T) row.names(df_varsum)[i]<-expression("SiO"["2"])
-  }
-  
-  row.names(df_varsum) <- sub(pattern = "Fe2O3",replacement =  expression("Fe"["2"]*"O"["3"]), x=row.names(df_varsum))
-  
-  
-  
   
   
   
@@ -141,12 +130,16 @@
   
   
   
-  ##CREATE THE MVC PLOT
+  
+  ############################    1.  MVC PLOT  #######################################################    
+  
+  
+  ordered_labels <- etiquetes.elements(varsum_ordered_vec)
   
   MVC_plot <- 
     ggplot(df_varsum, 
-           aes(x=row.names(df_varsum),  #especify data to plot x axis
-               y=varsum_ordered_vec)) +  #especify data to plot y axis
+           aes(x=row.names(df_varsum),  #specify data to plot x axis
+               y=varsum_ordered_vec)) +  #specify data to plot y axis
     geom_line(aes(group=1)) + #add the line between dots
     geom_point(size=3, shape=20) +  #add the dots (change size or shape)
     
@@ -157,8 +150,10 @@
     theme(plot.margin = unit(c(1, 1, 1, 1), "cm"), text = element_text(size=rel(4))) +
     
     
+    
     scale_x_discrete(limits = c(row.names(df_varsum)), #order elements from max to min varsum
-                    labels = names(varsum_ordered_vec)) + #include names 
+                    labels = chemLabels(names(varsum_ordered_vec))) + #include names 
+                    #labels = names(ordered_labels))
     theme(axis.text.x = element_text(angle = 90)) + #rotate x labels
                     
     #use this to add padding between the last element and right part of the plot
@@ -201,7 +196,7 @@
      
     #0.5 line + text  
       annotate("segment", x = matrix3[2]+0.5, xend = matrix3[2]+0.5, y = 0.3, yend = max(varsum_ordered_vec)/1,5, 
-               linetype="dashed", colour = "black", size =0.3) +
+               linetype="dashed", colour = "black", size =0.3) + 
       annotate("text", x = matrix3[2]+0.5, y = 0, label = "0.5") +
 
     
@@ -225,7 +220,7 @@
   
   ############################    2 DENDROGRAM OF MVC  ######################################################    
   
-  dendroMVC<-hclust(as.dist(MVC[c(1:(dim(MVC)[2])),]),"ave") #hclust with average method
+  dendroMVC <- hclust(as.dist(MVC[c(1:(dim(MVC)[2])),]),"ave") #hclust with average method
   
   for (i in 1:(dim(MVC)[2])) {
     if (regexpr ("^Fe2O3$",as.character(dendroMVC[[4]][i]))==T) dendroMVC[[4]][i]<-expression("Fe"["2"]*"O"["3"])
@@ -256,6 +251,9 @@
   
   ##CoDadendrogram
   
+  
+  
+  
   mida.boxplot= 30 #used in codadendro
   rang.boxplot=c(-4,4) #used in codadendro
   
@@ -263,7 +261,9 @@
   classi<-classifica(dendroMVC) #classifica function is external
   Signary<-as.data.frame(t(classi$signary))
   
-  dimnames(Signary)[[1]]<-dimnames(df_chem)[[2]]
+ 
+  
+  dimnames(Signary)[[1]]<- dimnames(df_chem)[[2]]
   
   CoDaDendrogram(
     acomp(df_chem),

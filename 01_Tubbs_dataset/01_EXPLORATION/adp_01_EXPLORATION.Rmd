@@ -133,6 +133,8 @@ arch_varmat(df_chem)
 ###Graphically: Variation Matrix (MVC) plotCompositional evenness graph, MVC dendrogram and Coda-Dendrogram
 ```{r  warning=FALSE}
 arch_evenness(df_chem)
+
+
 ```
 
 ###Scatter plot Matrix
