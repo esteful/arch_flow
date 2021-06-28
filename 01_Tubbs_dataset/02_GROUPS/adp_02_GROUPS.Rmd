@@ -24,8 +24,15 @@ Create groups (subset of the main dataset) according to the cluster analysis. k=
 
 ```{r}
 #OPTION A
-#Watch to perform correctly the Hclust 
-groups <- cutree(.HClust, k = 3, h = NULL) #a vector with the names and the group assigned according to the dengroram.
+
+df_chem -> x
+
+# transform the numeric variables to log centered ratio
+x.clr <- logcenter.tran(x)
+
+
+HClust <-  stats::hclust(d = dist(x.clr)^2, method = "cen")
+groups <- cutree(HClust, k = 3, h = NULL) #a vector with the names and the group assigned according to the dengroram.
 
 GR_GLO <- subset(df_raw, groups==1) #subset of the whole dataset
 GR_NF <- subset(df_raw, groups==2) #subset of the whole dataset
@@ -33,7 +40,7 @@ GR_WA <- subset(df_raw, groups==3) #subset of the whole dataset
 
 #cbind(df_raw, groups) -> df_raw
 
-#OPTION C (Get the same by a loop)
+#OPTION B (Get the same by a loop)
   #cutree_1h.dendrogram(my_dend, h = 0.9 ) -> DEND_GROUP
 
       #for (i in unique(DEND_GROUP))
@@ -128,6 +135,7 @@ arch_heatmap(GR_WA[,-c(rm_vars)])
 message("Heatmap of GR_NF")
 arch_heatmap(GR_NF[,-c(rm_vars)]) 
 ```
+
 
 
 # Group Membership Probability 

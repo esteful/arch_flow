@@ -59,7 +59,7 @@ Tubb, A., A. J. Parker, and G. Nickless. 1980. The Analysis of Romano-British Po
 
 
 ### Install and load packages and functions
-```{r warning=FALSE, cache=FALSE, include=FALSE}
+```{r eval=FALSE, warning=FALSE, cache=FALSE, include=FALSE}
 source("R_Fun/install.R")
 ```
 
@@ -90,7 +90,7 @@ In df_chem only integers (int) or numerical (num). Num class contain decimals
 ###Facet plots
 Most of the samples are from Gloucester region (n=22), where only one kiln is present. Following byIn Wales, were two kilns are found (Llanedeyrn (n=14) and Caldicot), the latter)  with only two samples. Finally, there are 5 and 5 individuals in the twoboth kilns from New Forest, distributed in the Islands Thorns Kiln and the Ashley Rails kiln.
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 arch_pie_plot(df_raw$ID,df_raw$Region, df_raw$Kiln)
 ```
 
@@ -98,7 +98,7 @@ arch_pie_plot(df_raw$ID,df_raw$Region, df_raw$Kiln)
 ```{r}
   for (i in 1:ncol(df_chem)){
   .datt <- data.frame(REGION=df_raw$Region, i= df_chem[,i], KILN=df_raw$Kiln)
-  plot(ggplot(.datt, aes(x= KILN, y = i, fill=REGION)) + geom_boxplot() + ylab(colnames(df_chem)[i]))
+  plot(ggplot2::ggplot(.datt, ggplot2::aes(x= KILN, y = i, fill=REGION)) + ggplot2::geom_boxplot() + ggplot2::ylab(colnames(df_chem)[i]))
   }
 ```
 
@@ -133,8 +133,6 @@ arch_varmat(df_chem)
 ###Graphically: Variation Matrix (MVC) plotCompositional evenness graph, MVC dendrogram and Coda-Dendrogram
 ```{r  warning=FALSE}
 arch_evenness(df_chem)
-
-
 ```
 
 ###Scatter plot Matrix
@@ -143,7 +141,7 @@ arch_evenness(df_chem)
   vars <- c("MnO","CaO","Na2O", "TiO2","BaO", "Al2O3") 
 
   #alr conversion
-  alr(df_chem,ivar = 2)-> df_alr
+  compositions::alr(df_chem,ivar = 2)-> df_alr
   cbind(df_raw[,1:3],df_alr) -> df_alr
 
   arch_scatter_matrix(df_raw=df_alr, vars, color = "Region", shape = "Kiln", title= "RBPottery")
@@ -220,10 +218,12 @@ In ArchFlow a ternary diagram is included, where the values of CaO, \ch Al2O3 an
 
 
 
+```{r fig.height=3, fig.width=3}
+arch_triangles(df_raw, plot.category = 3, rounded_circle = ) #grup = indicates the column from which the factors will be for the legend
+```
+
+
 ```{r fig.height=7, fig.width=7}
-arch_triangles(df_raw, grup =3) #grup = indicates the column from which the factors will be for the legend 
-
-
 #Remove the column of estimated SiO2
 if (SiO2 == 1){
   df_chem[,-c(ncol(df_chem))] -> df_chem

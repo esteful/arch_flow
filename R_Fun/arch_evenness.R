@@ -134,8 +134,7 @@
   ############################    1.  MVC PLOT  #######################################################    
   
   
-  ordered_labels <- etiquetes.elements(varsum_ordered_vec)
-  
+
   MVC_plot <- 
     ggplot(df_varsum, 
            aes(x=row.names(df_varsum),  #specify data to plot x axis
@@ -153,7 +152,6 @@
     
     scale_x_discrete(limits = c(row.names(df_varsum)), #order elements from max to min varsum
                     labels = chemLabels(names(varsum_ordered_vec))) + #include names 
-                    #labels = names(ordered_labels))
     theme(axis.text.x = element_text(angle = 90)) + #rotate x labels
                     
     #use this to add padding between the last element and right part of the plot
