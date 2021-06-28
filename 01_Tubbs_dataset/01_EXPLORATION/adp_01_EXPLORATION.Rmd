@@ -58,14 +58,20 @@ Baxter, M. J. 2003. Statistics in Archaeology. Arnold.
 Tubb, A., A. J. Parker, and G. Nickless. 1980. The Analysis of Romano-British Pottery by Atomic Absorption Spectrophotometry. Archaeometry 22: 153-71.
 
 
-### Install and load packages and functions
-```{r eval=FALSE, warning=FALSE, cache=FALSE, include=FALSE}
-source("R_Fun/install.R")
+### Install ArchFlow package
+```{r warning=FALSE, cache=FALSE}
+install.packages("devtools")
+library("devtools")
+
+install_github("esteful/ArchFlow")
+library("ArchFlow")
 ```
 
 
 ### Load RBPottery from Archdata package (example data). Alternatively, import csv
 ```{r}
+install.packages("archdata")
+library("archdata")
   data(RBPottery)
   print(RBPottery)
 ```
@@ -87,12 +93,7 @@ In df_chem only integers (int) or numerical (num). Num class contain decimals
   str(df_chem)
 ```
 
-###Facet plots
-Most of the samples are from Gloucester region (n=22), where only one kiln is present. Following byIn Wales, were two kilns are found (Llanedeyrn (n=14) and Caldicot), the latter)  with only two samples. Finally, there are 5 and 5 individuals in the twoboth kilns from New Forest, distributed in the Islands Thorns Kiln and the Ashley Rails kiln.
 
-```{r eval=FALSE, include=FALSE}
-arch_pie_plot(df_raw$ID,df_raw$Region, df_raw$Kiln)
-```
 
 ###Boxplots with the distribution of the chemical elements
 ```{r}
@@ -218,7 +219,7 @@ In ArchFlow a ternary diagram is included, where the values of CaO, \ch Al2O3 an
 
 
 
-```{r fig.height=3, fig.width=3}
+```{r fig.height=6, fig.width=6}
 arch_triangles(df_raw, plot.category = 3, rounded_circle = ) #grup = indicates the column from which the factors will be for the legend
 ```
 
