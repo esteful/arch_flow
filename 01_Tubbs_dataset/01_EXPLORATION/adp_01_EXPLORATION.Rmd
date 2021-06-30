@@ -67,7 +67,6 @@ install_github("esteful/ArchFlow")
 library("ArchFlow")
 ```
 
-
 ### Load RBPottery from Archdata package (example data). Alternatively, import csv
 ```{r}
 install.packages("archdata")
