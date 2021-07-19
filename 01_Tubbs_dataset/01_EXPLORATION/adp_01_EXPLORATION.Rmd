@@ -65,6 +65,7 @@ library("devtools")
 
 install_github("esteful/ArchFlow")
 library("ArchFlow")
+data(df_majolica)
 ```
 
 ### Load RBPottery from Archdata package (example data). Alternatively, import csv
